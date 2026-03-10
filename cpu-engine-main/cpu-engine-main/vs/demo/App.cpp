@@ -96,7 +96,7 @@ void App::OnStart()
 	m_pShip->GetFSM()->ToState(CPU_ID(StateShipIdle));
 
 	// Particle
-	cpuEngine.GetParticleData()->Create(2000000);
+	/*cpuEngine.GetParticleData()->Create(2000000);
 	cpuEngine.GetParticlePhysics()->gy = -0.5f;
 	m_pEmitter = cpuEngine.CreateParticleEmitter();
 	m_pEmitter->rate = 1.0f;
@@ -106,7 +106,7 @@ void App::OnStart()
 	m_pEmitter2->rate = 0.25f;
 	m_pEmitter2->colorMin = cpu::ToColor(0, 0, 255);
 	m_pEmitter2->colorMax = cpu::ToColor(0, 128, 255);
-	m_pEmitter2->pos.x = -2.0f;
+	m_pEmitter2->pos.x = -2.0f;*/
 
 	// Test
 	//m_pEmitter->blend = CPU_PARTICLE_OPAQUE;

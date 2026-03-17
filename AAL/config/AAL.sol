@@ -6,7 +6,8 @@
         "Engine.prj",
         "Render.prj",
         "Sandbox.prj",
-        "Gameplay.prj"
+        "Gameplay.prj",
+        "demo.prj"
     ],
     "solution_name": "AAL",
     "version": "16",

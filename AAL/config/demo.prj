@@ -6,7 +6,11 @@
     "windows_target_platform_version": "10.0",
     "use_vcpkg": "false",
     "use_vcpkg_manifest": "false",
-    "dependencies": [],
+    "dependencies": [
+        "Engine",
+        "Render",
+        "Core"
+    ],
     "configuration": [
         {
             "additional_dependencies": "%(AdditionalDependencies)",

@@ -4,7 +4,7 @@
 // https://www.seccia.com
 
 // Include
-#include "../cpu-render/cpu-render.h"
+#include "../Render/cpu-render.h"
 
 // Forward declarations
 class cpu_engine;

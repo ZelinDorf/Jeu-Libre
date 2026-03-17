@@ -1,11 +1,15 @@
 #pragma once
 
-#include <windows.h>
+//#ifdef _DEBUG
+//	#pragma comment(lib, "../x64/Debug/cpu-core.lib")
+//	#pragma comment(lib, "../x64/Debug/cpu-render.lib")
+//	#pragma comment(lib, "../x64/debug/cpu-engine.lib")
+//#else
+//	#pragma comment(lib, "../x64/Release/cpu-core.lib")
+//	#pragma comment(lib, "../x64/Release/cpu-render.lib")
+//	#pragma comment(lib, "../x64/Release/cpu-engine.lib")
+//#endif
 
-#include "resource.h"
+#include "../Engine/engine.h"
 
-#ifdef _DEBUG
-#include <crtdbg.h>
-#define DEBUG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
-#define new DEBUG_NEW
-#endif
+#include "App.h"

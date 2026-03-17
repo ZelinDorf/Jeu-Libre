@@ -14,7 +14,7 @@
     <ClInclude Include="Resource.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
-    <ClInclude Include="demo.h">
+    <ClInclude Include="main.h">
       <Filter>App</Filter>
     </ClInclude>
     <ClInclude Include="App.h">
@@ -25,7 +25,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="demo.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>App</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">

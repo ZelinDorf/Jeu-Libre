@@ -8,6 +8,7 @@
 
 int main()
 {
+    CPU_RUN(512, 256, true, true);
 
     return 0;
 }

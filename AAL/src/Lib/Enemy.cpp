@@ -1,28 +1,96 @@
 #include "pch.h"
 #include "Enemy.h"
 
-void Enemy::Create(float hp, float dmg, float arm, float spd, float cost, int id)
+void Enemy::Create(int id)
 {
-	// Determinate stats & cost
-	m_maxHealth = hp;	m_speed = spd;
-	m_id = id;		m_cost = cost;
-	m_armor = arm;	m_damage = dmg;
-	
-	// Determinate When can spawn
-
-	m_canAppear_v = { 0,1,3 }; // ex: map 0, 1 & 3
-
-	// 
-
+	// Spawn a monster based on is ID/ENUM
 }
 
-void Enemy::ChangeStats(vector<StatsEnum> e, std::vector<float> value)
+void Enemy::MultiplyStats(Vector<StatsEnum> e, Vector<float> value)
 {
+	if (e.size() != value.size()) return; // must be the same size !
+
 	for (size_t i = 0; i < e.size(); i++)
 	{
+		if (e[i] == StatsEnum::MAX_HEALTH) {
+			m_maxHealth *= value[i];
+		}
 
+		if (e[i] == StatsEnum::SPEED) {
+			m_speed *= value[i];
+		}
+
+		if (e[i] == StatsEnum::DAMAGE) {
+			m_damage *= value[i];
+		}
+
+		if (e[i] == StatsEnum::ARMOR) {
+			m_armor *= value[i];
+		}
+
+		if (e[i] == StatsEnum::XP_DROP) {
+			m_xpDrop *= value[i];
+		}
 	}
 }
+
+void Enemy::AddStats(Vector<StatsEnum> e, Vector<float> value)
+{
+	if (e.size() != value.size()) return; // must be the same size !
+
+	for (size_t i = 0; i < e.size(); i++)
+	{
+		if (e[i] == StatsEnum::MAX_HEALTH) {
+			m_maxHealth += value[i];
+		}
+
+		if (e[i] == StatsEnum::SPEED) {
+			m_speed += value[i];
+		}
+
+		if (e[i] == StatsEnum::DAMAGE) {
+			m_damage += value[i];
+		}
+
+		if (e[i] == StatsEnum::ARMOR) {
+			m_armor += value[i];
+		}
+
+		if (e[i] == StatsEnum::XP_DROP) {
+			m_xpDrop += value[i];
+		}
+	}
+}
+
+void Enemy::ChangeStats(Vector<StatsEnum> e, Vector<float> value ) // multiply base stats by a value -> for scaling via items
+{
+	if (e.size() != value.size()) return; // must be the same size !
+
+	for (size_t i = 0; i < e.size(); i++)
+	{
+		if (e[i] == StatsEnum::MAX_HEALTH) {
+			m_maxHealth = value[i];
+		}
+
+		if (e[i] == StatsEnum::SPEED) {
+			m_speed = value[i];
+		}
+
+		if (e[i] == StatsEnum::DAMAGE) {
+			m_damage = value[i];
+		}
+
+		if (e[i] == StatsEnum::ARMOR) {
+			m_armor = value[i];
+		}
+
+		if (e[i] == StatsEnum::XP_DROP) {
+			m_xpDrop = value[i];
+		}
+	}
+}
+
+
 
 
 

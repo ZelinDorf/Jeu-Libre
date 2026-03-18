@@ -1,4 +1,5 @@
 #include "pch.h"
+#include <iostream>
 
 App::App()
 {
@@ -25,6 +26,7 @@ void App::OnStart()
 void App::OnUpdate()
 {
 	// YOUR CODE HERE
+	std::cout << "a";
 }
 
 void App::OnExit()

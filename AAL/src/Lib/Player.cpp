@@ -1,9 +1,17 @@
 #include "pch.h"
 #include "Player.h"
+#include "InputSystem.h"
 
 
 void Player::Init()
 {
+	m_pEntity = cpuEngine.CreateEntity();
+	m_pEntity->pMesh = &m_meshPlayer;
+	m_pEntity->transform.pos = mPosition;
+	m_pEntity->transform.SetYPR(0.0f, 0.0f, 0.0f);
+	
+
+	mPosition = XMFLOAT3(0.0f, 0.0f, 0.0f);
 	mSpeed = mBaseSpeed;
 }
 
@@ -17,17 +25,18 @@ void Player::HandleInput(float dt)
 {
 	if (mIsActive)
 		return;
+	
 
-	if (cpuInput.IsKey('Z'))
+	if (InputSystem::IsKeyPressed(Z))
 		MoveForward(dt);
-	if (cpuInput.IsKey('S'))
+	if (InputSystem::IsKeyPressed(S))
 		MoveBackward(dt);
-	if (cpuInput.IsKey('Q'))
+	if (InputSystem::IsKeyPressed(Q))
 		StrafeLeft(dt);
-	if (cpuInput.IsKey('D'))
+	if (InputSystem::IsKeyPressed(D))
 		StrafeRight(dt);
 
-	if (cpuInput.IsKeyDown(VK_LCONTROL))
+	if (InputSystem::IsKeyDown(LCTRL))
 	{
 		Crouch();
 		mIsCrouched = true;
@@ -38,20 +47,30 @@ void Player::HandleInput(float dt)
 		mIsCrouched = false;
 	}
 
-	if (cpuInput.IsKeyDown(VK_LBUTTON))
+	if (InputSystem::IsMouseButtonPressed(LEFT_MOUSE))
 	{
 		Attack();
 	}
 
 
-	if (cpuInput.IsKey('F'))
+	if (InputSystem::IsKeyPressed(F))
 		SwapWeapon();
 
-	if (cpuInput.IsKey('E'))
+	if (InputSystem::IsKeyPressed(E))
 		Inventory();
 
-	if (cpuInput.IsKey('A'))
+	if (InputSystem::IsKeyPressed(A))
 		UpgradesPage();
+}
+
+void Player::SetPosition(XMFLOAT3 _position)
+{
+	mPosition = _position;
+}
+
+XMFLOAT3 Player::GetPosition()
+{
+	return mPosition;
 }
 
 void Player::MouseInput()
@@ -63,7 +82,7 @@ void Player::MoveForward(float dt)
 	float _speed = mSpeed;
 	if (mIsCrouched == true)
 		_speed *= .4f;
-	newPos.y += _speed * dt;
+	mPosition.y += _speed * dt;
 }
 
 void Player::MoveBackward(float dt)
@@ -71,7 +90,7 @@ void Player::MoveBackward(float dt)
 	float _speed = mSpeed;
 	if (mIsCrouched == true)
 		_speed *= .4f;
-	newPos.y -= _speed * dt;
+	mPosition.y -= _speed * dt;
 }
 
 void Player::StrafeLeft(float dt)
@@ -79,7 +98,7 @@ void Player::StrafeLeft(float dt)
 	float _speed = mSpeed;
 	if (mIsCrouched == true)
 		_speed *= .4f;
-	newPos.x -= _speed * dt;
+	mPosition.x -= _speed * dt;
 }
 
 void Player::StrafeRight(float dt)
@@ -87,7 +106,7 @@ void Player::StrafeRight(float dt)
 	float _speed = mSpeed;
 	if (mIsCrouched == true)
 		_speed *= .4f;
-	newPos.x += _speed * dt;
+	mPosition.x += _speed * dt;
 }
 
 void Player::Jump()

@@ -1,7 +1,11 @@
 #pragma once
+#include "pch.h"
+
 class Player
 {
 private:
+
+	XMFLOAT3 mPosition;
 
 	float mBaseSpeed;
 	float mSpeed;
@@ -22,6 +26,8 @@ private:
 
 	bool mIsCrouched;
 
+	cpu_mesh m_meshPlayer;
+
 	void Attack();
 	void RefreshAttack(float dt);
 
@@ -34,6 +40,8 @@ private:
 	void UpgradesPage();
 
 public:
+	cpu_entity* m_pEntity;
+
 	bool mIsActive = false;
 
 	void Init();
@@ -41,5 +49,8 @@ public:
 	void HandleInput(float dt);
 
 	int mCurrentWeapon = 0;
+
+	void SetPosition(XMFLOAT3 _position);
+	XMFLOAT3 GetPosition();
 };
 

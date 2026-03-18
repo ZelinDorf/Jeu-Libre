@@ -6,6 +6,7 @@
 class Enemy
 {
 public: 
+
 	// Enemy Base Stats
 	float m_maxHealth = 0.f;
 	float m_damage = 0.f;
@@ -19,6 +20,8 @@ public:
 
 	//enemy id
 	int m_id = -1;
+
+	//
 
 	//Spawn on Maps Condition
 	Vector<int> m_canAppear_v = {};
@@ -36,5 +39,6 @@ public:
 
 	// Replaces enemy stats by a value	 
 	void ChangeStats(Vector<StatsEnum> e, Vector<float> value);  
+
 };
 

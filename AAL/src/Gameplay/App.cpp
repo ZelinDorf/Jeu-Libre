@@ -1,4 +1,6 @@
 #include "pch.h"
+#include "Lib/Enemy.h"
+#include "EnemiesRegistery.h"
 #include <iostream>
 
 App::App()
@@ -20,13 +22,13 @@ App::~App()
 
 void App::OnStart()
 {
-	// YOUR CODE HERE
+	EnemiesRegistery* reg;
+	reg->Create(reg->SKELETAL_GRUNT);
 }
 
 void App::OnUpdate()
 {
 	// YOUR CODE HERE
-	std::cout << "a";
 }
 
 void App::OnExit()

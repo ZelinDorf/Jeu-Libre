@@ -1,11 +1,12 @@
 #pragma once
 #include <vector>
+#include <string>
 
 class Enemy
 {
 public: 
-	// Enemy Stats
-	float m_health = 0;
+	// Enemy Base Stats
+	float m_maxHealth = 0;
 	float m_damage = 0;
 	float m_armor = 0;
 	float m_speed = 0;
@@ -19,7 +20,7 @@ public:
 
 private:
 
-	void CreateEnemy(float hp, float dmg, float arm, float spd, float cost, int id);
-	void 
+	void Create(float hp, float dmg, float arm, float spd, float cost, int id);
+	void ChangeStats(std::string stat, float value);
 };
 

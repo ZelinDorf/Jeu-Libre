@@ -3,7 +3,11 @@ class Player
 {
 private:
 
+	float mBaseSpeed;
 	float mSpeed;
+
+	float mAttackRefreshing = 0.f;
+	float mAttackRefreshDuration = 0.85f;
 
 	void MouseInput();
 
@@ -14,8 +18,12 @@ private:
 
 	void Jump();
 	void Crouch();
+	void Uncrouch();
+
+	bool mIsCrouched;
 
 	void Attack();
+	void RefreshAttack(float dt);
 
 	void SwapWeapon();
 

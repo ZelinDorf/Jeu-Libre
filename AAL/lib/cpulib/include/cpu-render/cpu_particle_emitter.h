@@ -5,7 +5,9 @@ struct cpu_particle_emitter : public cpu_object
 public:
 	cpu_particle_data* pData;
 
-	float density;			// particles / second / pixel²
+	byte blend;				// blending method
+
+	float rate;				// particles per second
 	float spawnRadius;		// volume d'émission
 
 	XMFLOAT3 pos;			// world position
@@ -28,5 +30,5 @@ private:
 public:
 	cpu_particle_emitter();
 
-	void Update(XMFLOAT4X4& matViewProj, int width, int height);
+	void Update(int pixelCount);
 };

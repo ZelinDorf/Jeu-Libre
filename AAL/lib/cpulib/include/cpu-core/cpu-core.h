@@ -11,6 +11,10 @@
 
 #pragma comment(lib, "winmm.lib")
 #pragma comment(lib, "ws2_32.lib")
+#pragma comment(lib, "xinput.lib")
+#pragma comment(lib, "xaudio2.lib")
+#pragma comment(lib, "msacm32.lib")		// MP3
+#pragma comment(lib, "wmvcore.lib")		// MP3
 
 // Windows
 ///////////
@@ -36,10 +40,15 @@
 	#include <crtdbg.h>
 #endif
 
+#include <xinput.h>
+#include <xaudio2.h>
+#include <msacm.h>						// MP3
+#include <wmsdk.h>						// MP3
+
 // DirectX
 ////////////
 
-// Enable CPU_CONFIG_GPU for improved stretching when window size != render size or if you want to use V-Sync
+// Enable CPU_CONFIG_GPU for improved stretching when window size != render size OR if you want to use V-Sync
 #define CPU_CONFIG_GPU
 #ifdef CPU_CONFIG_GPU
 	#pragma comment(lib, "d2d1.lib")
@@ -71,6 +80,7 @@ inline XMVECTOR CPU_XMDIR				= g_XMIdentityR2;
 
 // Forward declarations
 struct cpu_aabb;
+struct cpu_input;
 struct cpu_obb;
 struct cpu_triangle;
 struct cpu_ray;
@@ -91,8 +101,9 @@ using ui64								= unsigned __int64;
 #endif
 
 // Singletons
-#define cpuTime							cpu_time::GetInstance()
+#define cpuAudio						cpu_audio::GetInstance()
 #define cpuInput						cpu_input::GetInstance()
+#define cpuTime							cpu_time::GetInstance()
 
 // Macro
 #define CPU_RELEASE(p)					{ if ( (p) ) { (p)->Release(); (p) = nullptr; } }
@@ -110,7 +121,17 @@ using ui64								= unsigned __int64;
 
 // Constants
 #define CPU_ZERO						1e-20f
-#define CPU_EPSILON						1e-8f
+#define CPU_EPSILON						1e-12f
+
+// Controller
+#define CPU_INPUT_ACTIONS				8
+#define CPU_XINPUT_A					0
+#define CPU_XINPUT_B					1
+#define CPU_XINPUT_X					2
+#define CPU_XINPUT_Y					3
+#define CPU_XINPUT_LS					4
+#define CPU_XINPUT_RS					5
+#define CPU_XINPUT_COUNT				6
 
 // Float3
 inline XMFLOAT3 CPU_VEC3_RIGHT			= { 1.0f, 0.0f, 0.0f };
@@ -132,11 +153,17 @@ inline XMFLOAT3 CPU_ORANGE				= { 1.0f, 0.5f, 0.0f };
 #include "cpu_img32.h"
 #include "cpu_global.h"
 #include "cpu_atomic.h"
+#include "cpu_object.h"
 #include "cpu_time.h"
+#include "cpu_sound.h"
+#include "cpu_player.h"
+#include "cpu_audio.h"
+#include "cpu_xinput_state.h"
+#include "cpu_xinput.h"
+#include "cpu_vinput.h"
 #include "cpu_input.h"
 #include "cpu_thread.h"
 #include "cpu_function.h"
-#include "cpu_object.h"
 #include "cpu_vec3_cmp.h"
 #include "cpu_vertex.h"
 #include "cpu_triangle.h"

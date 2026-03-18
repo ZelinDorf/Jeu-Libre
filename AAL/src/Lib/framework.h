@@ -10,4 +10,6 @@
 	#pragma comment(lib, "../../lib/cpulib/lib/cpu-engine.lib")
 #endif
 
+#include "../../lib/cpulib/include/cpu-engine/cpu-engine.h"
+
 #include <Windows.h>

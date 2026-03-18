@@ -19,6 +19,7 @@ public:
 
 	int GetWidth() { return m_mainRT.width; }
 	int GetHeight() { return m_mainRT.height; }
+	int GetPixelCount() { return m_mainRT.pixelCount; }
 	RECT& GetFit() { return m_rcFit; }
 	cpu_rt* SetMainRT(bool copyDepth = true);
 	cpu_rt* GetMainRT() { return &m_mainRT; }
@@ -46,6 +47,8 @@ public:
 	void DrawLine(int x0, int y0, float z0, int x1, int y1, float z1, XMFLOAT3& color);
 
 	void Present();
+
+	static float ToInvW(float w);
 
 private:
 	void OnWindowCallback(UINT message, WPARAM wParam, LPARAM lParam);

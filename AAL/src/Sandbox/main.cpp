@@ -7,7 +7,7 @@
 
 int main()
 {
-
+    CPU_RUN(1276, 572, false, true);
     return 0;
 }
 #else
@@ -16,7 +16,7 @@ int main()
 
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine, int nCmdShow) 
 {
-
+    CPU_RUN(1276, 572, false, true);
     return 0;
 }
 #endif

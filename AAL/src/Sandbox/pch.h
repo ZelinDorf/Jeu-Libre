@@ -3,4 +3,6 @@
 
 #include "framework.h"
 
+#include "App.h"
+
 #endif

@@ -1,6 +1,8 @@
 #ifndef PCH_H
 #define PCH_H
 
-#include <windows.h>
+#include "framework.h"
+
+#include "App.h"
 
 #endif

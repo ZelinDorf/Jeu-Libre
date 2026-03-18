@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <string>
+#include "Lib/StatsEnum.h"
 
 class Enemy
 {
@@ -21,6 +22,6 @@ public:
 private:
 
 	void Create(float hp, float dmg, float arm, float spd, float cost, int id);
-	void ChangeStats(std::string stat, float value);
+	void ChangeStats(Vector<StatsEnum> e, std::vector<float> value);
 };
 

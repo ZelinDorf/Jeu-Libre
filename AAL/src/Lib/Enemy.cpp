@@ -12,22 +12,17 @@ void Enemy::Create(float hp, float dmg, float arm, float spd, float cost, int id
 
 	m_canAppear_v = { 0,1,3 }; // ex: map 0, 1 & 3
 
+	// 
+
 }
 
-void Enemy::ChangeStats(std::string stat, float value)
+void Enemy::ChangeStats(vector<StatsEnum> e, std::vector<float> value)
 {
-	if (stat == "maxHealth") {
-		m_maxHealth = value;
-	};
-	if (stat == "speed") {
-		m_speed = value;
-	};
-	if (stat == "armor") {
-		m_armor = value;
-	};
-	if (stat == "damage") {
-		m_damage = value;
-	};
+	for (size_t i = 0; i < e.size(); i++)
+	{
+
+	}
 }
+
 
 

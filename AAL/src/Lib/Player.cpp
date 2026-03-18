@@ -6,6 +6,7 @@
 void Player::Init()
 {
 	m_pEntity = cpuEngine.CreateEntity();
+	m_meshPlayer.CreateSphere(mPlayerSize, 6, 6, CPU_WHITE, CPU_WHITE);
 	m_pEntity->pMesh = &m_meshPlayer;
 	m_pEntity->transform.pos = mPosition;
 	m_pEntity->transform.SetYPR(0.0f, 0.0f, 0.0f);
@@ -13,6 +14,7 @@ void Player::Init()
 
 	mPosition = XMFLOAT3(0.0f, 0.0f, 0.0f);
 	mSpeed = mBaseSpeed;
+	mCrouchedSpeed *= mSpeed;
 }
 
 void Player::Update(float dt)
@@ -35,6 +37,12 @@ void Player::HandleInput(float dt)
 		StrafeLeft(dt);
 	if (InputSystem::IsKeyPressed(D))
 		StrafeRight(dt);
+
+	if (InputSystem::IsKeyPressed(SPACEBAR))
+	{
+		Jump();
+		mIsJumping = true;
+	}
 
 	if (InputSystem::IsKeyDown(LCTRL))
 	{
@@ -79,47 +87,36 @@ void Player::MouseInput()
 
 void Player::MoveForward(float dt)
 {
-	float _speed = mSpeed;
-	if (mIsCrouched == true)
-		_speed *= .4f;
-	mPosition.y += _speed * dt;
+	mPosition.y += mSpeed * dt;
 }
 
 void Player::MoveBackward(float dt)
 {
-	float _speed = mSpeed;
-	if (mIsCrouched == true)
-		_speed *= .4f;
-	mPosition.y -= _speed * dt;
+	mPosition.y -= mSpeed * dt;
 }
 
 void Player::StrafeLeft(float dt)
 {
-	float _speed = mSpeed;
-	if (mIsCrouched == true)
-		_speed *= .4f;
-	mPosition.x -= _speed * dt;
+	mPosition.x -= mSpeed * dt;
 }
 
 void Player::StrafeRight(float dt)
 {
-	float _speed = mSpeed;
-	if (mIsCrouched == true)
-		_speed *= .4f;
-	mPosition.x += _speed * dt;
+	mPosition.x += mSpeed * dt;
 }
 
 void Player::Jump()
 {
+
 }
 
 void Player::Crouch()
 {
-
+	mSpeed = mCrouchedSpeed;
 }
 void Player::Uncrouch()
 {
-
+	mSpeed = mBaseSpeed;
 }
 
 void Player::Attack()

@@ -7,8 +7,11 @@ private:
 
 	XMFLOAT3 mPosition;
 
+	float mPlayerSize;
+
 	float mBaseSpeed;
 	float mSpeed;
+	float mCrouchedSpeed;
 
 	float mAttackRefreshing = 0.f;
 	float mAttackRefreshDuration = 0.85f;
@@ -24,6 +27,7 @@ private:
 	void Crouch();
 	void Uncrouch();
 
+	bool mIsJumping;
 	bool mIsCrouched;
 
 	cpu_mesh m_meshPlayer;

@@ -1,0 +1,83 @@
+{
+    "projects": {
+        "44F76F37-112D-4ADC-7A0A-670343024EF4": {
+            "config-debug": {
+                "additionalDependencies": [],
+                "additionalIncludeDirectories": [],
+                "additionalLibraryDirectories": [],
+                "preprocessorDefinitions": []
+            },
+            "config-release": {
+                "additionalDependencies": [],
+                "additionalIncludeDirectories": [],
+                "additionalLibraryDirectories": [],
+                "preprocessorDefinitions": []
+            },
+            "dependencies": [
+                "57C14220-2B51-65C2-4796-551620537D51"
+            ],
+            "dependents": [],
+            "name": "Gameplay",
+            "property-lib": false,
+            "property-pch": true,
+            "property-vcpkg": false,
+            "property-window": true
+        },
+        "57C14220-2B51-65C2-4796-551620537D51": {
+            "config-debug": {
+                "additionalDependencies": [],
+                "additionalIncludeDirectories": [],
+                "additionalLibraryDirectories": [],
+                "preprocessorDefinitions": []
+            },
+            "config-release": {
+                "additionalDependencies": [],
+                "additionalIncludeDirectories": [],
+                "additionalLibraryDirectories": [],
+                "preprocessorDefinitions": []
+            },
+            "dependencies": [],
+            "dependents": [
+                "44F76F37-112D-4ADC-7A0A-670343024EF4",
+                "57EE0DEE-7C43-09B8-7BAA-2BD44A8A5D3B"
+            ],
+            "name": "Lib",
+            "property-lib": true,
+            "property-pch": true,
+            "property-vcpkg": false,
+            "property-window": false
+        },
+        "57EE0DEE-7C43-09B8-7BAA-2BD44A8A5D3B": {
+            "config-debug": {
+                "additionalDependencies": [],
+                "additionalIncludeDirectories": [],
+                "additionalLibraryDirectories": [],
+                "preprocessorDefinitions": []
+            },
+            "config-release": {
+                "additionalDependencies": [],
+                "additionalIncludeDirectories": [],
+                "additionalLibraryDirectories": [],
+                "preprocessorDefinitions": []
+            },
+            "dependencies": [
+                "57C14220-2B51-65C2-4796-551620537D51"
+            ],
+            "dependents": [],
+            "name": "Sandbox",
+            "property-lib": false,
+            "property-pch": true,
+            "property-vcpkg": false,
+            "property-window": true
+        }
+    },
+    "projects_name_to_guid": {
+        "Gameplay": "44F76F37-112D-4ADC-7A0A-670343024EF4",
+        "Lib": "57C14220-2B51-65C2-4796-551620537D51",
+        "Sandbox": "57EE0DEE-7C43-09B8-7BAA-2BD44A8A5D3B"
+    },
+    "solution_guid": "57270CC9-5B91-23E2-61E5-042964E616BF",
+    "solution_name": "AAL",
+    "startup_project": "Sandbox",
+    "version": "2.0"
+}

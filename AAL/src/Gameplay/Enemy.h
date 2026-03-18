@@ -20,6 +20,5 @@ public:
 private:
 
 	void CreateEnemy(float hp, float dmg, float arm, float spd, float cost, int id);
-	void 
 };
 

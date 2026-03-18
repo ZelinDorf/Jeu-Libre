@@ -8,9 +8,10 @@ void Player::Init()
 
 void Player::Update(float dt)
 {
+	HandleInput(dt);
 }
 
-void Player::HandleInut(float dt)
+void Player::HandleInput(float dt)
 {
 	if (mIsActive)
 		return;
@@ -41,12 +42,12 @@ void Player::HandleInut(float dt)
 
 void Player::MoveForward(float dt)
 {
-	newPos.z += mSpeed * dt;
+	newPos.y += mSpeed * dt;
 }
 
 void Player::MoveBackward(float dt)
 {
-	newPos.z -= mSpeed * dt;
+	newPos.y -= mSpeed * dt;
 }
 
 void Player::StrafeLeft(float dt)
@@ -77,27 +78,27 @@ void Player::SwapWeapon()
 
 void Player::Inventory()
 {
-	if (IsInventoryOpened == false)
+	if (mIsInventoryOpened == false)
 	{
-		IsInventoryOpened = true;
+		mIsInventoryOpened = true;
 	}
 		
 	else
 	{
-		IsInventoryOpened = false;
+		mIsInventoryOpened = false;
 	}
 		
 }
 
 void Player::UpgradesPage()
 {
-	if (IsUpgradePageOpened == false)
+	if (mIsUpgradePageOpened == false)
 	{
-		IsUpgradePageOpened = true;
+		mIsUpgradePageOpened = true;
 	}
 
 	else
 	{
-		IsUpgradePageOpened = false;
+		mIsUpgradePageOpened = false;
 	}
 }

@@ -5,6 +5,8 @@ private:
 
 	float mSpeed;
 
+	void MouseInput();
+
 	void MoveForward(float dt);
 	void MoveBackward(float dt);
 	void StrafeLeft(float dt);
@@ -17,8 +19,8 @@ private:
 
 	void SwapWeapon();
 
-	bool IsInventoryOpened;
-	bool IsUpgradePageOpened;
+	bool mIsInventoryOpened;
+	bool mIsUpgradePageOpened;
 
 	void Inventory();
 	void UpgradesPage();
@@ -28,8 +30,8 @@ public:
 
 	void Init();
 	void Update(float dt);
-	void HandleInut(float dt);
+	void HandleInput(float dt);
 
-	
+	int mCurrentWeapon = 0;
 };
 

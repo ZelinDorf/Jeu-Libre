@@ -13,8 +13,6 @@ public:
 	void OnExit();
 	void OnRender(int pass);
 
-	static void MyPixelShader(cpu_ps_io& io);
-
 private:
 	inline static App* s_pApp = nullptr;
 };

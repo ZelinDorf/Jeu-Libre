@@ -1,5 +1,6 @@
 #pragma once
 #include "pch.h"
+#include "PlayerWeapon.h"
 
 class Player
 {
@@ -7,11 +8,11 @@ private:
 
 	XMFLOAT3 mPosition;
 
-	float mPlayerSize;
+	float mPlayerSize = .5f;
 
-	float mBaseSpeed;
+	float mBaseSpeed = 15;
 	float mSpeed;
-	float mCrouchedSpeed;
+	float mCrouchedSpeed = 5;
 
 	float mAttackRefreshing = 0.f;
 	float mAttackRefreshDuration = 0.85f;

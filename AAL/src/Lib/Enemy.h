@@ -4,7 +4,6 @@
 class Enemy
 {
 public:
-
 	// Enemy Base Stats
 	float m_maxHealth = 0.f;
 	float m_damage = 0.f;
@@ -21,25 +20,21 @@ public:
 
 	//Spawn on Maps Condition
 	Vector<int> m_canAppear_v = {};
-
 protected:
-	cpu_entity* m_pEntity;
-
-public:
-	Enemy* m_pEnemy;
 
 	cpu_mesh m_meshEnemy;
 	cpu_material m_materialEnemy;
 
+public:
+	cpu_entity* m_pEntity = nullptr;
+
 	Enemy();
 	~Enemy();
 
-	// Makes an enemy based on his id
 	void Create(cpu_mesh* pMesh, cpu_material* pMaterial);
 	void Destroy();
 
 	void Assemble(EnemiesList type, Enemy* enemy);
-
 	void Update();
 
 	cpu_entity* GetEntity() { return m_pEntity; }
@@ -53,4 +48,7 @@ public:
 	// Replaces enemy stats by a value	 
 	void ChangeStats(Vector<StatsEnum> e, Vector<float> value);
 
+private:
+	Vector<Enemy*> m_activeEnemies;
+	Vector<int> m_inGameIds;
 };

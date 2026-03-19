@@ -18,7 +18,6 @@ public:
 
 	static void MyPixelShader(cpu_ps_io& io);
 
-	InputSystem input;
 private:
 	inline static App* s_pApp = nullptr;
 	Enemy* m_pEnemy;

@@ -8,6 +8,7 @@ Enemy::Enemy()
 
 Enemy::~Enemy()
 {
+	Destroy();
 }
 
 void Enemy::Create(cpu_mesh* pMesh, cpu_material* pMaterial)
@@ -24,16 +25,38 @@ void Enemy::Destroy()
 
 void Enemy::Assemble(EnemiesList type, Enemy* enemy)
 {
+
+	int firstAvailableID = m_inGameIds.size();
+
 	int col1 = rand() % (200 - 100 + 1) + 100;
 	int col2 = rand() % (200 - 100 + 1) + 100;
 	int col3 = rand() % (200 - 100 + 1) + 100;
 
+	std::cout << m_inGameIds.size();
+
+	for (size_t i = 0; i < m_inGameIds.size(); i++)
+	{
+		std::cout << "for i: " << i << std::endl;
+		if (m_inGameIds[i] != i) {
+			std::cout << i;
+			firstAvailableID = i;
+			break;
+		}
+	}
+
 	switch (type)
 	{
 	case EnemiesList::SKELETAL_GRUNT:
+
 		m_meshEnemy.CreateSpaceship();
 		m_materialEnemy.color = cpu::ToColor(col1, col2, col3);
 		enemy->Create(&m_meshEnemy, &m_materialEnemy);
+
+		enemy->ChangeStats({ MAX_HEALTH, ARMOR, SPEED, DAMAGE, ATTACK_SPEED, XP_DROP, COST }, {10,1,1,1,1,1,1} );
+		enemy->m_currentHealth = m_maxHealth;
+
+		m_activeEnemies.push_back(enemy);
+		m_inGameIds.push_back(firstAvailableID);
 
 		break;
 	case EnemiesList::SKELETAL_MAGE:
@@ -51,6 +74,11 @@ void Enemy::Assemble(EnemiesList type, Enemy* enemy)
 void Enemy::Update() 
 {
 	float dt = cpuTime.delta;
+	if (InputSystem::IsKeyDown(A))
+	{
+		m_currentHealth--;
+	}
+	//if (m_currentHealth <= 0) 
 	
 	XMFLOAT3 camPos = cpuEngine.GetCamera()->transform.pos;
 	m_pEntity->transform.LookAt(camPos.x, camPos.y, camPos.z);
@@ -134,6 +162,12 @@ void Enemy::ChangeStats(Vector<StatsEnum> e, Vector<float> value)
 			m_armor = value[i];
 			break;
 		case StatsEnum::XP_DROP:
+			m_xpDrop = value[i];
+			break;
+		case StatsEnum::ATTACK_SPEED:
+			m_atkSpeed = value[i];
+			break;
+		case StatsEnum::COST:
 			m_xpDrop = value[i];
 			break;
 		default:

@@ -37,6 +37,9 @@ void Enemy::Assemble(EnemiesList type, Enemy* enemy)
 
 		break;
 	case EnemiesList::SKELETAL_MAGE:
+		m_meshEnemy.CreateCube(.5f);
+		m_materialEnemy.color = cpu::ToColor(col1, col2, col3);
+		enemy->Create(&m_meshEnemy, &m_materialEnemy);
 		break;
 	case EnemiesList::SKELETAL_ARCHER:
 		break;

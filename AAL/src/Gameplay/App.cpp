@@ -23,12 +23,25 @@ void App::OnStart()
 {
 	m_pEnemy = new Enemy;
 	m_pEnemy->Assemble(SKELETAL_GRUNT, m_pEnemy);
+
 	cpuEngine.GetCamera()->transform.pos.z = -5.0f;
+
+
 }
 
 void App::OnUpdate()
 {
 	m_pEnemy->Update();
+	input.HandleInput();
+
+	if (input.IsKeyDown(DELETE_)) m_pEnemy->~Enemy();
+	
+	if (input.IsKeyDown(DOWN_ARROW)) { m_pEnemy->GetEntity()->transform.Move(-10); }
+
+	if (input.IsKeyDown(UP_ARROW)) {
+		m_pEnemy = new Enemy;
+		m_pEnemy->Assemble(SKELETAL_GRUNT, m_pEnemy);
+	}
 }
 
 void App::OnExit()

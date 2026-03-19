@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "EnemyFactory.h"
+#include "Lib/EnemyFactory.h"
 
 void EnemyFactory::Assemble(Vector<float> stats, int id, cpu_entity* entity, cpu_mesh* mesh, cpu_material* mat)
 {

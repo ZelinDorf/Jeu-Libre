@@ -1,5 +1,4 @@
-#include "StatsEnum.h"
-#include "EnemiesRegistery.h"
+#include "Lib/StatsEnum.h"
 
 class Enemy
 {
@@ -22,14 +21,12 @@ public:
 	//Spawn on Maps Condition
 	Vector<int> m_canAppear_v = {};
 
+	cpu_mesh m_meshEnemy;
+
 protected:
 	cpu_entity* m_pEntity;
 
 public:
-	Enemy* m_pEnemy;
-
-	cpu_mesh m_meshEnemy;
-	cpu_material m_materialEnemy;
 
 	Enemy();
 	~Enemy();
@@ -37,8 +34,6 @@ public:
 	// Makes an enemy based on his id
 	void Create(cpu_mesh* pMesh, cpu_material* pMaterial);
 	void Destroy();
-
-	void Assemble(EnemiesList type, Enemy* enemy);
 
 	void Update();
 

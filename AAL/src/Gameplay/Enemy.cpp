@@ -15,6 +15,8 @@ void Enemy::Create(cpu_mesh* pMesh, cpu_material* pMaterial)
 	m_pEntity = cpuEngine.CreateEntity();
 	m_pEntity->pMesh = pMesh;
 	m_pEntity->pMaterial = pMaterial;
+	m_pEntity->transform.pos.z = 5.0f;
+	m_pEntity->transform.pos.y = -3.0f;
 }
 
 void Enemy::Destroy()
@@ -22,36 +24,12 @@ void Enemy::Destroy()
 	m_pEntity = cpuEngine.Release(m_pEntity);
 }
 
-void Enemy::Assemble(EnemiesList type, Enemy* enemy)
-{
-	int col1 = rand() % (200 - 100 + 1) + 100;
-	int col2 = rand() % (200 - 100 + 1) + 100;
-	int col3 = rand() % (200 - 100 + 1) + 100;
-
-	switch (type)
-	{
-	case EnemiesList::SKELETAL_GRUNT:
-		m_meshEnemy.CreateSpaceship();
-		m_materialEnemy.color = cpu::ToColor(col1, col2, col3);
-		enemy->Create(&m_meshEnemy, &m_materialEnemy);
-
-		break;
-	case EnemiesList::SKELETAL_MAGE:
-		break;
-	case EnemiesList::SKELETAL_ARCHER:
-		break;
-	default:
-		break;
-	}
-}
-
-void Enemy::Update() 
+void Enemy::Update()
 {
 	float dt = cpuTime.delta;
-	
-	XMFLOAT3 camPos = cpuEngine.GetCamera()->transform.pos;
-	m_pEntity->transform.LookAt(camPos.x, camPos.y, camPos.z);
-	//m_pEntity->transform.Move(dt);
+
+	// TEST //
+	m_pEntity->transform.AddYPR(dt, dt, dt);
 }
 
 

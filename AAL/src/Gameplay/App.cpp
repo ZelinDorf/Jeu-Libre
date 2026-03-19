@@ -1,6 +1,5 @@
 #include "pch.h"
-#include "Lib/Enemy.h"
-#include "EnemiesRegistery.h"
+#include "App.h"
 #include <iostream>
 
 App::App()
@@ -22,18 +21,19 @@ App::~App()
 
 void App::OnStart()
 {
-	EnemiesRegistery* reg;
-	reg->Create(reg->SKELETAL_GRUNT);
+	m_pEnemy = new Enemy;
+	m_pEnemy->Assemble(SKELETAL_GRUNT, m_pEnemy);
+	cpuEngine.GetCamera()->transform.pos.z = -5.0f;
 }
 
 void App::OnUpdate()
 {
-	// YOUR CODE HERE
+	m_pEnemy->Update();
 }
 
 void App::OnExit()
 {
-	// YOUR CODE HERE
+	m_pEnemy->Destroy();
 }
 
 void App::OnRender(int pass)

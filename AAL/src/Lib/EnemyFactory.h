@@ -1,6 +1,6 @@
 #pragma once
 #include "Lib/Enemy.h"
-#include "AALentity.h"
+#include "Lib/AALentity.h"
 
 class EnemyFactory : Enemy
 {

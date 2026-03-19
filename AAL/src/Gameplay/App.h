@@ -1,4 +1,7 @@
 #pragma once
+#include "Lib/Enemy.h"
+#include <vector>
+#include <string>
 
 class App
 {
@@ -17,4 +20,6 @@ public:
 
 private:
 	inline static App* s_pApp = nullptr;
+	Enemy* m_pEnemy;
 };
+

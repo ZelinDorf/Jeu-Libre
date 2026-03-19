@@ -20,6 +20,18 @@ App::~App()
 void App::OnStart()
 {
 	// YOUR CODE HERE
+
+	//camera
+	CAMERA->transform.pos.z = -20.0f;
+	CAMERA->transform.pos.y = 5.0f;
+
+	m_pChunck = new Chunk;
+	m_pChunck->Init();
+
+	m_pChunck2 = new Chunk;
+	m_pChunck2->Init();
+
+	m_pChunck2->ConnectFromTo()
 }
 
 void App::OnUpdate()

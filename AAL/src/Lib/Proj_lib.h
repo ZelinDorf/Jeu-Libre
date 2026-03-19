@@ -7,6 +7,13 @@
 #include "json.hpp"
 #pragma pop_macro("new")
 
+//	macro
+//////////
+//template <class T>
+//#define CPU_TEST_RUN						cpu::Run<cpu_engine, T>//a faire
+#define TO_COLOR							cpu::ToColor
+#define CAMERA								cpuEngine.GetCamera()
+
 //	namespace
 //////////////
 using json									= nlohmann::json;
@@ -31,8 +38,8 @@ using WString								= std::wstring;
 using WStringView							= std::wstring;
 using StringView							= std::string_view;
 
-//	define
-///////////
+//	define + using
+///////////////////
 
 
 //	Lib

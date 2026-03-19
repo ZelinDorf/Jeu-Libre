@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Chunk.h"
+
 class App
 {
 public:
@@ -17,4 +19,7 @@ public:
 
 private:
 	inline static App* s_pApp = nullptr;
+
+	Chunk* m_pChunck;
+	Chunk* m_pChunck2;
 };

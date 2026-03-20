@@ -46,24 +46,25 @@ void App::OnUpdate()
 	input.HandleInput();
 
 	if (input.IsKeyDown(DELETE_)) m_pEnemy->~Enemy();
-	
+
 	if (input.IsKeyDown(DOWN_ARROW)) { m_pEnemy->GetEntity()->transform.Move(-10); }
 
 	if (input.IsKeyDown(UP_ARROW)) {
 		m_pEnemy = new Enemy;
 		m_pEnemy->Assemble(SKELETAL_GRUNT, m_pEnemy);
-	float dt = cpuTime.delta;
-	float time = cpuTime.total;
+		float dt = cpuTime.delta;
+		float time = cpuTime.total;
 
-	mPlayer->Update(dt);
+		mPlayer->Update(dt);
 
-	if (InputSystem::IsKeyDown(SPACEBAR))
-		cpuEngine.GetCamera()->transform.SetYPR(0.f, 1.570796f, 0.f);
+		if (InputSystem::IsKeyDown(SPACEBAR))
+			cpuEngine.GetCamera()->transform.SetYPR(0.f, 1.570796f, 0.f);
 
-	// Quit
-	if (InputSystem::IsKeyPressed(ESCAPE))
-	{
-		cpuEngine.Quit();
+		// Quit
+		if (InputSystem::IsKeyPressed(ESCAPE))
+		{
+			cpuEngine.Quit();
+		}
 	}
 }
 

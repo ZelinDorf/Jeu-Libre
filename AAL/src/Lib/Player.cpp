@@ -96,6 +96,11 @@ void Player::HandleInput(float dt)
 		UpgradesPage();
 }
 
+void Player::Destroy()
+{
+	m_pEntity = cpuEngine.Release(m_pEntity);
+}
+
 void Player::SetPosition(XMFLOAT3 _position)
 {
 	mPosition = _position;
@@ -160,12 +165,21 @@ void Player::Uncrouch()
 	mSpeed = mBaseSpeed;
 }
 
+void Player::WeaponEquiped(float dt)
+{
+	mWeaponEquipement += dt;
+	if (mWeaponEquipement > mWeaponEquipementDuration)
+	{
+		mIsWeaponEquiped = true;
+	}
+}
+
 void Player::Attack()
 {
-	if (mAttackRefreshing < mAttackRefreshDuration)
+	if (mAttackRefreshing < mAttackRefreshDuration || mIsWeaponEquiped == false)
 		return;
 
-	mPlayerWeapon.BasicAttack();
+	mPlayerWeapon->BasicAttack();
 
 	mAttackRefreshing = 0.f;
 }
@@ -180,10 +194,13 @@ void Player::SwapWeapon()
 	if (mAttackRefreshing < mAttackRefreshDuration)
 		return;
 
-	if (mCurrentWeapon == 0)
-		mCurrentWeapon = 1;
-	else
-		mCurrentWeapon = 0;
+	PlayerWeapon* currentWeapon = mEquipedWeapon;
+	mEquipedWeapon = mAltWeapon;
+	mAltWeapon = currentWeapon;
+
+	mIsWeaponEquiped = false;
+	mWeaponEquipement = 0.0f;
+	mWeaponEquipementDuration = mPlayerWeapon->GetBasicAttackRefreshTime();
 }
 
 void Player::Inventory()

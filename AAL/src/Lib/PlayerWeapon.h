@@ -9,10 +9,20 @@ private:
 
 	float mAttackSize = .25f;
 
+	float mPulloutTime;
+
+	float mBasicAttackRefreshTime;
+	float mSpecialAttackRefreshTime;
+
 public:
 
 	void BasicAttack();
 
 	void SpecialAttack();
+
+	float GetPulloutTime();
+
+	float GetBasicAttackRefreshTime();
+	float GetSpecialAttackRefreshTime();
 
 };

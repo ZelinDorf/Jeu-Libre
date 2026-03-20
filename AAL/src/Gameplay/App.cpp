@@ -21,13 +21,11 @@ App::~App()
 
 void App::OnStart()
 {
-	
-
 	mPlayer = new Player();
 	mPlayer->Init();
 
 	m_meshGround.CreateCube(mGroundSize, CPU_BLACK);
-	cpu_entity* pGround = cpuEngine.CreateEntity();
+	pGround = cpuEngine.CreateEntity();
 	pGround->pMesh = &m_meshGround;
 	pGround->transform.pos = XMFLOAT3(0.f, -20.f, 0.f);
 }
@@ -64,6 +62,8 @@ void App::OnUpdate()
 
 void App::OnExit()
 {
+	mPlayer->Destroy();
+	pGround = cpuEngine.Release(pGround);
 }
 
 void App::OnRender(int pass)

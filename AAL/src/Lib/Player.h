@@ -33,6 +33,10 @@ private:
 
 	cpu_mesh m_meshPlayer;
 
+	void WeaponEquiped(float dt);
+	bool mIsWeaponEquiped = true;
+	float mWeaponEquipement = 0.0f;
+	float mWeaponEquipementDuration;
 	void Attack();
 	void RefreshAttack(float dt);
 
@@ -44,7 +48,7 @@ private:
 	void Inventory();
 	void UpgradesPage();
 
-	PlayerWeapon mPlayerWeapon;
+	PlayerWeapon* mPlayerWeapon;
 
 public:
 	cpu_entity* m_pEntity;
@@ -55,7 +59,10 @@ public:
 	void Update(float dt);
 	void HandleInput(float dt);
 
-	int mCurrentWeapon = 0;
+	void Destroy();
+
+	PlayerWeapon* mEquipedWeapon = nullptr;
+	PlayerWeapon* mAltWeapon = nullptr;
 
 	void SetPosition(XMFLOAT3 _position);
 	XMFLOAT3 GetPosition();

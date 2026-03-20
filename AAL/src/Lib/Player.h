@@ -44,6 +44,8 @@ private:
 	void Inventory();
 	void UpgradesPage();
 
+	PlayerWeapon mPlayerWeapon;
+
 public:
 	cpu_entity* m_pEntity;
 

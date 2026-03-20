@@ -19,6 +19,8 @@ void Player::Init()
 	mSpeed = mBaseSpeed;
 	mCrouchedSpeed *= mSpeed;
 
+	mAttackRefreshDuration = mPlayerWeapon->GetBasicAttackRefreshTime();
+
 }
 
 void Player::Update(float dt)
@@ -30,6 +32,7 @@ void Player::Update(float dt)
 	cpuEngine.GetCamera()->transform.pos = m_camPos;
 
 	m_pEntity->transform.dir = cpuEngine.GetCamera()->transform.dir;
+	SetWeaponDirection();
 
 	HandleInput(dt);
 	RefreshAttack(dt);
@@ -99,6 +102,11 @@ void Player::HandleInput(float dt)
 void Player::Destroy()
 {
 	m_pEntity = cpuEngine.Release(m_pEntity);
+}
+
+void Player::SetWeaponDirection()
+{
+	mPlayerWeapon->SetDirection(m_pEntity->transform.dir);
 }
 
 void Player::SetPosition(XMFLOAT3 _position)
@@ -201,6 +209,8 @@ void Player::SwapWeapon()
 	mIsWeaponEquiped = false;
 	mWeaponEquipement = 0.0f;
 	mWeaponEquipementDuration = mPlayerWeapon->GetPulloutTime();
+	
+	mAttackRefreshDuration = mPlayerWeapon->GetBasicAttackRefreshTime();
 }
 
 void Player::Inventory()

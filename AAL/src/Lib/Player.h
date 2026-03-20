@@ -15,7 +15,7 @@ private:
 	float mCrouchedSpeed = 5;
 
 	float mAttackRefreshing = 0.f;
-	float mAttackRefreshDuration = 0.85f;
+	float mAttackRefreshDuration;
 
 	void MouseInput();
 
@@ -34,9 +34,11 @@ private:
 	cpu_mesh m_meshPlayer;
 
 	void WeaponEquiped(float dt);
+
 	bool mIsWeaponEquiped = true;
 	float mWeaponEquipement = 0.0f;
 	float mWeaponEquipementDuration;
+
 	void Attack();
 	void RefreshAttack(float dt);
 
@@ -63,6 +65,8 @@ public:
 
 	PlayerWeapon* mEquipedWeapon = nullptr;
 	PlayerWeapon* mAltWeapon = nullptr;
+
+	void SetWeaponDirection();
 
 	void SetPosition(XMFLOAT3 _position);
 	XMFLOAT3 GetPosition();

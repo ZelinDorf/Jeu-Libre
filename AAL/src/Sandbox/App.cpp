@@ -25,18 +25,34 @@ void App::OnStart()
 	CAMERA->transform.pos.z = -20.0f;
 	CAMERA->transform.pos.y = 5.0f;
 
-	m_pChunck = new Chunk;
-	m_pChunck->Init();
-
-	m_pChunck2 = new Chunk;
-	m_pChunck2->Init();
-
-	m_pChunck2->ConnectFromTo()
+	//chunkManager
 }
 
 void App::OnUpdate()
 {
 	// YOUR CODE HERE
+
+	float dt = cpuTime.delta;
+
+	m_pChunck->Update(dt);
+	m_pChunck2->Update(dt);
+
+	float speed = 50.f;
+
+	if (cpuInput.IsUp())
+		CAMERA->transform.dir.z = speed;
+	else if (cpuInput.IsDown())
+		CAMERA->transform.dir.z = -speed;
+	else
+		CAMERA->transform.dir.z = 0.0f;
+	if (cpuInput.IsRight())
+		CAMERA->transform.dir.x = speed;
+	else if (cpuInput.IsLeft())
+		CAMERA->transform.dir.x = -speed;
+	else
+		CAMERA->transform.dir.x = 0.0f;
+
+	CAMERA->transform.Move(1.0f * cpuTime.delta);
 }
 
 void App::OnExit()

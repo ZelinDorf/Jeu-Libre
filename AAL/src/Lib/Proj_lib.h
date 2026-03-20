@@ -14,6 +14,10 @@
 #define TO_COLOR							cpu::ToColor
 #define CAMERA								cpuEngine.GetCamera()
 
+//	singleton
+//////////////
+#define chunkManager						ChunkManager::GetInsance()
+
 //	namespace
 //////////////
 using json									= nlohmann::json;
@@ -41,7 +45,14 @@ using StringView							= std::string_view;
 //	define + using
 ///////////////////
 
+//	include
+////////////
 
 //	Lib
 #include "InputSystem.h"
 #include "JSONParser.h"
+#include "Math_Utils.h"
+#include "ChunkManager.h"
+
+//	chunk
+#include "Chunk.h"

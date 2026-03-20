@@ -1,9 +1,16 @@
 #pragma once
+enum EntityType
+{
+	PLAYER,
+	ENEMY,
+	PROJECTILE,
+};
+
 class AALentity
 {
 public:
-	cpu_mesh m_mesh;
-	cpu_material m_mat;
-	cpu_entity* m_pEntity;
+	EntityType m_entityType;
+public:
+	virtual void Update(float dt) = 0;
 };
 

@@ -1,7 +1,9 @@
+#pragma once
 #include "StatsEnum.h"
+#include "AALentity.h"
 #include "EnemiesRegistery.h"
 
-class Enemy
+class Enemy : public AALentity
 {
 public:
 	// Enemy Base Stats
@@ -18,15 +20,13 @@ public:
 	//enemy id
 	int m_id = -1;
 
-	//Spawn on Maps Condition
-	Vector<int> m_canAppear_v = {};
+	cpu_entity* m_pEntity = nullptr;
+	Enemy* m_pEnemy;
 protected:
-
 	cpu_mesh m_meshEnemy;
 	cpu_material m_materialEnemy;
 
 public:
-	cpu_entity* m_pEntity = nullptr;
 
 	Enemy();
 	~Enemy();
@@ -35,7 +35,7 @@ public:
 	void Destroy();
 
 	void Assemble(EnemiesList type, Enemy* enemy);
-	void Update();
+	void Update(float dt);
 
 	cpu_entity* GetEntity() { return m_pEntity; }
 
@@ -48,7 +48,4 @@ public:
 	// Replaces enemy stats by a value	 
 	void ChangeStats(Vector<StatsEnum> e, Vector<float> value);
 
-private:
-	Vector<Enemy*> m_activeEnemies;
-	Vector<int> m_inGameIds;
 };

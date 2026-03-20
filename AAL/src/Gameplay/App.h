@@ -1,5 +1,5 @@
 #pragma once
-#include "Lib/Enemy.h"
+#include "SceneGameplay.h"
 #include <vector>
 #include <string>
 
@@ -19,7 +19,9 @@ public:
 	static void MyPixelShader(cpu_ps_io& io);
 
 private:
+	cpu_font m_font;
 	inline static App* s_pApp = nullptr;
 	Enemy* m_pEnemy;
+	SceneManager m_sceneManager;
 };
 

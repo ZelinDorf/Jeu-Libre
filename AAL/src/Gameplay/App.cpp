@@ -21,27 +21,15 @@ App::~App()
 
 void App::OnStart()
 {
-	m_pEnemy = new Enemy;
-	m_pEnemy->Assemble(SKELETAL_GRUNT, m_pEnemy);
-
+	m_font.Create(20);
+	m_sceneManager.SetSceneActive<SceneGameplay>(true);
 	cpuEngine.GetCamera()->transform.pos.z = -5.0f;
 }
 
 void App::OnUpdate()
-{	
-	
-	if(m_pEnemy!=nullptr)m_pEnemy->Update();
-	InputSystem::HandleInput();
-
-	if (InputSystem::IsKeyDown(DOWN_ARROW))
-	{ 
-		m_pEnemy->GetEntity()->transform.Move(-10); 
-	}
-
-	if (InputSystem::IsKeyDown(UP_ARROW)) {
-		m_pEnemy = new Enemy;
-		m_pEnemy->Assemble(SKELETAL_GRUNT, m_pEnemy);
-	}
+{
+	float dt = cpuTime.delta;
+	m_sceneManager.Update(dt);
 }
 
 void App::OnExit()
@@ -51,7 +39,7 @@ void App::OnExit()
 
 void App::OnRender(int pass)
 {
-	// YOUR CODE HERE
+	m_sceneManager.OnRender(pass);
 }
 
 void App::MyPixelShader(cpu_ps_io& io)

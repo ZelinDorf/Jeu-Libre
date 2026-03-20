@@ -26,23 +26,10 @@ void Enemy::Destroy()
 void Enemy::Assemble(EnemiesList type, Enemy* enemy)
 {
 
-	int firstAvailableID = m_inGameIds.size();
-
+	// random color for testing
 	int col1 = rand() % (200 - 100 + 1) + 100;
 	int col2 = rand() % (200 - 100 + 1) + 100;
 	int col3 = rand() % (200 - 100 + 1) + 100;
-
-	std::cout << m_inGameIds.size();
-
-	for (size_t i = 0; i < m_inGameIds.size(); i++)
-	{
-		std::cout << "for i: " << i << std::endl;
-		if (m_inGameIds[i] != i) {
-			std::cout << i;
-			firstAvailableID = i;
-			break;
-		}
-	}
 
 	switch (type)
 	{
@@ -52,18 +39,19 @@ void Enemy::Assemble(EnemiesList type, Enemy* enemy)
 		m_materialEnemy.color = cpu::ToColor(col1, col2, col3);
 		enemy->Create(&m_meshEnemy, &m_materialEnemy);
 
-		enemy->ChangeStats({ MAX_HEALTH, ARMOR, SPEED, DAMAGE, ATTACK_SPEED, XP_DROP, COST }, {10,1,1,1,1,1,1} );
-		enemy->m_currentHealth = m_maxHealth;
-
-		m_activeEnemies.push_back(enemy);
-		m_inGameIds.push_back(firstAvailableID);
+		// give entitytype for aalEntity logic later
+		enemy->m_entityType = ENEMY;
 
 		break;
+
 	case EnemiesList::SKELETAL_MAGE:
 		m_meshEnemy.CreateCube(.5f);
 		m_materialEnemy.color = cpu::ToColor(col1, col2, col3);
 		enemy->Create(&m_meshEnemy, &m_materialEnemy);
+
+		enemy->GetEntity()->transform.SetPosition(2, 0, 0);
 		break;
+
 	case EnemiesList::SKELETAL_ARCHER:
 		break;
 	default:
@@ -71,21 +59,15 @@ void Enemy::Assemble(EnemiesList type, Enemy* enemy)
 	}
 }
 
-void Enemy::Update() 
+void Enemy::Update(float dt)
 {
-	float dt = cpuTime.delta;
-	if (InputSystem::IsKeyDown(A))
-	{
-		m_currentHealth--;
-	}
-	//if (m_currentHealth <= 0) 
-	
 	XMFLOAT3 camPos = cpuEngine.GetCamera()->transform.pos;
+
+	m_pEntity->transform.Move(dt);
 	m_pEntity->transform.LookAt(camPos.x, camPos.y, camPos.z);
-	//m_pEntity->transform.Move(dt);
 }
 
-
+// fonctions tochange the statistic of the enemies
 void Enemy::MultiplyStats(Vector<StatsEnum> e, Vector<float> value)
 {
 	if (e.size() != value.size()) return; // must be the same size !
@@ -173,6 +155,5 @@ void Enemy::ChangeStats(Vector<StatsEnum> e, Vector<float> value)
 		default:
 			break;
 		}
-
 	}
 }

@@ -63,6 +63,7 @@ void App::OnUpdate()
 void App::OnExit()
 {
 	mPlayer->Destroy();
+	delete mPlayer;
 	pGround = cpuEngine.Release(pGround);
 }
 

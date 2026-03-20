@@ -200,7 +200,7 @@ void Player::SwapWeapon()
 
 	mIsWeaponEquiped = false;
 	mWeaponEquipement = 0.0f;
-	mWeaponEquipementDuration = mPlayerWeapon->GetBasicAttackRefreshTime();
+	mWeaponEquipementDuration = mPlayerWeapon->GetPulloutTime();
 }
 
 void Player::Inventory()

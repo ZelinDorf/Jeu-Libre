@@ -1,7 +1,7 @@
 #pragma once
 #include "pch.h"
 
-class Player
+class PlayerWeapon
 {
 private:
 

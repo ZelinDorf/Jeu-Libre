@@ -165,7 +165,7 @@ void Player::Attack()
 	if (mAttackRefreshing < mAttackRefreshDuration)
 		return;
 
-	PlayerWeapon::BasicAttack();
+	mPlayerWeapon.BasicAttack();
 
 	mAttackRefreshing = 0.f;
 }

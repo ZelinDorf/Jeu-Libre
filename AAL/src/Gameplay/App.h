@@ -2,6 +2,7 @@
 #include "Lib/Enemy.h"
 #include <vector>
 #include <string>
+#include "../Lib/Player.h"
 
 class App
 {
@@ -22,5 +23,12 @@ public:
 private:
 	inline static App* s_pApp = nullptr;
 	Enemy* m_pEnemy;
+	float mGroundSize = 18.75f;
+
+	cpu_mesh m_meshGround;
+
+	Player* mPlayer = nullptr;
+
+	void SpawnPlayer();
 };
 

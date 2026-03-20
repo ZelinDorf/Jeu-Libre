@@ -24,6 +24,9 @@ public:
 	void Init();
 	void Update(float dt);
 
+	XMFLOAT3 GetPosition();
+	void SetPosition(XMFLOAT3 _pos);
+
 	void SetDirection(XMFLOAT3 _dir);
 
 	int GetWeaponTypeId();

@@ -18,6 +18,16 @@ void SwordWeapon::Update(float dt)
 	m_pEntity->transform.pos = mPosition;
 }
 
+void SwordWeapon::SetPosition(XMFLOAT3 _pos)
+{
+	mPosition = _pos;
+}
+
+XMFLOAT3 SwordWeapon::GetPosition()
+{
+	return mPosition;
+}
+
 void SwordWeapon::SetDirection(XMFLOAT3 _dir)
 {
 	m_pEntity->transform.dir = _dir;

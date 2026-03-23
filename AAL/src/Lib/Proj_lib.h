@@ -16,7 +16,7 @@
 
 //	singleton
 //////////////
-#define chunkManager						ChunkManager::GetInsance()
+#define chunkManager						ChunkManager::GetInstance()
 
 //	namespace
 //////////////

@@ -18,5 +18,5 @@ public:
 private:
 	inline static App* s_pApp = nullptr;
 
-	//hcunkmama
+	ChunkManager* m_pChunkManager;
 };

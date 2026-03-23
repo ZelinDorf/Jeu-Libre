@@ -23,9 +23,11 @@ void App::OnStart()
 
 	//camera
 	CAMERA->transform.pos.z = -20.0f;
-	CAMERA->transform.pos.y = 5.0f;
+	CAMERA->transform.pos.y = 10.0f;
 
 	//chunkManager
+	m_pChunkManager = chunkManager;
+	m_pChunkManager->InitMap(15.f);
 }
 
 void App::OnUpdate()
@@ -34,8 +36,7 @@ void App::OnUpdate()
 
 	float dt = cpuTime.delta;
 
-	m_pChunck->Update(dt);
-	m_pChunck2->Update(dt);
+	m_pChunkManager->OnUpdate(dt);
 
 	float speed = 50.f;
 

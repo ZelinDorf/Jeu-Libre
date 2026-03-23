@@ -1,37 +1,35 @@
 #pragma once
 #include "pch.h"
 
-//enum ConnectPoint
-//{
-//	NORTH,
-//	SOUTH,
-//	EAST,
-//	WEST
-//	//diagonal for hexa chunk?
-//};
-
-//struct ConnectPositions//not sure if usefull....
-//{
-//	static inline XMFLOAT3 _northPos = { 0.0f, 0.0f, +5.0f };
-//	static inline XMFLOAT3 _southPos = { 0.0f, 0.0f, -5.0f };
-//	static inline XMFLOAT3 _eastPos = { +5.0f, 0.0f, 0.0f };
-//	static inline XMFLOAT3 _westPos = { -5.0f, 0.0f, 0.0f };
-//};
+enum Biomes
+{
+	PLAIN,
+	SAVANNA,
+	TAIGA,
+	DESERT,
+	SNOWY_PLAIN
+};
 
 class Chunk
 {
 public:
 
 	virtual void Init();
+	virtual void Init(Biomes _biome);
+
 	virtual void Delete();
 
 	XMFLOAT3 GetPos() { return m_pEntity->transform.pos; }
+	void SetBiome(Biomes _biome);
+	void SetPos(XMFLOAT3 _pos);
 
-	void OnUpdate(float _dt);
+	virtual void OnUpdate(float _dt);
 
 
 private:
 	float m_scale = 16.0f;
+
+	int m_biome = -1;
 
 	cpu_entity* m_pEntity;//if more for none flat chunck --> add in child
 

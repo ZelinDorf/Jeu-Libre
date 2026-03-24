@@ -19,6 +19,8 @@ public:
 public:
 	cpu_camera();
 
+	void SetFarPlane(float _far);
+
 	void UpdateProjection();
 	void Update();
 };

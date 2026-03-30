@@ -1,8 +1,6 @@
 #include "pch.h"
 #include "ChunkManager.h"
 
-#define cSize 16.f
-
 ChunkManager* ChunkManager::m_pInstance = nullptr;
 
 ChunkManager* ChunkManager::GetInstance()
@@ -20,6 +18,8 @@ void ChunkManager::InitMap(float _mapSize)
 	float mapW = 0.f;
 	float mapH = 0.f;
 
+	float sca;
+
 	for (size_t i = 0; i < _mapSize; i++)
 	{
 		for (size_t j = 0; j < _mapSize; j++)
@@ -27,6 +27,7 @@ void ChunkManager::InitMap(float _mapSize)
 			XMFLOAT3 pos = { mapW, 0.f, mapH };
 
 			Chunk* pNextChunk = new Chunk;
+			sca = pNextChunk->GetSize();
 
 			if (j % 2 == 0 && i % 2 == 0 )
 				pNextChunk->Init(PLAIN);
@@ -35,9 +36,9 @@ void ChunkManager::InitMap(float _mapSize)
 
 			pNextChunk->SetPos(pos);
 
-			mapH += cSize;
+			mapH += sca;
 		}
-		mapW += cSize;
+		mapW += sca;
 		mapH = 0.f;
 	}
 }

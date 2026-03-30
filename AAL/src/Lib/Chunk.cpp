@@ -20,7 +20,7 @@ void Chunk::Init()
 	float pitch = XMConvertToRadians(90.f);
 	m_pEntity->transform.SetPitch(pitch);
 
-	m_pEntity->transform.Scale(16.f);
+	m_pEntity->transform.Scale(m_scale);
 }
 
 void Chunk::Init(Biomes _biome)

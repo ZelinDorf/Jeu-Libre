@@ -20,6 +20,7 @@ public:
 	virtual void Delete();
 
 	XMFLOAT3 GetPos() { return m_pEntity->transform.pos; }
+	float GetSize() { return m_scale; }
 	void SetBiome(Biomes _biome);
 	void SetPos(XMFLOAT3 _pos);
 

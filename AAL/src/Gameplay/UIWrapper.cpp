@@ -1,20 +1,19 @@
+#include "pch.h"
+
 #include "UIWrapper.h"
 #include "App.h"
-#include <cpu-render.h>
-#include "cpu_texture.h"
 #include <iostream>
-#include "EntityType.h"
+#include "AALEntity.h"
 #include "TextureRegister.h"
-#include "Player.h"
 #include "Scene.h"
 
 
 std::unordered_map<cpu_texture*, uint16_t> UIWrapper::m_mapTextureUsage;
 
 
-UIWrapper::UIWrapper(EntityType entityType)
+UIWrapper::UIWrapper(EntityType ui)
 {
-	m_pTexture = TextureRegister::GetTexture(entityType);
+	m_pTexture = TextureRegister::GetTexture(ui);
 
 	m_pSprite = cpuEngine.CreateSprite();
 	m_pSprite->pTexture = m_pTexture;
@@ -26,37 +25,13 @@ UIWrapper::UIWrapper(EntityType entityType)
 	else
 		it->second++;
 
-	switch (entityType) {
+	switch (ui) {
 	case EntityType::TITLE:
 		UIposition(0.25f, 0.5f);
 		break;
-	case EntityType::ARROW:
-		UIposition(0.6125f, 0.8975f);
-		break;
-	case EntityType::ARROW_DOWN:
-		UIposition(0.89f, 0.4925f);
-		break;
-	case EntityType::ENGINE_DIRECTION:
-		UIposition(.95f, 0.5f);
-		break;
-	case EntityType::ENGINE_POWER:
-		UIposition(0.5f, .95f);
-		break;
-	case EntityType::HEALTH6:
-	case EntityType::HEALTH5:
-	case EntityType::HEALTH4:
-	case EntityType::HEALTH3:
-	case EntityType::HEALTH2:
-	case EntityType::HEALTH1:
-	case EntityType::HEALTH0:
-		UIposition(0.1f, 0.1f);
-		break;
-	case EntityType::BULLET:
-	case EntityType::BULLET_EMPTY:
-		UIposition(0.95f, 0.7f);
-		break;
-	case EntityType::CROSSHAIR:
-		UIposition(0.45f, 0.5f);
+
+	case EntityType::START:
+		UIposition(0.5f, 0.5f);
 		break;
 	}
 }

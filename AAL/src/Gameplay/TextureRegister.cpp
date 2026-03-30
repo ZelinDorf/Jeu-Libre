@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "TextureRegister.h"
 
 std::unordered_map<EntityType, cpu_texture*> TextureRegister::m_mapTexture;

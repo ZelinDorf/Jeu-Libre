@@ -1,13 +1,11 @@
 #pragma once
 #include "app.h"
-#include <cpu-render.h>
-#include "Player.h"
 
 class UIWrapper
 {
 public:
 
-	UIWrapper(EntityType entityType);
+	UIWrapper(EntityType ui);
 	~UIWrapper();
 
 	void UIposition(float h, float w);

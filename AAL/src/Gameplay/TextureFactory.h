@@ -1,7 +1,5 @@
 #pragma once
-#include <cpu-engine.h>
-#include "EntityType.h"
-#include "Shader.h"
+#include "AALEntity.h"
 
 class TextureFactory
 {

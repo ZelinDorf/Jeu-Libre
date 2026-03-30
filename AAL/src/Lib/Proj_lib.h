@@ -43,6 +43,10 @@ using StringView = std::string_view;
 //	Lib
 #include "InputSystem.h"
 
+#include "TextureRegister.h"
+#include "TextureFactory.h"
+#include "UIWrapper.h"
+
 #include "EnemiesRegistery.h"
 #include "Enemy.h"
 #include "EnemyFactory.h"

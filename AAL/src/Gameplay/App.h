@@ -1,5 +1,6 @@
 #pragma once
 #include "SceneGameplay.h"
+#include "SceneMenu.h"
 #include <vector>
 #include <string>
 

@@ -26,12 +26,21 @@ public:
 		}
 	}
 
-	template<typename SceneType>
-	void SetSceneActive(bool active)
+	void SetAllSceneInactive()
 	{
 		for (size_t i = 0; i < m_scenes.size(); i++)
 		{
+			Scene* scene = m_scenes[i];
+			scene->SetActive(false);
+		}
+	}
 
+	template<typename SceneType>
+	void SetSceneActive(bool active)
+	{
+		SetAllSceneInactive();
+		for (size_t i = 0; i < m_scenes.size(); i++)
+		{
 			Scene* scene = m_scenes[i];
 			if (dynamic_cast<SceneType*>(scene) != nullptr)
 			{

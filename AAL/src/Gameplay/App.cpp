@@ -22,14 +22,24 @@ App::~App()
 void App::OnStart()
 {
 	m_font.Create(20);
+
 	m_sceneManager.SetSceneActive<SceneGameplay>(true);
+
 	cpuEngine.GetCamera()->transform.pos.z = -5.0f;
 }
 
 void App::OnUpdate()
 {
 	float dt = cpuTime.delta;
+	InputSystem::HandleInput();
+
+	if (InputSystem::IsKeyPressed(InputKeyboard::NUMPAD1))
+	{
+		//m_sceneManager.SetSceneActive<SceneGameplay>(true);
+	};
+
 	m_sceneManager.Update(dt);
+
 }
 
 void App::OnExit()

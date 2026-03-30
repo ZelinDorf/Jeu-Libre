@@ -25,9 +25,9 @@ protected:
 	bool m_active = false;
 	
 	Vector<AALentity*> m_entities;
-
 	Vector<int> m_entitiesID;
-	Vector<int> m_enemiesID;
+
+
 
 };
 

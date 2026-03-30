@@ -1,19 +1,20 @@
 #pragma once
-class SwordWeapon
+class GenericBow
 {
 private:
 
-	int mWeaponTypeId = 0;
+	int mWeaponTypeId = 1;
 
 	XMFLOAT3 mPosition;
 	float mPulloutTime = 0.5f;
-	float mSwingTime = 0.85f;
+	float mShootingTime = 0.8f;
 
-	float mSwingDamages;
+	float mProjectileDamages;
 
-	float mSwordSize = .4f;
-	float mSwordWidth = .1;
-	cpu_mesh m_meshSword;
+	float mSize = .4f;
+	float mWidth = .2;
+	cpu_mesh m_meshBow;
+	cpu_mesh m_meshProjectile;
 
 public:
 
@@ -31,11 +32,12 @@ public:
 
 	int GetWeaponTypeId();
 
-	float GetmPulloutTime();
-	float GetSwingDamages();
-	float GetSwingTime();
+	float GetPulloutTime();
+	float GetProjectileDamages();
+	float GetShootingTime();
 
-	void Swing();
+	void Shoot();
+	void Pierce();
 
 };
 

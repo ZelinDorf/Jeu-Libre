@@ -1,14 +1,14 @@
 #include "pch.h"
-#include "SwordWeapon.h"
+#include "HeroSword.h"
 
-void SwordWeapon::Init()
+void HeroSword::Init()
 {
 	m_pEntity = cpuEngine.CreateEntity();
 	m_meshSword.CreateCylinder(mSwordSize, mSwordWidth, 5, true, true, CPU_BLUE);
 	m_pEntity->pMesh = &m_meshSword;
 }
 
-void SwordWeapon::Update(float dt)
+void HeroSword::Update(float dt)
 {
 	float m_xDir = m_pEntity->transform.dir.x;
 	float m_zDir = m_pEntity->transform.dir.z;
@@ -18,42 +18,47 @@ void SwordWeapon::Update(float dt)
 	m_pEntity->transform.pos = mPosition;
 }
 
-void SwordWeapon::SetPosition(XMFLOAT3 _pos)
+void HeroSword::SetPosition(XMFLOAT3 _pos)
 {
 	mPosition = _pos;
 }
 
-XMFLOAT3 SwordWeapon::GetPosition()
+XMFLOAT3 HeroSword::GetPosition()
 {
 	return mPosition;
 }
 
-void SwordWeapon::SetDirection(XMFLOAT3 _dir)
+void HeroSword::SetDirection(XMFLOAT3 _dir)
 {
 	m_pEntity->transform.dir = _dir;
 }
 
-int SwordWeapon::GetWeaponTypeId()
+int HeroSword::GetWeaponTypeId()
 {
 	return mWeaponTypeId;
 }
 
-float SwordWeapon::GetmPulloutTime()
+float HeroSword::GetPulloutTime()
 {
 	return mPulloutTime;
 }
 
-float SwordWeapon::GetSwingDamages()
+float HeroSword::GetSwingDamages()
 {
 	return mSwingDamages;
 }
 
-float SwordWeapon::GetSwingTime()
+float HeroSword::GetSwingTime()
 {
 	return mSwingTime;
 }
 
-void SwordWeapon::Swing()
+void HeroSword::Swing()
+{
+
+}
+
+void HeroSword::Pound()
 {
 
 }

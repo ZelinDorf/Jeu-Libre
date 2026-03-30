@@ -1,8 +1,10 @@
 #pragma once
 #include "pch.h"
-#include "SwordWeapon.h"
+#include "GenericSword.h"
+#include "GenericBow.h"
+#include "GenericStaff.h"
 
-class PlayerWeapon
+class GenericWeapon
 {
 private:
 
@@ -16,7 +18,9 @@ private:
 	float mBasicAttackRefreshTime;
 	float mSpecialAttackRefreshTime;
 
-	SwordWeapon* Sword;
+	GenericSword* Sword;
+	GenericBow* Bow;
+	GenericStaff* Staff;
 
 	int mWeaponType;
 

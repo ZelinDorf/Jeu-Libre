@@ -3,7 +3,7 @@
 #include "InputSystem.h"
 
 
-void Player::Init()
+void Player::Init(int _class)
 {
 	
 	//cpuEngine.GetCamera()->transform.SetYPR(0.f, 1.570796f, 0.f);
@@ -19,7 +19,9 @@ void Player::Init()
 	mSpeed = mBaseSpeed;
 	mCrouchedSpeed *= mSpeed;
 
-	mAttackRefreshDuration = mPlayerWeapon->GetBasicAttackRefreshTime();
+	mAttackRefreshDuration = mCurrentWeapon->GetBasicAttackRefreshTime();
+
+	mPlayerClass = _class;
 
 }
 
@@ -106,7 +108,7 @@ void Player::Destroy()
 
 void Player::SetWeaponDirection()
 {
-	mPlayerWeapon->SetDirection(m_pEntity->transform.dir);
+	mGenericWeapon->SetDirection(m_pEntity->transform.dir);
 }
 
 void Player::SetPosition(XMFLOAT3 _position)
@@ -187,7 +189,7 @@ void Player::Attack()
 	if (mAttackRefreshing < mAttackRefreshDuration || mIsWeaponEquiped == false)
 		return;
 
-	mPlayerWeapon->BasicAttack();
+	mCurrentWeapon->BasicAttack();
 
 	mAttackRefreshing = 0.f;
 }
@@ -202,15 +204,20 @@ void Player::SwapWeapon()
 	if (mAttackRefreshing < mAttackRefreshDuration)
 		return;
 
-	PlayerWeapon* currentWeapon = mEquipedWeapon;
-	mEquipedWeapon = mAltWeapon;
-	mAltWeapon = currentWeapon;
+	if (mCurrentWeapon == mWeapon1)
+	{
+		mCurrentWeapon = mWeapon2;
+	}
+	else if (mCurrentWeapon == mWeapon2)
+	{
+		mCurrentWeapon = mWeapon1;
+	}
 
 	mIsWeaponEquiped = false;
 	mWeaponEquipement = 0.0f;
-	mWeaponEquipementDuration = mPlayerWeapon->GetPulloutTime();
+	mWeaponEquipementDuration = mCurrentWeapon->GetPulloutTime();
 	
-	mAttackRefreshDuration = mPlayerWeapon->GetBasicAttackRefreshTime();
+	mAttackRefreshDuration = mCurrentWeapon->GetBasicAttackRefreshTime();
 }
 
 void Player::Inventory()

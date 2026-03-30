@@ -1,6 +1,6 @@
 #pragma once
 #include "pch.h"
-#include "PlayerWeapon.h"
+#include "Weapon.h"
 
 class Player
 {
@@ -50,21 +50,23 @@ private:
 	void Inventory();
 	void UpgradesPage();
 
-	PlayerWeapon* mPlayerWeapon;
+	int mPlayerClass;
+
+	Weapon* mWeapon1 = nullptr;
+	Weapon* mWeapon2 = nullptr;
 
 public:
 	cpu_entity* m_pEntity;
 
 	bool mIsActive = false;
 
-	void Init();
+	void Init(int _class);
 	void Update(float dt);
 	void HandleInput(float dt);
 
 	void Destroy();
 
-	PlayerWeapon* mEquipedWeapon = nullptr;
-	PlayerWeapon* mAltWeapon = nullptr;
+	Weapon* mCurrentWeapon;
 
 	void SetWeaponDirection();
 

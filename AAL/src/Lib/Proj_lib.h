@@ -11,6 +11,14 @@
 //////////////
 using json									= nlohmann::json;
 
+//	macro
+//////////
+#define TO_COLOR							cpu::ToColor
+#define CAMERA								cpuEngine.GetCamera()
+
+//	namespace
+//////////////
+
 //	std using
 //////////////
 template <class T>
@@ -31,9 +39,21 @@ using WString								= std::wstring;
 using WStringView							= std::wstring;
 using StringView							= std::string_view;
 
-//	define
-///////////
+//	define + using
+///////////////////
 
+
+//	Lib
+#include "InputSystem.h"
+
+#include "EnemiesRegistery.h"
+#include "Enemy.h"
+#include "EnemyFactory.h"
+#include "StatsEnum.h"
+#include "AALentity.h"
+
+#include "SceneManager.h"
+#include "Scene.h"
 
 //	Lib
 #include "InputSystem.h"

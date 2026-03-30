@@ -1,4 +1,6 @@
 #include "pch.h"
+#include "App.h"
+#include <iostream>
 
 App::App()
 {
@@ -19,22 +21,35 @@ App::~App()
 
 void App::OnStart()
 {
-	// YOUR CODE HERE
+	m_font.Create(20);
+
+	m_sceneManager.SetSceneActive<SceneGameplay>(true);
+
+	cpuEngine.GetCamera()->transform.pos.z = -5.0f;
 }
 
 void App::OnUpdate()
 {
-	// YOUR CODE HERE
+	float dt = cpuTime.delta;
+	InputSystem::HandleInput();
+
+	if (InputSystem::IsKeyPressed(InputKeyboard::NUMPAD1))
+	{
+		//m_sceneManager.SetSceneActive<SceneGameplay>(true);
+	};
+
+	m_sceneManager.Update(dt);
+
 }
 
 void App::OnExit()
 {
-	// YOUR CODE HERE
+	m_pEnemy->Destroy();
 }
 
 void App::OnRender(int pass)
 {
-	// YOUR CODE HERE
+	m_sceneManager.OnRender(pass);
 }
 
 void App::MyPixelShader(cpu_ps_io& io)

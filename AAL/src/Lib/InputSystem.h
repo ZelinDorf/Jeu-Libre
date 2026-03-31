@@ -105,3 +105,5 @@ private:
 
     void Update(float _dt);
 };
+
+//define for all functions todo

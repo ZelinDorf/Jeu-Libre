@@ -35,6 +35,13 @@ public:
 	void SetScaling(float scale);
 	void Scale(float scale);
 	void SetPosition(float x, float y, float z);
+
+	////////////////////////////////////////////////////////////////////////////////////////////////
+
+	void SetPosition(XMFLOAT3 _pos);
+
+	////////////////////////////////////////////////////////////////////////////////////////////////
+
 	void Move(float dist);
 	void OrbitAroundAxis(XMFLOAT3& center, XMFLOAT3& axis, float radius, float angle);
 	void ResetRotation();
@@ -43,7 +50,25 @@ public:
 	void SetRotationFromMatrix();
 	void SetRotationFromQuaternion();
 	void SetYPR(float yaw, float pitch = 0.0f, float roll = 0.0f);
+
+	////////////////////////////////////////////////////////////////////////////////////////////////
+
+	void SetYaw(float _yaw);
+	void SetPitch(float _pitch);
+	void SetRoll(float _roll);
+
+	////////////////////////////////////////////////////////////////////////////////////////////////
+
 	void AddYPR(float yaw, float pitch = 0.0f, float roll = 0.0f);
+
+	////////////////////////////////////////////////////////////////////////////////////////////////
+
+	void AddYaw(float _yaw);
+	void AddPitch(float _pitch);
+	void AddRoll(float _roll);
+
+	////////////////////////////////////////////////////////////////////////////////////////////////
+
 	void LookAt(float x, float y, float z, const XMFLOAT3& up = CPU_VEC3_UP);
 	void LookTo(float ndx, float ndy, float ndz, const XMFLOAT3& up = CPU_VEC3_UP);
 	void LookTo(XMFLOAT3& ndir, const XMFLOAT3& up = CPU_VEC3_UP);

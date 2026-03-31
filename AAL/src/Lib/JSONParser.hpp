@@ -51,6 +51,8 @@ namespace JSONParser
             {pos, scale, rot}
 
             collider
+
+            ++add entity to scene (or not if somewhere else)
             }            
             */
 
@@ -58,18 +60,29 @@ namespace JSONParser
         }
 
     private:
-        static Vector<cpu_mesh> CreateAllTriangles(json const& _obj)
+        static cpu_mesh CreateAllTriangles(json const& _obj)//construit la geo/mesh custom
         {
-            Vector<cpu_triangle> vTriangles;
+            cpu_mesh m;
 
-            Vector<cpu_mesh> vMesh;
+            Vector<cpu_vertex> ver = LoadObj(_obj);
 
-            return vMesh;
+            for (cpu_vertex& v : ver)
+            {
+                cpu_vertex ve;
+                ve.pos = { v.pos.x, v.pos.y, v.pos.z };
+                ve.normal = { v.normal.x, v.normal.y, v.normal.z };
+                ve.uv = { v.uv.x, 1.f - v.uv.y };
+                m.vertices.push_back(ve);
+            }
+
+            //reconstruire le mesh + return
+
+            return m;
         }
 
-        static Vector<cpu_mesh> LoadObj(json const& _obj)//recup les vetices avec pos rot et normal
+        static Vector<cpu_vertex> LoadObj(json const& _obj)//recup les vetices avec pos rot et normal
         {
-            Vector<cpu_mesh> vMesh;
+            Vector<cpu_vertex> vVertex;
 
             json mesh = _obj["mesh"];
             json vVertices = mesh["vertices"];
@@ -83,8 +96,6 @@ namespace JSONParser
             for (int i = 0; i < loopCount; i++)
             {
                 int vIndex = indices[i].get<int>();
-
-                cpu_mesh m;
 
                 // POSITION
                 XMFLOAT3 posV;
@@ -106,11 +117,10 @@ namespace JSONParser
                 cpu_vertex v;
                 v.pos = posV; v.uv = uvV; v.normal = normalV;
 
-                m.vertices.push_back(v);
-                vMesh.push_back(m);
+                vVertex.push_back(v);
             }
 
-            return vMesh;
+            return vVertex;
         }
 
     };

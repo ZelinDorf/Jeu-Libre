@@ -6,11 +6,12 @@ namespace JSONParser
 {
     struct JsonObj
     {
-        static Vector<cpu_mesh*> JsonLoader(String const& _path, Scene* _pScene)
+        static cpu_entity* JsonLoader(String const& _path, Scene* _pScene)
         {
             Vector<cpu_mesh*> vObject;
+            cpu_entity* pEntity = new cpu_entity;
 
-            if (_pScene == nullptr) return vObject;
+            if (_pScene == nullptr) return pEntity;
 
             std::ifstream file(_path);
 
@@ -30,12 +31,12 @@ namespace JSONParser
             {
                 json currentObj = jObjects[i];
 
-                cpu_mesh tempMesh;
+                /*cpu_mesh tempMesh;
                 Vector<cpu_triangle> vTri = CreateAllTriangles(currentObj);
                 for (cpu_triangle tri : vTri)
                 {
                     tempMesh.AddTriangle(tri);
-                }
+                }*/
 
 
             }
@@ -53,20 +54,64 @@ namespace JSONParser
             }            
             */
 
-            return vObject;
+            return pEntity;
         }
 
     private:
-        static Vector<cpu_triangle> CreateAllTriangles(json const& _obj)
+        static Vector<cpu_mesh> CreateAllTriangles(json const& _obj)
         {
             Vector<cpu_triangle> vTriangles;
 
-            Vector<cpu_vertex> vVertex;
+            Vector<cpu_mesh> vMesh;
 
-            return vTriangles;
+            return vMesh;
         }
 
+        static Vector<cpu_mesh> LoadObj(json const& _obj)//recup les vetices avec pos rot et normal
+        {
+            Vector<cpu_mesh> vMesh;
 
+            json mesh = _obj["mesh"];
+            json vVertices = mesh["vertices"];
+            json indices = mesh["indices"];
+            json uvs = mesh["uvs"];
+            json normals = mesh["normals"];
+
+            int vertexCount = (int)vVertices.size() / 3;
+            int loopCount = (int)indices.size(); // 3 loops per triangle
+
+            for (int i = 0; i < loopCount; i++)
+            {
+                int vIndex = indices[i].get<int>();
+
+                cpu_mesh m;
+
+                // POSITION
+                XMFLOAT3 posV;
+                posV.x = vVertices[vIndex * 3 + 0].get<float>();
+                posV.y = vVertices[vIndex * 3 + 2].get<float>();
+                posV.z = vVertices[vIndex * 3 + 1].get<float>();
+
+                // UV
+                XMFLOAT2 uvV;
+                uvV.x = uvs[i * 2 + 0].get<float>();
+                uvV.y = uvs[i * 2 + 1].get<float>();
+
+                // NORMAL
+                XMFLOAT3 normalV;
+                normalV.x = normals[i * 3 + 0].get<float>();
+                normalV.y = normals[i * 3 + 1].get<float>();
+                normalV.z = normals[i * 3 + 2].get<float>();
+
+                cpu_vertex v;
+                v.pos = posV; v.uv = uvV; v.normal = normalV;
+
+                m.vertices.push_back(v);
+                vMesh.push_back(m);
+            }
+
+            return vMesh;
+        }
 
     };
 };
@@ -135,13 +180,13 @@ struct MapLoader
 
             // Pos / Scale / Rot
             {
-                Vector3f32 position;
+                XMFLOAT3 position;
                 position.x = currObject["position"][0].get<float>();
                 position.y = currObject["position"][2].get<float>();
                 position.z = currObject["position"][1].get<float>();
                 gameObject.transform.SetLocalPosition(position);
 
-                Vector3f32 scale;
+                XMFLOAT3 scale;
                 scale.x = currObject["scale"][0].get<float>();
                 scale.y = currObject["scale"][2].get<float>();
                 scale.z = currObject["scale"][1].get<float>();

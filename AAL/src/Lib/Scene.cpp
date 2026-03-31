@@ -21,7 +21,11 @@ void Scene::SetActive(bool active)
 	m_active = active;
 	for (size_t i = 0; i < m_entities.size(); i++)
 	{
-		//m_entities[i]->SetVisible(active);
+		m_entities[i]->SetVisible(active);
+	}
+
+	for (auto& it : m_mapUI) {
+		it.second->SetActive(active);
 	}
 }
 

@@ -10,7 +10,7 @@ enum Biomes
 	SNOWY_PLAIN
 };
 
-class Chunk
+class Chunk : public AALentity
 {
 public:
 
@@ -24,15 +24,12 @@ public:
 	void SetBiome(Biomes _biome);
 	void SetPos(XMFLOAT3 _pos);
 
-	virtual void OnUpdate(float _dt);
-
+	void Update(float _dt) override;
 
 private:
 	float m_scale = 16.0f;
 
 	int m_biome = -1;
-
-	cpu_entity* m_pEntity;//if more for none flat chunck --> add in child
 
 	cpu_mesh m_mesh;
 	cpu_material m_mat;

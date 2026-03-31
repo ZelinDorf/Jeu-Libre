@@ -11,5 +11,6 @@ public:
 
 private:
 	Enemy* m_pEnemy;
+	ChunkManager* m_pChunkManager;
 };
 

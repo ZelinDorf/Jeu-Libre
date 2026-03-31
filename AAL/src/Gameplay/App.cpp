@@ -26,7 +26,9 @@ void App::OnStart()
 
 	m_sceneManager.SetSceneActive<SceneMenu>(true);
 
-	cpuEngine.GetCamera()->transform.pos.z = -5.0f;
+	//camera
+	CAMERA->transform.pos.z = -2.0f;
+	CAMERA->transform.pos.y = 1.0f;
 }
 
 void App::OnUpdate()
@@ -39,6 +41,23 @@ void App::OnUpdate()
 
 	m_sceneManager.Update(dt);
 
+	float speed = 10.f;
+
+	if (cpuInput.IsUp())
+		CAMERA->transform.dir.z = speed;
+	else if (cpuInput.IsDown())
+		CAMERA->transform.dir.z = -speed;
+	else
+		CAMERA->transform.dir.z = 0.0f;
+	if (cpuInput.IsRight())
+		CAMERA->transform.dir.x = speed;
+	else if (cpuInput.IsLeft())
+		CAMERA->transform.dir.x = -speed;
+	else
+		CAMERA->transform.dir.x = 0.0f;
+
+	CAMERA->transform.Move(1.0f * cpuTime.delta);
+
 }
 
 void App::OnExit()
@@ -49,6 +68,18 @@ void App::OnExit()
 void App::OnRender(int pass)
 {
 	m_sceneManager.OnRender(pass);
+
+	// Debug
+	cpu_stats& stats = *cpuEngine.GetStats();
+	std::string info = CPU_STR(cpuTime.fps) + " fps, ";
+	info += CPU_STR(stats.drawnTriangleCount) + " triangles, ";
+	info += CPU_STR(stats.clipEntityCount) + " clipped entities\n";
+	info += CPU_STR(cpuEngine.GetParticleData()->alive) + " particles, ";
+	info += CPU_STR(stats.threadCount) + " threads, ";
+	info += CPU_STR(stats.tileCount) + " tiles";
+
+	XMFLOAT3 tint = { 1.0f, 1.0f, 0.8f };
+	cpuDevice.DrawText(&m_font, info.c_str(), (int)(cpuDevice.GetWidth() * 0.5f), 10, CPU_TEXT_CENTER, &tint);
 }
 
 void App::MyPixelShader(cpu_ps_io& io)

@@ -22,8 +22,8 @@ void App::OnStart()
 	// YOUR CODE HERE
 
 	//camera
-	CAMERA->transform.pos.z = -20.0f;
-	CAMERA->transform.pos.y = 10.0f;
+	CAMERA->transform.pos.z = -5.0f;
+	CAMERA->transform.pos.y = 1.0f;
 
 	//chunkManager
 	m_pChunkManager = chunkManager;
@@ -38,7 +38,7 @@ void App::OnUpdate()
 
 	m_pChunkManager->OnUpdate(dt);
 
-	float speed = 50.f;
+	float speed = 10.f;
 
 	if (cpuInput.IsUp())
 		CAMERA->transform.dir.z = speed;

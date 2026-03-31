@@ -37,13 +37,16 @@ void ChunkManager::InitMap(float _mapSize)
 			pNextChunk->SetPos(pos);
 
 			mapH += sca;
+			
+			m_vChunks.push_back(pNextChunk);
+			
 		}
 		mapW += sca;
 		mapH = 0.f;
 	}
 }
 
-void ChunkManager::OnUpdate(float _dt)
+void ChunkManager::Update(float _dt)
 {
 
 }

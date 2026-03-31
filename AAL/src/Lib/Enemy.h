@@ -20,7 +20,6 @@ public:
 	//enemy id
 	int m_id = -1;
 
-	cpu_entity* m_pEntity = nullptr;
 	Enemy* m_pEnemy;
 protected:
 	cpu_mesh m_meshEnemy;

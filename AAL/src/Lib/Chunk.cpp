@@ -87,7 +87,7 @@ void Chunk::SetPos(XMFLOAT3 _pos)
 	m_pEntity->transform.pos = _pos;
 }
 
-void Chunk::OnUpdate(float _dt)
+void Chunk::Update(float _dt)
 {
 
 }

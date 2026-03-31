@@ -13,18 +13,17 @@ enum EntityType
 ////////////////////
 };
 
-enum UIType
-{
-
-};
-
 class AALentity
 {
 public:
 	EntityType m_entityType;
-	UIType m_uiType;
+	EntityType m_uiType;
+
+	cpu_entity* m_pEntity;
 
 public:
 	virtual void Update(float dt) = 0;
+
+	void SetVisible(bool active);
 };
 

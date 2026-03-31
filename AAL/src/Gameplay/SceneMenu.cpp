@@ -7,7 +7,7 @@ SceneMenu::SceneMenu()
 	//!\ ORDER FOR Z-INDEX /!\\
 	
 	AddUI(EntityType::TITLE);
-	AddUI(EntityType::START);
+	//AddUI(EntityType::START);
 }
 
 SceneMenu::~SceneMenu()

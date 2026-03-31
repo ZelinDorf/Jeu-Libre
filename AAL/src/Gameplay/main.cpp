@@ -7,7 +7,7 @@
 
 int main()
 {
-    CPU_RUN(1276, 572, false, true);
+    CPU_RUN(800, 450, false, false);
     return 0;
 }
 #else

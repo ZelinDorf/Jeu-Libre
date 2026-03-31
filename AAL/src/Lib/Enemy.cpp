@@ -20,7 +20,7 @@ void Enemy::Create(cpu_mesh* pMesh, cpu_material* pMaterial)
 
 void Enemy::Destroy()
 {
-	cpuEngine.Release(m_pEntity);
+	//cpuEngine.Release(m_pEntity);
 }
 
 void Enemy::Assemble(EnemiesList type, Enemy* enemy)

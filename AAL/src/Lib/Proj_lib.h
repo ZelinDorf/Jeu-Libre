@@ -49,7 +49,6 @@ using StringView							= std::string_view;
 
 
 //	Lib
-#include "InputSystem.h"
 
 #include "EnemiesRegistery.h"
 #include "Enemy.h"
@@ -60,15 +59,6 @@ using StringView							= std::string_view;
 #include "SceneManager.h"
 #include "Scene.h"
 
-#include "ParserJSON.h"
-
-
-
-
-//	include
-////////////
-
-//	Lib
 #include "InputSystem.h"
 #include "JSONParser.h"
 #include "Math_Utils.h"

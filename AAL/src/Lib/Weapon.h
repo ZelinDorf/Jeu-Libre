@@ -15,8 +15,15 @@ private:
 
 	float mBasicAttackRefreshTime;
 	float mSpecialAttackRefreshTime;
+	float mSpecialAttackCooldown;
 
 	int mWeaponType;
+	bool mIsHeroWeapon;
+
+	HeroWeapon* mHeroWeapon = nullptr;
+
+	GenericWeapon* mGenericWeapon = nullptr;
+
 
 public:
 	void Init(int _type, int _playerClass);
@@ -30,8 +37,12 @@ public:
 
 	float GetPulloutTime();
 
+	float GetBasicAttackDamages();
+	float GetSpecialAttackDamages();
+
 	float GetBasicAttackRefreshTime();
 	float GetSpecialAttackRefreshTime();
+	float GetSpecialAttackCooldown();
 
 	int GetWeaponType();
 };

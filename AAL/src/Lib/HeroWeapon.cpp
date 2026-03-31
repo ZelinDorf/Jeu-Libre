@@ -98,6 +98,16 @@ float HeroWeapon::GetPulloutTime()
 	return mPulloutTime;
 }
 
+float HeroWeapon::GetBasicAttackDamages()
+{
+	return mBasicAttackDamages;
+}
+
+float HeroWeapon::GetSpecialAttackDamages()
+{
+	return mSpecialAttackDamages;
+}
+
 float HeroWeapon::GetBasicAttackRefreshTime()
 {
 	return mBasicAttackRefreshTime;
@@ -106,4 +116,14 @@ float HeroWeapon::GetBasicAttackRefreshTime()
 float HeroWeapon::GetSpecialAttackRefreshTime()
 {
 	return mSpecialAttackRefreshTime;
+}
+
+float HeroWeapon::GetSpecialAttackCooldown()
+{
+	return mSpecialAttackCooldown;
+}
+
+int HeroWeapon::GetWeaponType()
+{
+	return mWeaponType;
 }

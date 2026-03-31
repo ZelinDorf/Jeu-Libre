@@ -53,6 +53,21 @@ float GenericSword::GetSwingTime()
 	return mSwingTime;
 }
 
+float GenericSword::GetPoundDamages()
+{
+	return mPoundDamages;
+}
+
+float GenericSword::GetPoundTime()
+{
+	return mPoundTime;
+}
+
+float GenericSword::GetPoundCooldown()
+{
+	return mPoundCooldown;
+}
+
 void GenericSword::Swing()
 {
 
@@ -61,4 +76,9 @@ void GenericSword::Swing()
 void GenericSword::Pound()
 {
 
+}
+
+int GenericSword::GetWeaponType()
+{
+	return mWeaponTypeId;
 }

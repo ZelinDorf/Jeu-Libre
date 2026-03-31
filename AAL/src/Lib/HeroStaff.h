@@ -7,9 +7,12 @@ private:
 
 	XMFLOAT3 mPosition;
 	float mPulloutTime = 0.4f;
-	float mShootingTime = 1.0f;
 
+	float mShootingTime = 1.0f;
 	float mProjectileDamages;
+	float mPuddleTime = 5.0f;
+	float mPuddleDamages;
+	float mPuddleCooldown;
 
 	float mSize = .5f;
 	float mWidth = .1;
@@ -33,10 +36,17 @@ public:
 	int GetWeaponTypeId();
 
 	float GetPulloutTime();
+
 	float GetProjectileDamages();
 	float GetShootingTime();
 
+	float GetPuddleDamages();
+	float GetPuddleTime();
+	float GetPuddleCooldown();
+
 	void Shoot();
 	void Puddle();
+
+	int GetWeaponType();
 };
 

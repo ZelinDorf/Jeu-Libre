@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "GenericBow.h"
+#include "HeroBow.h"
 
 void GenericBow::Init()
 {
@@ -53,6 +54,21 @@ float GenericBow::GetShootingTime()
 	return mShootingTime;
 }
 
+float GenericBow::GetPiercingDamages()
+{
+	return mPiercingDamages;
+}
+
+float GenericBow::GetPiercingTime()
+{
+	return mPiercingTime;
+}
+
+float GenericBow::GetPiercingCooldown()
+{
+	return mPiercingCooldown;
+}
+
 void GenericBow::Shoot()
 {
 
@@ -63,4 +79,7 @@ void GenericBow::Pierce()
 
 }
 
-
+int GenericBow::GetWeaponType()
+{
+	return mWeaponTypeId;
+}

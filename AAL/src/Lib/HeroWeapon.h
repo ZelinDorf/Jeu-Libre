@@ -17,6 +17,7 @@ private:
 
 	float mBasicAttackRefreshTime;
 	float mSpecialAttackRefreshTime;
+	float mSpecialAttackCooldown;
 
 	HeroSword* Sword;
 	HeroBow* Bow;
@@ -37,8 +38,14 @@ public:
 
 	float GetPulloutTime();
 
+	float GetBasicAttackDamages();
+	float GetSpecialAttackDamages();
+
 	float GetBasicAttackRefreshTime();
 	float GetSpecialAttackRefreshTime();
+	float GetSpecialAttackCooldown();
+
+	int GetWeaponType();
 
 };
 

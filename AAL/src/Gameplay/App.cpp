@@ -22,7 +22,7 @@ App::~App()
 void App::OnStart()
 {
 	mPlayer = new Player();
-	mPlayer->Init();
+	mPlayer->Init(0);
 
 	m_meshGround.CreateCube(mGroundSize, CPU_BLACK);
 	pGround = cpuEngine.CreateEntity();

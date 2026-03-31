@@ -53,6 +53,21 @@ float GenericStaff::GetShootingTime()
 	return mShootingTime;
 }
 
+float GenericStaff::GetPuddleDamages()
+{
+	return mPuddleDamages;
+}
+
+float GenericStaff::GetPuddleTime()
+{
+	return mPuddleTime;
+}
+
+float GenericStaff::GetPuddleCooldown()
+{
+	return mPuddleCooldown;
+}
+
 void GenericStaff::Shoot()
 {
 
@@ -61,4 +76,9 @@ void GenericStaff::Shoot()
 void GenericStaff::Puddle()
 {
 
+}
+
+int GenericStaff::GetWeaponType()
+{
+	return mWeaponTypeId;
 }

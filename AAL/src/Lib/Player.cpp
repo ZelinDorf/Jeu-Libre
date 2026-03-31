@@ -19,7 +19,7 @@ void Player::Init(int _class)
 	mSpeed = mBaseSpeed;
 	mCrouchedSpeed *= mSpeed;
 
-	mAttackRefreshDuration = mCurrentWeapon->GetBasicAttackRefreshTime();
+	//mAttackRefreshDuration = mCurrentWeapon->GetBasicAttackRefreshTime();
 
 	mPlayerClass = _class;
 
@@ -108,7 +108,10 @@ void Player::Destroy()
 
 void Player::SetWeaponDirection()
 {
-	mGenericWeapon->SetDirection(m_pEntity->transform.dir);
+	if (mCurrentWeapon == nullptr)
+		return;
+
+	mCurrentWeapon->SetDirection(m_pEntity->transform.dir);
 }
 
 void Player::SetPosition(XMFLOAT3 _position)
@@ -186,6 +189,9 @@ void Player::WeaponEquiped(float dt)
 
 void Player::Attack()
 {
+	if (mCurrentWeapon == nullptr)
+		return;
+
 	if (mAttackRefreshing < mAttackRefreshDuration || mIsWeaponEquiped == false)
 		return;
 
@@ -201,6 +207,9 @@ void Player::RefreshAttack(float dt)
 
 void Player::SwapWeapon()
 {
+	if (mCurrentWeapon == nullptr)
+		return;
+
 	if (mAttackRefreshing < mAttackRefreshDuration)
 		return;
 

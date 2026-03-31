@@ -98,6 +98,16 @@ float GenericWeapon::GetPulloutTime()
 	return mPulloutTime;
 }
 
+float GenericWeapon::GetBasicAttackDamages()
+{
+	return mBasicAttackDamages;
+}
+
+float GenericWeapon::GetSpecialAttackDamages()
+{
+	return mSpecialAttackDamages;
+}
+
 float GenericWeapon::GetBasicAttackRefreshTime()
 {
 	return mBasicAttackRefreshTime;
@@ -106,4 +116,14 @@ float GenericWeapon::GetBasicAttackRefreshTime()
 float GenericWeapon::GetSpecialAttackRefreshTime()
 {
 	return mSpecialAttackRefreshTime;
+}
+
+float GenericWeapon::GetSpecialAttackCooldown()
+{
+	return mSpecialAttackCooldown;
+}
+
+int GenericWeapon::GetWeaponType()
+{
+	return mWeaponType;
 }

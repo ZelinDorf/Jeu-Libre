@@ -53,6 +53,21 @@ float HeroStaff::GetShootingTime()
 	return mShootingTime;
 }
 
+float HeroStaff::GetPuddleDamages()
+{
+	return mPuddleDamages;
+}
+
+float HeroStaff::GetPuddleTime()
+{
+	return mPuddleTime;
+}
+
+float HeroStaff::GetPuddleCooldown()
+{
+	return mPuddleCooldown;
+}
+
 void HeroStaff::Shoot()
 {
 
@@ -61,4 +76,9 @@ void HeroStaff::Shoot()
 void HeroStaff::Puddle()
 {
 
+}
+
+int HeroStaff::GetWeaponType()
+{
+	return mWeaponTypeId;
 }

@@ -53,6 +53,21 @@ float HeroSword::GetSwingTime()
 	return mSwingTime;
 }
 
+float HeroSword::GetPoundDamages()
+{
+	return mPoundDamages;
+}
+
+float HeroSword::GetPoundTime()
+{
+	return mPoundTime;
+}
+
+float HeroSword::GetPoundCooldown()
+{
+	return mPoundCooldown;
+}
+
 void HeroSword::Swing()
 {
 
@@ -61,4 +76,9 @@ void HeroSword::Swing()
 void HeroSword::Pound()
 {
 
+}
+
+int HeroSword::GetWeaponType()
+{
+	return mWeaponTypeId;
 }

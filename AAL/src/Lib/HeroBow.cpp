@@ -53,6 +53,21 @@ float HeroBow::GetShootingTime()
 	return mShootingTime;
 }
 
+float HeroBow::GetPiercingDamages()
+{
+	return mPiercingDamages;
+}
+
+float HeroBow::GetPiercingTime()
+{
+	return mPiercingTime;
+}
+
+float HeroBow::GetPiercingCooldown()
+{
+	return mPiercingCooldown;
+}
+
 void HeroBow::Shoot()
 {
 
@@ -61,4 +76,9 @@ void HeroBow::Shoot()
 void HeroBow::Pierce()
 {
 
+}
+
+int HeroBow::GetWeaponType()
+{
+	return mWeaponTypeId;
 }

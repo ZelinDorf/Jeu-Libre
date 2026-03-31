@@ -7,9 +7,12 @@ private:
 
 	XMFLOAT3 mPosition;
 	float mPulloutTime = 0.5f;
-	float mShootingTime = 0.8f;
 
+	float mShootingTime = 0.8f;
 	float mProjectileDamages;
+	float mPiercingTime = 2.0;
+	float mPiercingDamages;
+	float mPiercingCooldown;
 
 	float mSize = .4f;
 	float mWidth = .2;
@@ -33,10 +36,17 @@ public:
 	int GetWeaponTypeId();
 
 	float GetPulloutTime();
+
 	float GetProjectileDamages();
 	float GetShootingTime();
 
+	float GetPiercingDamages();
+	float GetPiercingTime();
+	float GetPiercingCooldown();
+
 	void Shoot();
 	void Pierce();
+
+	int GetWeaponType();
 };
 

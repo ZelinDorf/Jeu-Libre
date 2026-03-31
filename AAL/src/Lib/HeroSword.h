@@ -7,9 +7,13 @@ private:
 
 	XMFLOAT3 mPosition;
 	float mPulloutTime = 0.3f;
-	float mSwingTime = 0.6f;
 
+	float mSwingTime = 0.6f;
 	float mSwingDamages;
+	float mPoundTime = 1.0f;
+	float mPoundDamages;
+	float mPoundCooldown;
+
 
 	float mSwordSize = .5f;
 	float mSwordWidth = .1;
@@ -32,10 +36,17 @@ public:
 	int GetWeaponTypeId();
 
 	float GetPulloutTime();
+
 	float GetSwingDamages();
 	float GetSwingTime();
 
+	float GetPoundDamages();
+	float GetPoundTime();
+	float GetPoundCooldown();
+
 	void Swing();
 	void Pound();
+
+	int GetWeaponType();
 };
 

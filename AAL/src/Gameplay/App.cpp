@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "App.h"
+
 #include <iostream>
 
 App::App()
@@ -23,7 +24,7 @@ void App::OnStart()
 {
 	m_font.Create(20);
 
-	m_sceneManager.SetSceneActive<SceneGameplay>(true);
+	m_sceneManager.SetSceneActive<SceneMenu>(true);
 
 	cpuEngine.GetCamera()->transform.pos.z = -5.0f;
 }
@@ -33,10 +34,8 @@ void App::OnUpdate()
 	float dt = cpuTime.delta;
 	InputSystem::HandleInput();
 
-	if (InputSystem::IsKeyPressed(InputKeyboard::NUMPAD1))
-	{
-		//m_sceneManager.SetSceneActive<SceneGameplay>(true);
-	};
+	if (InputSystem::IsKeyPressed(InputKeyboard::NUMPAD1)) m_sceneManager.SetSceneActive<SceneGameplay>(true);
+	if (InputSystem::IsKeyPressed(InputKeyboard::NUMPAD2)) m_sceneManager.SetSceneActive<SceneMenu>(true);
 
 	m_sceneManager.Update(dt);
 

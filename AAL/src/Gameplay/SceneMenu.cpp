@@ -1,13 +1,13 @@
 #include "pch.h"
 #include "SceneMenu.h"
+#include <iostream>
 
 SceneMenu::SceneMenu()
 {
 	//!\ ORDER FOR Z-INDEX /!\\
 	
-	// needs UIWrapper
-	//AddUI(EntityType::ENGINE_POWER);
-
+	AddUI(EntityType::TITLE);
+	AddUI(EntityType::START);
 }
 
 SceneMenu::~SceneMenu()

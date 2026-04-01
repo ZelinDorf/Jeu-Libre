@@ -20,8 +20,7 @@ public:
 	void OnRender(int pass);
 
 	static void MyPixelShader(cpu_ps_io& io);
-
-	float mGroundSize = 18.75f;
+	cpu_font* GetFont();
 
 private:
 	cpu_font m_font;

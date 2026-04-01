@@ -34,15 +34,15 @@ void App::OnUpdate()
 	float dt = cpuTime.delta;
 	InputSystem::HandleInput();
 
-	if (InputSystem::IsKeyPressed(InputKeyboard::NUMPAD1)) m_sceneManager.SetSceneActive<SceneGameplay>(true);
-	if (InputSystem::IsKeyPressed(InputKeyboard::NUMPAD2)) m_sceneManager.SetSceneActive<SceneMenu>(true);
+	if (InputSystem::IsKeyPressed(InputKeyboard::SPACE)) m_sceneManager.SetSceneActive<SceneGameplay>(true);
+	if (InputSystem::IsKeyPressed(InputKeyboard::ESC)) m_sceneManager.SetSceneActive<SceneMenu>(true);
 
 	m_sceneManager.Update(dt);
 
 	float time = cpuTime.total;
 
 	// Quit
-	if (InputSystem::IsKeyPressed(ESCAPE))
+	if (InputSystem::IsKeyPressed(RETURN))
 	{
 		cpuEngine.Quit();
 	}
@@ -65,10 +65,16 @@ void App::OnRender(int pass)
 	//info += CPU_STR(cpuEngine.GetParticleData()->alive) + " particles, ";
 
 	XMFLOAT3 tint = { 1.0f, 1.0f, 0.8f };
+	
 	cpuDevice.DrawText(&m_font, info.c_str(), (int)(cpuDevice.GetWidth() * 0.5f), 10, CPU_TEXT_CENTER, &tint);
 }
 
 void App::MyPixelShader(cpu_ps_io& io)
 {
 	io.color = io.p.color;
+}
+
+cpu_font* App::GetFont()
+{
+	return &m_font;
 }

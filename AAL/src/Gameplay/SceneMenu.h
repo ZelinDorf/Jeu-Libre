@@ -10,6 +10,7 @@ public:
 	void Update(float dt) override;
 
 private:
+	cpu_font m_font;
 
 };
 

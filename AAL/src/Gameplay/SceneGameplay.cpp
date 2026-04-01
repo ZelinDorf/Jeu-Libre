@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "SceneGameplay.h"
+#include "App.h"
 
 SceneGameplay::SceneGameplay()
 {
@@ -14,6 +15,7 @@ SceneGameplay::SceneGameplay()
 	{
 		m_entities.push_back(chunks[i]);
 	}
+
 
 	m_pEnemy = new Enemy;
 	m_pEnemy->Assemble(SKELETAL_GRUNT, m_pEnemy);
@@ -33,6 +35,7 @@ SceneGameplay::~SceneGameplay()
 
 void SceneGameplay::OnRender(int pass)
 {
+
 
 }
 

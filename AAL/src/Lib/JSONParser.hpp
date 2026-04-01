@@ -1,6 +1,7 @@
 #pragma once
 #include <fstream>
-#include <wincodec.h>
+#include "Scene.h"
+//#include <wincodec.h>
 
 namespace JSONParser
 {
@@ -8,7 +9,7 @@ namespace JSONParser
     {
         static cpu_entity* JsonLoader(String const& _path, Scene* _pScene)
         {
-            Vector<cpu_mesh*> vObject;
+            Vector<cpu_mesh> vObject;
             cpu_entity* pEntity = new cpu_entity;
 
             if (_pScene == nullptr) return pEntity;
@@ -26,20 +27,6 @@ namespace JSONParser
                 std::cerr << "Parsing error: " << e.what() << "\n";
             }
 
-            json jObjects = j["objects"];
-            for (int i = 0; i < jObjects.size(); i++)
-            {
-                json currentObj = jObjects[i];
-
-                /*cpu_mesh tempMesh;
-                Vector<cpu_triangle> vTri = CreateAllTriangles(currentObj);
-                for (cpu_triangle tri : vTri)
-                {
-                    tempMesh.AddTriangle(tri);
-                }*/
-
-
-            }
             /*
             load json
             for(obj.size)
@@ -50,17 +37,81 @@ namespace JSONParser
 
             {pos, scale, rot}
 
-            collider
+            collider 
 
             ++add entity to scene (or not if somewhere else)
-            }            
+            }
             */
+            json jObjects = j["objects"];
+            for (int i = 0; i < jObjects.size(); i++)
+            {
+                json currentObj = jObjects[i];
+
+                cpu_mesh tempMesh = CreateMesh(currentObj);
+                
+                cpu_material* mat;
+                
+                vObject.push_back(tempMesh);
+
+                if (currentObj.contains("_texture") && currentObj["_texture"].is_string())
+                {
+                    String path;
+                    path.append("res/Texture/Chunk_Texture");
+                    path.append(currentObj["_texture"].get<String>());
+
+                    mat = RessourcesManager::GetMatWithName(path);
+                }
+                else if (currentObj.contains("texture") && currentObj["texture"].is_string())
+                {
+                    String path;
+                    path.append("res/Texture/");
+                    path.append(currentObj["_texture"].get<String>());
+
+                    mat = RessourcesManager::GetMatWithName(path);
+                }
+
+                //  POS / SCALE / ROT
+                /////////////////////
+
+                {
+                    XMFLOAT3 position;
+                    position.x = currentObj["position"][0].get<float>();
+                    position.y = currentObj["position"][2].get<float>();
+                    position.z = currentObj["position"][1].get<float>();
+                    pEntity->transform.SetPosition(position);
+
+                    XMFLOAT3 scale;
+                    scale.x = currentObj["scale"][0].get<float>();
+                    scale.y = currentObj["scale"][2].get<float>();
+                    scale.z = currentObj["scale"][1].get<float>();
+                    pEntity->transform.Scale(scale);
+
+                    float rotX = currentObj["rotation"][0].get<float>();
+                    float rotY = currentObj["rotation"][1].get<float>();
+                    float rotZ = currentObj["rotation"][2].get<float>();
+                    float rotW = currentObj["rotation"][3].get<float>();
+                    XMFLOAT4 rotation(rotX, rotY, rotZ, -rotW);
+                    pEntity->transform.SetRotation(rotation);
+                }
+
+                //collider TODO
+
+                //Add to scene?
+
+            }
+
+            cpu_mesh entMesh;
+
+            for (cpu_mesh& m : vObject)
+            {
+                entMesh.AddMesh(m);
+            }
 
             return pEntity;
         }
 
     private:
-        static cpu_mesh CreateAllTriangles(json const& _obj)//construit la geo/mesh custom
+        static cpu_mesh CreateMesh(json const& _obj)//construit la geo/mesh custom
         {
             cpu_mesh m;
 
@@ -126,6 +177,8 @@ namespace JSONParser
     };
 };
 
+using namespace JSONParser;
+
 /*-----------------------------------------------------
 Map_Loader :
 get path && check
@@ -134,91 +187,6 @@ then set all
 
 =======================================================
 
-#include "RessourceManager.h"
 
-struct MapLoader
-{
-    static std::vector<GameObject*> LoadMap(String const& path, Scene* pScene)
-    {
-        std::vector<GameObject*> vAllObjects;
-
-        if (pScene == nullptr) return vAllObjects;
-
-        Map<GameObject*, String> mObjects;
-
-
-        std::ifstream file(path);
-        if (!file.is_open()) {
-            std::cerr << "Impossible d'ouvrir le fichier JSON\n";
-        }
-        json j;
-        try {
-            file >> j;
-        }
-        catch (json::parse_error& e) {
-            std::cerr << "Erreur de parsing: " << e.what() << "\n";
-        }
-
-        json jObjects = j["objects"];
-        for (int i = 0; i < jObjects.size(); ++i)
-        {
-            json currObject = jObjects[i];
-            GameObject& gameObject = GameObject::Create(*pScene);
-            MeshRenderer& mesh = *gameObject.AddComponent<MeshRenderer>();
-            mesh.SetGeometry(GeometryFactory::LoadJsonGeometry(currObject));
-            mesh.pGeometry->name = currObject["name"].get<String>();
-            gameObject.SetName(mesh.pGeometry->name.c_str());
-
-            vAllObjects.push_back(&gameObject);
-
-            if (currObject.contains("_texture") && currObject["_texture"].is_string())
-            {
-                std::string texturePath;
-                texturePath.append("res/Textures/Rooms_Textures");
-                texturePath.append(currObject["_texture"].get<std::string>());
-                Texture* texture = RessourceManager::GetTextureWithName(texturePath);;
-                mesh.SetAlbedoTexture(texture);
-            }
-            else if (currObject.contains("texture") && currObject["texture"].is_string())
-            {
-                std::string texturePath;
-                texturePath.append("res/Textures/");
-                texturePath.append(currObject["texture"].get<std::string>());
-                Texture* texture = RessourceManager::GetTextureWithName(texturePath);
-                mesh.SetAlbedoTexture(texture);
-            }
-
-            // Pos / Scale / Rot
-            {
-                XMFLOAT3 position;
-                position.x = currObject["position"][0].get<float>();
-                position.y = currObject["position"][2].get<float>();
-                position.z = currObject["position"][1].get<float>();
-                gameObject.transform.SetLocalPosition(position);
-
-                XMFLOAT3 scale;
-                scale.x = currObject["scale"][0].get<float>();
-                scale.y = currObject["scale"][2].get<float>();
-                scale.z = currObject["scale"][1].get<float>();
-                gameObject.transform.SetLocalScale(scale);
-
-                float32 rotX = currObject["rotation"][0].get<float>();
-                float32 rotY = currObject["rotation"][1].get<float>();
-                float32 rotZ = currObject["rotation"][2].get<float>();
-                float32 rotW = currObject["rotation"][3].get<float>();
-                Quaternion rotation(rotX, rotY, rotZ, -rotW);
-                gameObject.transform.SetLocalRotation(rotation);
-            }
-
-            if (currObject.contains("has_collider") && currObject["has_collider"].is_boolean() && currObject["has_collider"].get<bool>() == true)
-            {
-                if (currObject["has_collider"].get<bool>())
-                    BoxCollider* b = gameObject.AddComponent<BoxCollider>();
-            }
-        }
-
-        return vAllObjects;
-    }
-};
 
 -----------------------------------------------------*/

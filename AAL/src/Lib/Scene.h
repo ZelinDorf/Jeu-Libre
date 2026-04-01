@@ -1,9 +1,8 @@
 #pragma once
-#include <unordered_map>
-
 
 class Player;
 class UIWrapper;
+class AALentity;
 
 class Scene
 {
@@ -26,8 +25,5 @@ protected:
 	
 	Vector<AALentity*> m_entities;
 	Vector<int> m_entitiesID;
-
-
-
 };
 

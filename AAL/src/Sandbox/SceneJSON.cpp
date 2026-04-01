@@ -3,6 +3,7 @@
 
 SceneJSON::SceneJSON()
 {
+	pEntity = JsonObj::JsonLoader("box", this);
 }
 
 SceneJSON::~SceneJSON()

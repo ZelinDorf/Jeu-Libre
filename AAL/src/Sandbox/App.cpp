@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "SceneJSON.h"
 
 App::App()
 {
@@ -20,6 +21,10 @@ App::~App()
 void App::OnStart()
 {
 	// YOUR CODE HERE
+
+	m_sceneManager.SetSceneActive<SceneJSON>(true);
+
+	cpuEngine.GetCamera()->transform.pos.z = -5.0f;
 }
 
 void App::OnUpdate()
@@ -30,11 +35,15 @@ void App::OnUpdate()
 void App::OnExit()
 {
 	// YOUR CODE HERE
+	float dt = cpuTime.delta;
+
+	m_sceneManager.Update(dt);
 }
 
 void App::OnRender(int pass)
 {
 	// YOUR CODE HERE
+	m_sceneManager.OnRender(pass);
 }
 
 void App::MyPixelShader(cpu_ps_io& io)

@@ -12,7 +12,7 @@ App::App()
 
 App::~App()
 {
-	mPlayer = nullptr;
+	m_Player = nullptr;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -21,13 +21,13 @@ App::~App()
 
 void App::OnStart()
 {
-	mPlayer = new Player();
-	mPlayer->Init(0);
+	m_Player = new Player();
+	m_Player->Init(0);
 
-	m_meshGround.CreateCube(mGroundSize, CPU_BLACK);
-	pGround = cpuEngine.CreateEntity();
-	pGround->pMesh = &m_meshGround;
-	pGround->transform.pos = XMFLOAT3(0.f, -20.f, 0.f);
+	m_meshGround.CreateCube(m_GroundSize, CPU_BLACK);
+	p_Ground = cpuEngine.CreateEntity();
+	p_Ground->pMesh = &m_meshGround;
+	p_Ground->transform.pos = XMFLOAT3(0.f, -20.f, 0.f);
 }
 
 void App::OnUpdate()
@@ -35,7 +35,7 @@ void App::OnUpdate()
 	float dt = cpuTime.delta;
 	float time = cpuTime.total;
 
-	mPlayer->Update(dt);
+	m_Player->Update(dt);
 
 	InputSystem::HandleInput();
 
@@ -62,9 +62,9 @@ void App::OnUpdate()
 
 void App::OnExit()
 {
-	mPlayer->Destroy();
-	delete mPlayer;
-	pGround = cpuEngine.Release(pGround);
+	m_Player->Destroy();
+	delete m_Player;
+	p_Ground = cpuEngine.Release(p_Ground);
 }
 
 void App::OnRender(int pass)

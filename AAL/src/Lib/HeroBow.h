@@ -3,19 +3,19 @@ class HeroBow
 {
 private:
 
-	int mWeaponTypeId = 1;
+	int m_WeaponTypeId = 1;
 
-	XMFLOAT3 mPosition;
-	float mPulloutTime = 0.5f;
+	XMFLOAT3 m_Position;
+	float m_PulloutTime = 0.5f;
 
-	float mShootingTime = 0.8f;
-	float mProjectileDamages;
-	float mPiercingTime = 2.0;
-	float mPiercingDamages;
-	float mPiercingCooldown;
+	float m_ShootingTime = 0.8f;
+	float m_ProjectileDamages;
+	float m_PiercingTime = 2.0;
+	float m_PiercingDamages;
+	float m_PiercingCooldown;
 
-	float mSize = .4f;
-	float mWidth = .2;
+	float m_Size = .4f;
+	float m_Width = .2;
 	cpu_mesh m_meshBow;
 	cpu_mesh m_meshProjectile;
 
@@ -23,7 +23,7 @@ public:
 
 	cpu_entity* m_pEntity;
 
-	bool mIsEquiped = false;
+	bool m_IsEquiped = false;
 
 	void Init();
 	void Update(float dt);

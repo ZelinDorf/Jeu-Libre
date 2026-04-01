@@ -16,15 +16,15 @@ public:
 
 	static void MyPixelShader(cpu_ps_io& io);
 
-	float mGroundSize = 18.75f;
+	float m_GroundSize = 18.75f;
 
 private:
 	inline static App* s_pApp = nullptr;
 
-	cpu_entity* pGround = nullptr;
+	cpu_entity* p_Ground = nullptr;
 	cpu_mesh m_meshGround;
 
-	Player* mPlayer = nullptr;
+	Player* m_Player = nullptr;
 
 	void SpawnPlayer();
 };

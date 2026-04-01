@@ -5,41 +5,41 @@ void GenericWeapon::Init(int _type)
 {
 	if (_type == 0)
 	{
-		mWeaponType = _type;
+		m_WeaponType = _type;
 		Sword->Init();
-		mPulloutTime = Sword->GetPulloutTime();
-		mBasicAttackDamages = Sword->GetSwingDamages();
-		mBasicAttackRefreshTime = Sword->GetSwingTime();
+		m_PulloutTime = Sword->GetPulloutTime();
+		m_BasicAttackDamages = Sword->GetSwingDamages();
+		m_BasicAttackRefreshTime = Sword->GetSwingTime();
 	}
 	if (_type == 1)
 	{
-		mWeaponType = _type;
+		m_WeaponType = _type;
 		Bow->Init();
-		mPulloutTime = Bow->GetPulloutTime();
-		mBasicAttackDamages = Bow->GetProjectileDamages();
-		mBasicAttackRefreshTime = Bow->GetShootingTime();
+		m_PulloutTime = Bow->GetPulloutTime();
+		m_BasicAttackDamages = Bow->GetProjectileDamages();
+		m_BasicAttackRefreshTime = Bow->GetShootingTime();
 	}
 	if (_type == 2)
 	{
-		mWeaponType = _type;
+		m_WeaponType = _type;
 		Staff->Init();
-		mPulloutTime = Staff->GetPulloutTime();
-		mBasicAttackDamages = Staff->GetProjectileDamages();
-		mBasicAttackRefreshTime = Staff->GetShootingTime();
+		m_PulloutTime = Staff->GetPulloutTime();
+		m_BasicAttackDamages = Staff->GetProjectileDamages();
+		m_BasicAttackRefreshTime = Staff->GetShootingTime();
 	}
 }
 
 void GenericWeapon::Update(float dt)
 {
-	if (mWeaponType == 0)
+	if (m_WeaponType == 0)
 	{
 		Sword->Update(dt);
 	}
-	if (mWeaponType == 1)
+	if (m_WeaponType == 1)
 	{
 		Bow->Update(dt);
 	}
-	if (mWeaponType == 2)
+	if (m_WeaponType == 2)
 	{
 		Staff->Update(dt);
 	}
@@ -47,15 +47,15 @@ void GenericWeapon::Update(float dt)
 
 void GenericWeapon::SetDirection(XMFLOAT3 _dir)
 {
-	if (mWeaponType == 0)
+	if (m_WeaponType == 0)
 	{
 		Sword->SetDirection(_dir);
 	}
-	if (mWeaponType == 1)
+	if (m_WeaponType == 1)
 	{
 		Bow->SetDirection(_dir);
 	}
-	if (mWeaponType == 2)
+	if (m_WeaponType == 2)
 	{
 		Staff->SetDirection(_dir);
 	}
@@ -63,15 +63,15 @@ void GenericWeapon::SetDirection(XMFLOAT3 _dir)
 
 void GenericWeapon::BasicAttack()
 {
-	if (mWeaponType == 0)
+	if (m_WeaponType == 0)
 	{
 		Sword->Swing();
 	}
-	if (mWeaponType == 1)
+	if (m_WeaponType == 1)
 	{
 		Bow->Shoot();
 	}
-	if (mWeaponType == 2)
+	if (m_WeaponType == 2)
 	{
 		Staff->Shoot();
 	}
@@ -79,15 +79,15 @@ void GenericWeapon::BasicAttack()
 
 void GenericWeapon::SpecialAttack()
 {
-	if (mWeaponType == 0)
+	if (m_WeaponType == 0)
 	{
 		Sword->Pound();
 	}
-	if (mWeaponType == 1)
+	if (m_WeaponType == 1)
 	{
 		Bow->Pierce();
 	}
-	if (mWeaponType == 2)
+	if (m_WeaponType == 2)
 	{
 		Staff->Puddle();
 	}
@@ -95,35 +95,35 @@ void GenericWeapon::SpecialAttack()
 
 float GenericWeapon::GetPulloutTime()
 {
-	return mPulloutTime;
+	return m_PulloutTime;
 }
 
 float GenericWeapon::GetBasicAttackDamages()
 {
-	return mBasicAttackDamages;
+	return m_BasicAttackDamages;
 }
 
 float GenericWeapon::GetSpecialAttackDamages()
 {
-	return mSpecialAttackDamages;
+	return m_SpecialAttackDamages;
 }
 
 float GenericWeapon::GetBasicAttackRefreshTime()
 {
-	return mBasicAttackRefreshTime;
+	return m_BasicAttackRefreshTime;
 }
 
 float GenericWeapon::GetSpecialAttackRefreshTime()
 {
-	return mSpecialAttackRefreshTime;
+	return m_SpecialAttackRefreshTime;
 }
 
 float GenericWeapon::GetSpecialAttackCooldown()
 {
-	return mSpecialAttackCooldown;
+	return m_SpecialAttackCooldown;
 }
 
 int GenericWeapon::GetWeaponType()
 {
-	return mWeaponType;
+	return m_WeaponType;
 }

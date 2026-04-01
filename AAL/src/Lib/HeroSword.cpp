@@ -4,7 +4,7 @@
 void HeroSword::Init()
 {
 	m_pEntity = cpuEngine.CreateEntity();
-	m_meshSword.CreateCylinder(mSwordSize, mSwordWidth, 5, true, true, CPU_BLUE);
+	m_meshSword.CreateCylinder(m_SwordSize, m_SwordWidth, 5, true, true, CPU_BLUE);
 	m_pEntity->pMesh = &m_meshSword;
 }
 
@@ -14,18 +14,18 @@ void HeroSword::Update(float dt)
 	float m_zDir = m_pEntity->transform.dir.z;
 
 	XMFLOAT3 m_offset = XMFLOAT3(m_xDir * .5f, 0.f, m_zDir * .5f);
-	mPosition = XMFLOAT3(mPosition.x + m_offset.x, mPosition.y + m_offset.y, mPosition.z + m_offset.z);
-	m_pEntity->transform.pos = mPosition;
+	m_Position = XMFLOAT3(m_Position.x + m_offset.x, m_Position.y + m_offset.y, m_Position.z + m_offset.z);
+	m_pEntity->transform.pos = m_Position;
 }
 
 void HeroSword::SetPosition(XMFLOAT3 _pos)
 {
-	mPosition = _pos;
+	m_Position = _pos;
 }
 
 XMFLOAT3 HeroSword::GetPosition()
 {
-	return mPosition;
+	return m_Position;
 }
 
 void HeroSword::SetDirection(XMFLOAT3 _dir)
@@ -35,37 +35,37 @@ void HeroSword::SetDirection(XMFLOAT3 _dir)
 
 int HeroSword::GetWeaponTypeId()
 {
-	return mWeaponTypeId;
+	return m_WeaponTypeId;
 }
 
 float HeroSword::GetPulloutTime()
 {
-	return mPulloutTime;
+	return m_PulloutTime;
 }
 
 float HeroSword::GetSwingDamages()
 {
-	return mSwingDamages;
+	return m_SwingDamages;
 }
 
 float HeroSword::GetSwingTime()
 {
-	return mSwingTime;
+	return m_SwingTime;
 }
 
 float HeroSword::GetPoundDamages()
 {
-	return mPoundDamages;
+	return m_PoundDamages;
 }
 
 float HeroSword::GetPoundTime()
 {
-	return mPoundTime;
+	return m_PoundTime;
 }
 
 float HeroSword::GetPoundCooldown()
 {
-	return mPoundCooldown;
+	return m_PoundCooldown;
 }
 
 void HeroSword::Swing()
@@ -80,5 +80,5 @@ void HeroSword::Pound()
 
 int HeroSword::GetWeaponType()
 {
-	return mWeaponTypeId;
+	return m_WeaponTypeId;
 }

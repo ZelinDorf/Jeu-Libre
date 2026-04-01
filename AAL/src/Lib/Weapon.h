@@ -6,23 +6,23 @@
 class Weapon
 {
 private:
-	XMFLOAT3 mPosition;
+	XMFLOAT3 m_Position;
 
-	float mPulloutTime;
+	float m_PulloutTime;
 
-	float mBasicAttackDamages;
-	float mSpecialAttackDamages;
+	float m_BasicAttackDamages;
+	float m_SpecialAttackDamages;
 
-	float mBasicAttackRefreshTime;
-	float mSpecialAttackRefreshTime;
-	float mSpecialAttackCooldown;
+	float m_BasicAttackRefreshTime;
+	float m_SpecialAttackRefreshTime;
+	float m_SpecialAttackCooldown;
 
-	int mWeaponType;
-	bool mIsHeroWeapon;
+	int m_WeaponType;
+	bool m_IsHeroWeapon;
 
-	HeroWeapon* mHeroWeapon = nullptr;
+	HeroWeapon* m_HeroWeapon = nullptr;
 
-	GenericWeapon* mGenericWeapon = nullptr;
+	GenericWeapon* m_GenericWeapon = nullptr;
 
 
 public:

@@ -7,16 +7,16 @@ class Player
 {
 private:
 
-	XMFLOAT3 mPosition;
+	XMFLOAT3 m_Position;
 
-	float mPlayerSize = .5f;
+	float m_PlayerSize = .5f;
 
-	float mBaseSpeed = 15;
-	float mSpeed;
-	float mCrouchedSpeed = 5;
+	float m_BaseSpeed = 15;
+	float m_Speed;
+	float m_CrouchedSpeed = 5;
 
-	float mAttackRefreshing = 0.f;
-	float mAttackRefreshDuration;
+	float m_AttackRefreshing = 0.f;
+	float m_AttackRefreshDuration;
 
 	void MouseInput();
 
@@ -29,39 +29,39 @@ private:
 	void Crouch();
 	void Uncrouch();
 
-	bool mIsJumping;
-	bool mIsCrouched;
+	bool m_IsJumping;
+	bool m_IsCrouched;
 
 	cpu_mesh m_meshPlayer;
 
 	void WeaponEquiped(float dt);
 
-	bool mIsWeaponEquiped = true;
-	float mWeaponEquipement = 0.0f;
-	float mWeaponEquipementDuration;
+	bool m_IsWeaponEquiped = true;
+	float m_WeaponEquipement = 0.0f;
+	float m_WeaponEquipementDuration;
 
 	void Attack();
 	void RefreshAttack(float dt);
 
 	void SwapWeapon();
 
-	bool mIsInventoryOpened;
-	bool mIsUpgradePageOpened;
+	bool m_IsInventoryOpened;
+	bool m_IsUpgradePageOpened;
 
 	void Inventory();
 	void UpgradesPage();
 
-	int mPlayerClass;
+	int m_PlayerClass;
 
-	Weapon* mWeapon1 = nullptr;
-	Weapon* mWeapon2 = nullptr;
+	Weapon* m_Weapon1 = nullptr;
+	Weapon* m_Weapon2 = nullptr;
 
-	PlayerStatsManager mStats;
+	PlayerStatsManager m_Stats;
 
 public:
 	cpu_entity* m_pEntity;
 
-	bool mIsActive = false;
+	bool m_IsActive = false;
 
 	void Init(int _class);
 	void Update(float dt);
@@ -69,7 +69,7 @@ public:
 
 	void Destroy();
 
-	Weapon* mCurrentWeapon;
+	Weapon* m_CurrentWeapon;
 
 	void SetWeaponDirection();
 

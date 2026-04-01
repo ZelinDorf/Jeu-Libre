@@ -3,65 +3,65 @@
 
 void PlayerStatsManager::SetBaseSpeed(float _speed)
 {
-	mBaseSpeed = _speed;
+	m_BaseSpeed = _speed;
 }
 
 void PlayerStatsManager::SetSpeedMultiplier(float _multiplier)
 {
-	mSpeedMultiplier = _multiplier;
+	m_SpeedMultiplier = _multiplier;
 }
 
 float PlayerStatsManager::GetBaseSpeed()
 {
-	return mBaseSpeed;
+	return m_BaseSpeed;
 }
 
 float PlayerStatsManager::GetSpeedMultiplier()
 {
-	return mSpeedMultiplier;
+	return m_SpeedMultiplier;
 }
 
 float PlayerStatsManager::GetFinalSpeed()
 {
-	mFinalSpeed = mBaseSpeed * mSpeedMultiplier;
-	return mFinalSpeed;
+	m_FinalSpeed = m_BaseSpeed * m_SpeedMultiplier;
+	return m_FinalSpeed;
 }
 
 void PlayerStatsManager::SetBaseJumpForce(float _jumpForce)
 {
-	mBaseJumpForce = _jumpForce;
+	m_BaseJumpForce = _jumpForce;
 }
 
 void PlayerStatsManager::SetJumpForceMultiplier(float _multiplier)
 {
-	mJumpForceMultiplier = _multiplier;
+	m_JumpForceMultiplier = _multiplier;
 }
 
 float PlayerStatsManager::GetBaseJumpForce()
 {
-	return mBaseJumpForce;
+	return m_BaseJumpForce;
 }
 
 float PlayerStatsManager::GetJumpForceMultiplier()
 {
-	return mJumpForceMultiplier;
+	return m_JumpForceMultiplier;
 }
 
 float PlayerStatsManager::GetFinalJumpForce()
 {
-	mFinalJumpForce = mBaseJumpForce * mJumpForceMultiplier;
-	return mFinalJumpForce;
+	m_FinalJumpForce = m_BaseJumpForce * m_JumpForceMultiplier;
+	return m_FinalJumpForce;
 }
 
 void PlayerStatsManager::SetBaseAttackDamage(int _weapon, float _dmg)
 {
 	if (_weapon == 1)
 	{
-		mWeapon1BaseAttackDamage = _dmg;
+		m_Weapon1BaseAttackDamage = _dmg;
 	}
 	else if (_weapon == 2)
 	{
-		mWeapon2BaseAttackDamage = _dmg;
+		m_Weapon2BaseAttackDamage = _dmg;
 	}
 }
 
@@ -69,11 +69,11 @@ void PlayerStatsManager::SetAdditionalAttackDamage(int _weapon, float _dmg)
 {
 	if (_weapon == 1)
 	{
-		mWeapon1AdditionalAttackDamage = _dmg;
+		m_Weapon1AdditionalAttackDamage = _dmg;
 	}
 	else if (_weapon == 2)
 	{
-		mWeapon2AdditionalAttackDamage = _dmg;
+		m_Weapon2AdditionalAttackDamage = _dmg;
 	}
 }
 
@@ -81,11 +81,11 @@ void PlayerStatsManager::SetAttackDamageMultiplier(int _weapon, float _multiplie
 {
 	if (_weapon == 1)
 	{
-		mWeapon1AttackDamageMultiplier = _multiplier;
+		m_Weapon1AdditionalAttackDamage = _multiplier;
 	}
 	else if (_weapon == 2)
 	{
-		mWeapon2AttackDamageMultiplier = _multiplier;
+		m_Weapon2AttackDamageMultiplier = _multiplier;
 	}
 }
 
@@ -93,11 +93,11 @@ float PlayerStatsManager::GetBaseAttackDamage(int _weapon)
 {
 	if (_weapon == 1)
 	{
-		return mWeapon1BaseAttackDamage;
+		return m_Weapon1BaseAttackDamage;
 	}
 	else if (_weapon == 2)
 	{
-		return mWeapon2BaseAttackDamage;
+		return m_Weapon2BaseAttackDamage;
 	}
 }
 
@@ -105,11 +105,11 @@ float PlayerStatsManager::GetAdditionalAttackDamage(int _weapon)
 {
 	if (_weapon == 1)
 	{
-		return mWeapon1AdditionalAttackDamage;
+		return m_Weapon1AdditionalAttackDamage;
 	}
 	else if (_weapon == 2)
 	{
-		return mWeapon2AdditionalAttackDamage;
+		return m_Weapon2AdditionalAttackDamage;
 	}
 }
 
@@ -117,11 +117,11 @@ float PlayerStatsManager::GetAttackDamageMultiplier(int _weapon)
 {
 	if (_weapon == 1)
 	{
-		return mWeapon1AttackDamageMultiplier;
+		return m_Weapon1AdditionalAttackDamage;
 	}
 	else if (_weapon == 2)
 	{
-		return mWeapon2AttackDamageMultiplier;
+		return m_Weapon2AttackDamageMultiplier;
 	}
 }
 
@@ -129,13 +129,13 @@ float PlayerStatsManager::GetFinalAttackDamage(int _weapon)
 {
 	if (_weapon == 1)
 	{
-		mWeapon1FinalAttackDamage = mWeapon1BaseAttackDamage * mWeapon1AttackDamageMultiplier + mWeapon1AdditionalAttackDamage;
-		return mWeapon1FinalAttackDamage;
+		m_Weapon1FinalAttackDamage = m_Weapon1BaseAttackDamage * m_Weapon1AdditionalAttackDamage + m_Weapon1AdditionalAttackDamage;
+		return m_Weapon1FinalAttackDamage;
 	}
 	else if (_weapon == 2)
 	{
-		mWeapon2FinalAttackDamage = mWeapon2BaseAttackDamage * mWeapon2AttackDamageMultiplier + mWeapon2AdditionalAttackDamage;
-		return mWeapon2FinalAttackDamage;
+		m_Weapon2FinalAttackDamage = m_Weapon2BaseAttackDamage * m_Weapon2AttackDamageMultiplier + m_Weapon2AdditionalAttackDamage;
+		return m_Weapon2FinalAttackDamage;
 	}
 	
 }
@@ -144,11 +144,11 @@ void PlayerStatsManager::SetBaseAttackRefreshingTime(int _weapon, float _time)
 {
 	if (_weapon == 1)
 	{
-		mWeapon1BaseAttackRefreshingTime = _time;
+		m_Weapon1BaseAttackRefreshingTime = _time;
 	}
 	else if (_weapon == 2)
 	{
-		mWeapon2BaseAttackRefreshingTime = _time;
+		m_Weapon2BaseAttackRefreshingTime = _time;
 	}
 }
 
@@ -156,11 +156,11 @@ void PlayerStatsManager::SetAttackRefreshingMultiplier(int _weapon, float _multi
 {
 	if (_weapon == 1)
 	{
-		mWeapon1AttackRefreshingTimeMultiplier = _multiplier;
+		m_Weapon1AttackRefreshingTimeMultiplier = _multiplier;
 	}
 	else if (_weapon == 2)
 	{
-		mWeapon2AttackRefreshingTimeMultiplier = _multiplier;
+		m_Weapon2AttackRefreshingTimeMultiplier = _multiplier;
 	}
 }
 
@@ -168,11 +168,11 @@ float PlayerStatsManager::GetBaseAttackRefreshingTime(int _weapon)
 {
 	if (_weapon == 1)
 	{
-		return mWeapon1BaseAttackRefreshingTime;
+		return m_Weapon1BaseAttackRefreshingTime;
 	}
 	else if (_weapon == 2)
 	{
-		return mWeapon2BaseAttackRefreshingTime;
+		return m_Weapon2BaseAttackRefreshingTime;
 	}
 }
 
@@ -180,11 +180,11 @@ float PlayerStatsManager::GetAttackRefreshingMultiplier(int _weapon)
 {
 	if (_weapon == 1)
 	{
-		return mWeapon1AttackRefreshingTimeMultiplier;
+		return m_Weapon1AttackRefreshingTimeMultiplier;
 	}
 	else if (_weapon == 2)
 	{
-		return mWeapon2AttackRefreshingTimeMultiplier;
+		return m_Weapon2AttackRefreshingTimeMultiplier;
 	}
 }
 
@@ -192,12 +192,12 @@ float PlayerStatsManager::GetFinalAttackRefreshingTime(int _weapon)
 {
 	if (_weapon == 1)
 	{
-		mWeapon1FinalAttackRefreshingtime = mWeapon1BaseAttackRefreshingTime * mWeapon1AttackRefreshingTimeMultiplier;
-		return mWeapon1FinalAttackRefreshingtime;
+		m_Weapon1FinalAttackRefreshingtime = m_Weapon1BaseAttackRefreshingTime * m_Weapon1AttackRefreshingTimeMultiplier;
+		return m_Weapon1FinalAttackRefreshingtime;
 	}
 	else if (_weapon == 2)
 	{
-		mWeapon2FinalAttackRefreshingtime = mWeapon2BaseAttackRefreshingTime * mWeapon2AttackRefreshingTimeMultiplier;
-		return mWeapon2FinalAttackRefreshingtime;
+		m_Weapon2FinalAttackRefreshingtime = m_Weapon2BaseAttackRefreshingTime * m_Weapon2AttackRefreshingTimeMultiplier;
+		return m_Weapon2FinalAttackRefreshingtime;
 	}
 }

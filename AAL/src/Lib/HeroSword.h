@@ -3,27 +3,27 @@ class HeroSword
 {
 private:
 
-	int mWeaponTypeId = 0;
+	int m_WeaponTypeId = 0;
 
-	XMFLOAT3 mPosition;
-	float mPulloutTime = 0.3f;
+	XMFLOAT3 m_Position;
+	float m_PulloutTime = 0.3f;
 
-	float mSwingTime = 0.6f;
-	float mSwingDamages;
-	float mPoundTime = 1.0f;
-	float mPoundDamages;
-	float mPoundCooldown;
+	float m_SwingTime = 0.6f;
+	float m_SwingDamages;
+	float m_PoundTime = 1.0f;
+	float m_PoundDamages;
+	float m_PoundCooldown;
 
 
-	float mSwordSize = .5f;
-	float mSwordWidth = .1;
+	float m_SwordSize = .5f;
+	float m_SwordWidth = .1;
 	cpu_mesh m_meshSword;
 
 public:
 
 	cpu_entity* m_pEntity;
 
-	bool mIsEquiped = false;
+	bool m_IsEquiped = false;
 
 	void Init();
 	void Update(float dt);

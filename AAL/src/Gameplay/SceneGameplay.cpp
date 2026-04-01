@@ -19,6 +19,11 @@ SceneGameplay::SceneGameplay()
 	m_pEnemy->Assemble(SKELETAL_GRUNT, m_pEnemy);
 
 	m_entities.push_back(m_pEnemy);
+
+	mPlayer = new Player();
+	mPlayer->Init(0);
+
+	m_entities.push_back(mPlayer);
 }
 
 SceneGameplay::~SceneGameplay()

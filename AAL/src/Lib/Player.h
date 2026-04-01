@@ -2,20 +2,20 @@
 #include "pch.h"
 #include "Weapon.h"
 
-class Player
+class Player : public AALentity
 {
 private:
 
-	XMFLOAT3 mPosition;
+	XMFLOAT3 m_position;
 
-	float mPlayerSize = .5f;
+	float m_playerSize = .5f;
 
-	float mBaseSpeed = 15;
-	float mSpeed;
-	float mCrouchedSpeed = 5;
+	float m_baseSpeed = 15;
+	float m_speed;
+	float m_crouchedSpeed = 5;
 
-	float mAttackRefreshing = 0.f;
-	float mAttackRefreshDuration;
+	float m_attackRefreshing = 0.f;
+	float m_attackRefreshDuration;
 
 	void MouseInput();
 
@@ -28,37 +28,36 @@ private:
 	void Crouch();
 	void Uncrouch();
 
-	bool mIsJumping;
-	bool mIsCrouched;
+	bool m_isJumping;
+	bool m_isCrouched;
 
 	cpu_mesh m_meshPlayer;
 
 	void WeaponEquiped(float dt);
 
-	bool mIsWeaponEquiped = true;
-	float mWeaponEquipement = 0.0f;
-	float mWeaponEquipementDuration;
+	bool m_isWeaponEquiped = true;
+	float m_weaponEquipement = 0.0f;
+	float m_weaponEquipementDuration;
 
 	void Attack();
 	void RefreshAttack(float dt);
 
 	void SwapWeapon();
 
-	bool mIsInventoryOpened;
-	bool mIsUpgradePageOpened;
+	bool m_isInventoryOpened;
+	bool m_isUpgradePageOpened;
 
 	void Inventory();
 	void UpgradesPage();
 
-	int mPlayerClass;
+	int m_playerClass;
 
-	Weapon* mWeapon1 = nullptr;
-	Weapon* mWeapon2 = nullptr;
+	Weapon* m_weapon1 = nullptr;
+	Weapon* m_weapon2 = nullptr;
 
 public:
-	cpu_entity* m_pEntity;
 
-	bool mIsActive = false;
+	bool m_isActive = false;
 
 	void Init(int _class);
 	void Update(float dt);
@@ -66,7 +65,7 @@ public:
 
 	void Destroy();
 
-	Weapon* mCurrentWeapon;
+	Weapon* m_currentWeapon;
 
 	void SetWeaponDirection();
 

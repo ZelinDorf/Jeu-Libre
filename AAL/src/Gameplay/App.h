@@ -33,8 +33,5 @@ private:
 	cpu_entity* pGround = nullptr;
 	cpu_mesh m_meshGround;
 
-	Player* mPlayer = nullptr;
-
-	void SpawnPlayer();
 };
 

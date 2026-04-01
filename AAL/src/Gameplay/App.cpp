@@ -14,12 +14,8 @@ App::App()
 
 App::~App()
 {
-	mPlayer = nullptr;
-}
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+}
 
 void App::OnStart()
 {
@@ -31,13 +27,6 @@ void App::OnStart()
 	CAMERA->transform.pos.z = -2.0f;
 	CAMERA->transform.pos.y = 1.0f;
 
-	mPlayer = new Player();
-	mPlayer->Init(0);
-
-	m_meshGround.CreateCube(mGroundSize, CPU_BLACK);
-	pGround = cpuEngine.CreateEntity();
-	pGround->pMesh = &m_meshGround;
-	pGround->transform.pos = XMFLOAT3(0.f, -20.f, 0.f);
 }
 
 void App::OnUpdate()
@@ -50,42 +39,7 @@ void App::OnUpdate()
 
 	m_sceneManager.Update(dt);
 
-	float speed = 10.f;
-
-	if (cpuInput.IsUp())
-		CAMERA->transform.dir.z = speed;
-	else if (cpuInput.IsDown())
-		CAMERA->transform.dir.z = -speed;
-	else
-		CAMERA->transform.dir.z = 0.0f;
-	if (cpuInput.IsRight())
-		CAMERA->transform.dir.x = speed;
-	else if (cpuInput.IsLeft())
-		CAMERA->transform.dir.x = -speed;
-	else
-		CAMERA->transform.dir.x = 0.0f;
-
-	CAMERA->transform.Move(1.0f * cpuTime.delta);
-
 	float time = cpuTime.total;
-
-	mPlayer->Update(dt);
-
-	InputSystem::HandleInput();
-
-
-	// Camera movement
-	if (InputSystem::IsKeyDown(LEFT))
-		cpuEngine.GetCamera()->transform.AddYPR(-1.5f * dt);
-	if (InputSystem::IsKeyDown(RIGHT))
-		cpuEngine.GetCamera()->transform.AddYPR(1.5f * dt);
-	if (InputSystem::IsKeyDown(UP))
-		cpuEngine.GetCamera()->transform.Move(10.0f * dt);
-	if (InputSystem::IsKeyDown(DOWN))
-		cpuEngine.GetCamera()->transform.Move(-10.0f * dt);
-
-	if (InputSystem::IsKeyDown(SPACEBAR))
-		cpuEngine.GetCamera()->transform.SetYPR(0.f, 1.570796f, 0.f);
 
 	// Quit
 	if (InputSystem::IsKeyPressed(ESCAPE))
@@ -96,10 +50,7 @@ void App::OnUpdate()
 
 void App::OnExit()
 {
-	m_pEnemy->Destroy();
-	mPlayer->Destroy();
-	delete mPlayer;
-	pGround = cpuEngine.Release(pGround);
+
 }
 
 void App::OnRender(int pass)
@@ -110,10 +61,8 @@ void App::OnRender(int pass)
 	cpu_stats& stats = *cpuEngine.GetStats();
 	std::string info = CPU_STR(cpuTime.fps) + " fps, ";
 	info += CPU_STR(stats.drawnTriangleCount) + " triangles, ";
-	info += CPU_STR(stats.clipEntityCount) + " clipped entities\n";
-	info += CPU_STR(cpuEngine.GetParticleData()->alive) + " particles, ";
-	info += CPU_STR(stats.threadCount) + " threads, ";
-	info += CPU_STR(stats.tileCount) + " tiles";
+	//info += CPU_STR(stats.clipEntityCount) + " clipped entities\n";
+	//info += CPU_STR(cpuEngine.GetParticleData()->alive) + " particles, ";
 
 	XMFLOAT3 tint = { 1.0f, 1.0f, 0.8f };
 	cpuDevice.DrawText(&m_font, info.c_str(), (int)(cpuDevice.GetWidth() * 0.5f), 10, CPU_TEXT_CENTER, &tint);
@@ -122,10 +71,4 @@ void App::OnRender(int pass)
 void App::MyPixelShader(cpu_ps_io& io)
 {
 	io.color = io.p.color;
-}
-
-
-
-void App::SpawnPlayer()
-{
 }

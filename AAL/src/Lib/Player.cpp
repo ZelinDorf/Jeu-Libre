@@ -9,27 +9,27 @@ void Player::Init(int _class)
 	//cpuEngine.GetCamera()->transform.SetYPR(0.f, 1.570796f, 0.f);
 
 	m_pEntity = cpuEngine.CreateEntity();
-	m_meshPlayer.CreateSphere(mPlayerSize, 20, 20, CPU_WHITE, CPU_WHITE);
+	m_meshPlayer.CreateSphere(m_playerSize, 20, 20, CPU_WHITE, CPU_WHITE);
 	m_pEntity->pMesh = &m_meshPlayer;
-	m_pEntity->transform.pos = mPosition;
+	m_pEntity->transform.pos = m_position;
 	m_pEntity->transform.SetYPR(0.0f, 0.0f, 0.0f);
 	
 
-	mPosition = XMFLOAT3(0.0f, 0.0f, 0.0f);
-	mSpeed = mBaseSpeed;
-	mCrouchedSpeed *= mSpeed;
+	m_position = XMFLOAT3(0.0f, 0.0f, 0.0f);
+	m_speed = m_baseSpeed;
+	m_crouchedSpeed *= m_speed;
 
 	//mAttackRefreshDuration = mCurrentWeapon->GetBasicAttackRefreshTime();
 
-	mPlayerClass = _class;
+	m_playerClass = _class;
 
 }
 
 void Player::Update(float dt)
 {
-	m_pEntity->transform.pos = mPosition;
+	m_pEntity->transform.pos = m_position;
 
-	XMFLOAT3 m_camPos = XMFLOAT3(mPosition.x + 2.f, mPosition.y + 2.f, mPosition.z - 4.f);
+	XMFLOAT3 m_camPos = XMFLOAT3(m_position.x + 2.f, m_position.y + 2.f, m_position.z - 4.f);
 	//cpuEngine.GetCamera()->transform.SetYPR(0.f, .2f, 0.f);
 	cpuEngine.GetCamera()->transform.pos = m_camPos;
 
@@ -42,7 +42,7 @@ void Player::Update(float dt)
 
 void Player::HandleInput(float dt)
 {
-	if (mIsActive)
+	if (m_isActive)
 		return;
 
 	InputSystem::LockMouseCursor();
@@ -71,18 +71,18 @@ void Player::HandleInput(float dt)
 	if (InputSystem::IsKeyPressed(SPACEBAR))
 	{
 		Jump();
-		mIsJumping = true;
+		m_isJumping = true;
 	}
 
 	if (InputSystem::IsKeyDown(LCTRL))
 	{
 		Crouch();
-		mIsCrouched = true;
+		m_isCrouched = true;
 	}
 	else
 	{
 		Uncrouch();
-		mIsCrouched = false;
+		m_isCrouched = false;
 	}
 
 	if (InputSystem::IsMouseButtonPressed(LEFT_MOUSE))
@@ -108,20 +108,20 @@ void Player::Destroy()
 
 void Player::SetWeaponDirection()
 {
-	if (mCurrentWeapon == nullptr)
+	if (m_currentWeapon == nullptr)
 		return;
 
-	mCurrentWeapon->SetDirection(m_pEntity->transform.dir);
+	m_currentWeapon->SetDirection(m_pEntity->transform.dir);
 }
 
 void Player::SetPosition(XMFLOAT3 _position)
 {
-	mPosition = _position;
+	m_position = _position;
 }
 
 XMFLOAT3 Player::GetPosition()
 {
-	return mPosition;
+	return m_position;
 }
 
 void Player::MouseInput()
@@ -133,8 +133,8 @@ void Player::MoveForward(float dt)
 	float m_xDir = m_pEntity->transform.dir.x;
 	float m_zDir = m_pEntity->transform.dir.z;
 
-	mPosition.x += m_xDir * mSpeed * dt;
-	mPosition.z += m_zDir * mSpeed * dt;
+	m_position.x += m_xDir * m_speed * dt;
+	m_position.z += m_zDir * m_speed * dt;
 }
 
 void Player::MoveBackward(float dt)
@@ -142,8 +142,8 @@ void Player::MoveBackward(float dt)
 	float m_xDir = m_pEntity->transform.dir.x;
 	float m_zDir = m_pEntity->transform.dir.z;
 
-	mPosition.x -= m_xDir * mSpeed * dt;
-	mPosition.z -= m_zDir * mSpeed * dt;
+	m_position.x -= m_xDir * m_speed * dt;
+	m_position.z -= m_zDir * m_speed * dt;
 }
 
 void Player::StrafeLeft(float dt)
@@ -151,8 +151,8 @@ void Player::StrafeLeft(float dt)
 	float m_xDir = m_pEntity->transform.dir.x;
 	float m_zDir = m_pEntity->transform.dir.z;
 
-	mPosition.x -= m_zDir * mSpeed * dt;
-	mPosition.z += m_xDir * mSpeed * dt;
+	m_position.x -= m_zDir * m_speed * dt;
+	m_position.z += m_xDir * m_speed * dt;
 }
 
 void Player::StrafeRight(float dt)
@@ -160,8 +160,8 @@ void Player::StrafeRight(float dt)
 	float m_xDir = m_pEntity->transform.dir.x;
 	float m_zDir = m_pEntity->transform.dir.z;
 
-	mPosition.x += m_zDir * mSpeed * dt;
-	mPosition.z -= m_xDir * mSpeed * dt;
+	m_position.x += m_zDir * m_speed * dt;
+	m_position.z -= m_xDir * m_speed * dt;
 }
 
 void Player::Jump()
@@ -171,87 +171,87 @@ void Player::Jump()
 
 void Player::Crouch()
 {
-	mSpeed = mCrouchedSpeed;
+	m_speed = m_crouchedSpeed;
 }
 void Player::Uncrouch()
 {
-	mSpeed = mBaseSpeed;
+	m_speed = m_baseSpeed;
 }
 
 void Player::WeaponEquiped(float dt)
 {
-	mWeaponEquipement += dt;
-	if (mWeaponEquipement > mWeaponEquipementDuration)
+	m_weaponEquipement += dt;
+	if (m_weaponEquipement > m_weaponEquipementDuration)
 	{
-		mIsWeaponEquiped = true;
+		m_isWeaponEquiped = true;
 	}
 }
 
 void Player::Attack()
 {
-	if (mCurrentWeapon == nullptr)
+	if (m_currentWeapon == nullptr)
 		return;
 
-	if (mAttackRefreshing < mAttackRefreshDuration || mIsWeaponEquiped == false)
+	if (m_attackRefreshing < m_attackRefreshDuration || m_isWeaponEquiped == false)
 		return;
 
-	mCurrentWeapon->BasicAttack();
+	m_currentWeapon->BasicAttack();
 
-	mAttackRefreshing = 0.f;
+	m_attackRefreshing = 0.f;
 }
 
 void Player::RefreshAttack(float dt)
 {
-	mAttackRefreshing += dt;
+	m_attackRefreshing += dt;
 }
 
 void Player::SwapWeapon()
 {
-	if (mCurrentWeapon == nullptr)
+	if (m_currentWeapon == nullptr)
 		return;
 
-	if (mAttackRefreshing < mAttackRefreshDuration)
+	if (m_attackRefreshing < m_attackRefreshDuration)
 		return;
 
-	if (mCurrentWeapon == mWeapon1)
+	if (m_currentWeapon == m_weapon1)
 	{
-		mCurrentWeapon = mWeapon2;
+		m_currentWeapon = m_weapon2;
 	}
-	else if (mCurrentWeapon == mWeapon2)
+	else if (m_currentWeapon == m_weapon2)
 	{
-		mCurrentWeapon = mWeapon1;
+		m_currentWeapon = m_weapon1;
 	}
 
-	mIsWeaponEquiped = false;
-	mWeaponEquipement = 0.0f;
-	mWeaponEquipementDuration = mCurrentWeapon->GetPulloutTime();
+	m_isWeaponEquiped = false;
+	m_weaponEquipement = 0.0f;
+	m_weaponEquipementDuration = m_currentWeapon->GetPulloutTime();
 	
-	mAttackRefreshDuration = mCurrentWeapon->GetBasicAttackRefreshTime();
+	m_attackRefreshDuration = m_currentWeapon->GetBasicAttackRefreshTime();
 }
 
 void Player::Inventory()
 {
-	if (mIsInventoryOpened == false)
+	if (m_isInventoryOpened == false)
 	{
-		mIsInventoryOpened = true;
+		m_isInventoryOpened = true;
 	}
 		
 	else
 	{
-		mIsInventoryOpened = false;
+		m_isInventoryOpened = false;
 	}
 		
 }
 
 void Player::UpgradesPage()
 {
-	if (mIsUpgradePageOpened == false)
+	if (m_isUpgradePageOpened == false)
 	{
-		mIsUpgradePageOpened = true;
+		m_isUpgradePageOpened = true;
 	}
 
 	else
 	{
-		mIsUpgradePageOpened = false;
+		m_isUpgradePageOpened = false;
 	}
 }

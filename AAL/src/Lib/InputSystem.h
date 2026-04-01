@@ -65,8 +65,6 @@ class InputSystem
 {
 public:
 
-    static InputSystem& GetInstance();
-
     InputSystem() = default;
     ~InputSystem() = default;
 

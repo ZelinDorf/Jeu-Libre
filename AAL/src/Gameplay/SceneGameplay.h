@@ -1,5 +1,6 @@
 #pragma once
 #include "Scene.h"
+#include "Player.h"
 
 class SceneGameplay : public Scene
 {
@@ -12,5 +13,7 @@ public:
 private:
 	Enemy* m_pEnemy;
 	ChunkManager* m_pChunkManager;
+
+	Player* mPlayer = nullptr;
 };
 

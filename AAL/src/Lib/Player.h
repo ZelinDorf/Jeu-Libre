@@ -1,6 +1,7 @@
 #pragma once
 #include "pch.h"
 #include "Weapon.h"
+#include "PlayerStatsManager.h"
 
 class Player
 {
@@ -54,6 +55,8 @@ private:
 
 	Weapon* mWeapon1 = nullptr;
 	Weapon* mWeapon2 = nullptr;
+
+	PlayerStatsManager mStats;
 
 public:
 	cpu_entity* m_pEntity;

@@ -1,4 +1,5 @@
 #pragma once
+#include "../Lib/Player.h"
 
 #include "SceneGameplay.h"
 #include "SceneMenu.h"
@@ -20,10 +21,20 @@ public:
 
 	static void MyPixelShader(cpu_ps_io& io);
 
+	float mGroundSize = 18.75f;
+
 private:
 	cpu_font m_font;
 	inline static App* s_pApp = nullptr;
+	
 	Enemy* m_pEnemy;
 	SceneManager m_sceneManager;
+
+	cpu_entity* pGround = nullptr;
+	cpu_mesh m_meshGround;
+
+	Player* mPlayer = nullptr;
+
+	void SpawnPlayer();
 };
 

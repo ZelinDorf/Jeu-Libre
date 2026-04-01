@@ -1,6 +1,7 @@
 #pragma once
 #include "Scene.h"
 #include "Player.h"
+#include "ChunkManager.h"
 
 class SceneGameplay : public Scene
 {

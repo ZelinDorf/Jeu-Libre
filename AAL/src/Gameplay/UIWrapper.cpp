@@ -33,6 +33,13 @@ UIWrapper::UIWrapper(EntityType ui)
 	case EntityType::START:
 		UIposition(0.5f, 0.5f);
 		break;
+
+	case EntityType::BASE_CARD:
+		UIposition(0.5f, 0.5f);
+		break;
+	case EntityType::MAGE_CARD:
+		UIposition(0.5f, 0.5f);
+		break;
 	}
 }
 

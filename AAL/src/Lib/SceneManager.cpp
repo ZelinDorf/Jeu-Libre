@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "SceneManager.h"
-#include "Gameplay/SceneGameplay.h"
-#include "Gameplay/SceneMenu.h"
+
 
 
 SceneManager::SceneManager()
@@ -61,5 +60,8 @@ void SceneManager::Init()
 
 	Scene* sceneMenu = new SceneMenu();
 	m_scenes.push_back(sceneMenu);
+
+	Scene* sceneGameMenu = new SceneGameMenu();
+	m_scenes.push_back(sceneGameMenu);
 }
 

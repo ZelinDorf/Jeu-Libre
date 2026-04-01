@@ -8,7 +8,10 @@ enum EntityType
 //	-[  U I  ]-   //
 
 	TITLE,
-	START, OPTION, QUIT
+	START, OPTION, QUIT,
+
+	BASE_CARD,
+	WARRIOR_CARD, ROGUE_CARD, MAGE_CARD,
 
 ////////////////////
 };

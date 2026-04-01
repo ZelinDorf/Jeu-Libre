@@ -1,5 +1,10 @@
 #pragma once
 #include "Scene.h"
+
+#include "Gameplay/SceneGameplay.h"
+#include "Gameplay/SceneMenu.h"
+#include "Gameplay/SceneGameMenu.h"
+
 #include <vector>
 
 class SceneManager

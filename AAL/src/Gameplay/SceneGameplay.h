@@ -12,8 +12,8 @@ public:
 	void Update(float dt) override;
 
 private:
-	Enemy* m_pEnemy;
-	ChunkManager* m_pChunkManager;
+	Enemy* m_pEnemy = nullptr;
+	ChunkManager* m_pChunkManager = nullptr;
 
 	Player* mPlayer = nullptr;
 };

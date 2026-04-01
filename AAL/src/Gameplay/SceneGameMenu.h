@@ -10,5 +10,8 @@ public:
 
 private:
 	cpu_font m_font;
+	float m_charSelected = 2;
+	float m_weaponSelected = 2;
+	String m_text = "[ ??? ]";
 };
 

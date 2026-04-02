@@ -21,6 +21,7 @@ App::~App()
 void App::OnStart()
 {
 	// YOUR CODE HERE
+	RessourcesManager rm;
 
 	m_sceneManager.SetSceneActive<SceneJSON>(true);
 
@@ -30,14 +31,33 @@ void App::OnStart()
 void App::OnUpdate()
 {
 	// YOUR CODE HERE
+	float dt = cpuTime.delta;
+
+	m_sceneManager.Update(dt); 
+	
+	float speed = 10.f;
+
+	if (cpuInput.IsUp())
+		CAMERA->transform.dir.z = speed;
+	else if (cpuInput.IsDown())
+		CAMERA->transform.dir.z = -speed;
+	else
+		CAMERA->transform.dir.z = 0.0f;
+	if (cpuInput.IsRight())
+		CAMERA->transform.dir.x = speed;
+	else if (cpuInput.IsLeft())
+		CAMERA->transform.dir.x = -speed;
+	else
+		CAMERA->transform.dir.x = 0.0f;
+
+	CAMERA->transform.Move(1.0f * cpuTime.delta);
+
+	//std::cout << CAMERA->transform.pos.x << "CAMERA" << CAMERA->transform.pos.z << std::endl;
 }
 
 void App::OnExit()
 {
 	// YOUR CODE HERE
-	float dt = cpuTime.delta;
-
-	m_sceneManager.Update(dt);
 }
 
 void App::OnRender(int pass)

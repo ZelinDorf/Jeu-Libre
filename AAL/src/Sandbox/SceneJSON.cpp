@@ -3,7 +3,8 @@
 
 SceneJSON::SceneJSON()
 {
-	pEntity = JsonObj::JsonLoader("box", this);
+	JsonObj::JsonLoader(JSON_PATH"box.json", this, pEntity);
+	//AddEntity(pEntity);
 }
 
 SceneJSON::~SceneJSON()
@@ -12,9 +13,11 @@ SceneJSON::~SceneJSON()
 
 void SceneJSON::OnRender(int pass)
 {
+
 }
 
 void SceneJSON::Update(float dt)
 {
 	Scene::Update(dt);
+
 }

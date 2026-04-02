@@ -41,6 +41,10 @@ using StringView							= std::string_view;
 
 //	define + using
 ///////////////////
+#define RES_PATH							"../../res/"
+#define JSON_PATH							"../../res/JSON/"
+#define TEXTURE_PATH						"../../res/Texture/"
+#define UI_PATH								"../../res/UI/"
 
 
 //	Lib

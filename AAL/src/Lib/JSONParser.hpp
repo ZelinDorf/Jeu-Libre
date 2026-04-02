@@ -7,15 +7,30 @@ namespace JSONParser
 {
     struct JsonObj
     {
-        static cpu_entity* JsonLoader(String const& _path, Scene* _pScene)
+        static void JsonLoader(String const& _path, Scene* _pScene, cpu_entity*& _pEnt)
         {
-            Vector<cpu_mesh> vObject;
-            cpu_entity* pEntity = new cpu_entity;
+            /*
+            load json
+            for(obj.size)
+            createAllTriangles
 
-            if (_pScene == nullptr) return pEntity;
+            if("texture")
+            setTexture
+
+            {pos, scale, rot}
+
+            collider
+
+            ++add entity to scene (or not if somewhere else)
+            }
+            */
+
+            Vector<cpu_mesh> vObject;
+            _pEnt = cpuEngine.CreateEntity();
+
+            if (_pScene == nullptr) return;
 
             std::ifstream file(_path);
-
             if (!file.is_open()) 
                 std::cerr << "Couldn't open JSON file\n";
 
@@ -27,21 +42,6 @@ namespace JSONParser
                 std::cerr << "Parsing error: " << e.what() << "\n";
             }
 
-            /*
-            load json
-            for(obj.size)
-            createAllTriangles
-
-            if("texture")
-            setTexture
-
-            {pos, scale, rot}
-
-            collider 
-
-            ++add entity to scene (or not if somewhere else)
-            }
-            */
             json jObjects = j["objects"];
             for (int i = 0; i < jObjects.size(); i++)
             {
@@ -56,18 +56,20 @@ namespace JSONParser
                 if (currentObj.contains("_texture") && currentObj["_texture"].is_string())
                 {
                     String path;
-                    path.append("res/Texture/Chunk_Texture");
+                    path.append(TEXTURE_PATH"Chunk_Texture");
                     path.append(currentObj["_texture"].get<String>());
 
                     mat = RessourcesManager::GetMatWithName(path);
+                    _pEnt->pMaterial = mat;
                 }
                 else if (currentObj.contains("texture") && currentObj["texture"].is_string())
                 {
                     String path;
-                    path.append("res/Texture/");
-                    path.append(currentObj["_texture"].get<String>());
+                    path.append(TEXTURE_PATH);
+                    path.append(currentObj["texture"].get<String>());
 
                     mat = RessourcesManager::GetMatWithName(path);
+                    _pEnt->pMaterial = mat;
                 }
 
                 //  POS / SCALE / ROT
@@ -78,20 +80,20 @@ namespace JSONParser
                     position.x = currentObj["position"][0].get<float>();
                     position.y = currentObj["position"][2].get<float>();
                     position.z = currentObj["position"][1].get<float>();
-                    pEntity->transform.SetPosition(position);
+                    _pEnt->transform.SetPosition(position);
 
                     XMFLOAT3 scale;
                     scale.x = currentObj["scale"][0].get<float>();
                     scale.y = currentObj["scale"][2].get<float>();
                     scale.z = currentObj["scale"][1].get<float>();
-                    pEntity->transform.Scale(scale);
+                    _pEnt->transform.SetScaling(scale);
 
                     float rotX = currentObj["rotation"][0].get<float>();
                     float rotY = currentObj["rotation"][1].get<float>();
                     float rotZ = currentObj["rotation"][2].get<float>();
                     float rotW = currentObj["rotation"][3].get<float>();
                     XMFLOAT4 rotation(rotX, rotY, rotZ, -rotW);
-                    pEntity->transform.SetRotation(rotation);
+                    _pEnt->transform.SetRotation(rotation);
                 }
 
                 //collider TODO
@@ -100,14 +102,22 @@ namespace JSONParser
 
             }
 
-            cpu_mesh entMesh;
+            cpu_mesh* entMesh = new cpu_mesh;
 
             for (cpu_mesh& m : vObject)
             {
-                entMesh.AddMesh(m);
+                entMesh->AddMesh(m);
             }
 
-            return pEntity;
+            _pEnt->pMesh = entMesh;
+
+            if (_pEnt->pMaterial == nullptr)
+            {
+                _pEnt->pMaterial = new cpu_material;
+                _pEnt->pMaterial->color = CPU_RED;
+            }
+
+            return;
         }
 
     private:

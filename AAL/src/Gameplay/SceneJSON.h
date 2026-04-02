@@ -10,5 +10,5 @@ public:
 	void Update(float dt) override;
 
 private:
-	AALentity* pEntity;
+	cpu_entity* pEntity;
 };

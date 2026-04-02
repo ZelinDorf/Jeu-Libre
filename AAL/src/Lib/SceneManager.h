@@ -1,5 +1,9 @@
 #pragma once
 #include "Scene.h"
+
+#include "Gameplay/SceneGameplay.h"
+#include "Gameplay/SceneJSON.h"
+
 #include <vector>
 
 class SceneManager

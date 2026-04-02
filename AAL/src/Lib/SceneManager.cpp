@@ -1,7 +1,8 @@
 #include "pch.h"
 #include "SceneManager.h"
-#include "Gameplay/SceneGameplay.h"
-#include "Gameplay/SceneJSON.h"
+
+
+
 
 SceneManager::SceneManager()
 {

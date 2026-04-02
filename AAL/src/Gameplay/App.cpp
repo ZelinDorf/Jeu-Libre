@@ -35,7 +35,12 @@ void App::OnUpdate()
 
 	if (InputSystem::IsKeyPressed(InputKeyboard::NUMPAD1))
 	{
-		//m_sceneManager.SetSceneActive<SceneGameplay>(true);
+		m_sceneManager.SetSceneActive<SceneGameplay>(true);
+	};
+
+	if (InputSystem::IsKeyPressed(InputKeyboard::NUMPAD2))
+	{
+		m_sceneManager.SetSceneActive<SceneJSON>(true);
 	};
 
 	m_sceneManager.Update(dt);

@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "SceneManager.h"
-#include "Sandbox/SceneJSON.h"
+#include "Gameplay/SceneGameplay.h"
+#include "Gameplay/SceneJSON.h"
 
 SceneManager::SceneManager()
 {
@@ -54,7 +55,10 @@ void SceneManager::Destroy()
 
 void SceneManager::Init()
 { 
-	Scene* scene = new SceneJSON();
-	m_scenes.push_back(scene);
+	Scene* sceneGameplay = new SceneGameplay();
+	m_scenes.push_back(sceneGameplay);
+
+	Scene* sceneJSON = new SceneJSON();
+	m_scenes.push_back(sceneJSON);
 }
 

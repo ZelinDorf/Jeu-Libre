@@ -37,7 +37,7 @@ void App::OnUpdate()
 	
 	float speed = 10.f;
 
-	if (cpuInput.IsUp())
+	/*if (cpuInput.IsUp())
 		CAMERA->transform.dir.z = speed;
 	else if (cpuInput.IsDown())
 		CAMERA->transform.dir.z = -speed;
@@ -48,7 +48,7 @@ void App::OnUpdate()
 	else if (cpuInput.IsLeft())
 		CAMERA->transform.dir.x = -speed;
 	else
-		CAMERA->transform.dir.x = 0.0f;
+		CAMERA->transform.dir.x = 0.0f;*/
 
 	CAMERA->transform.Move(1.0f * cpuTime.delta);
 

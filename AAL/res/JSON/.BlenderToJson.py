@@ -83,7 +83,7 @@ def export_scene(filepath):
         rot = obj.rotation_euler.to_quaternion()
         item["rotation"] = [float(rot.x), float(rot.y), float(rot.z), float(rot.w)]
         item["scale"] = [float(x) for x in obj.matrix_world.to_scale()]
-        item["parent"] = obj.parent.name if obj.parent else None
+#        item["parent"] = obj.parent.name if obj.parent else None
         item["texture"] = get_material_texture_name(obj)
         item["has_collider"] = obj["has_collider"]
         item["stock"] = obj["stock"]
@@ -96,5 +96,5 @@ def export_scene(filepath):
     print("Exported:", filepath)
 
 # Change the path to wherever you want to place the JSON
-output_path = os.path.join("C:/Users/rboone/Documents/GitHub/Arena_Shooter/res/JSON", "json.json")
+output_path = os.path.join("C:/Users/ilanp/Documents/GitHub/Jeu-Libre/AAL/res/JSON", "json.json")
 export_scene(output_path)

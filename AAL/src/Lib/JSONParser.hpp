@@ -49,6 +49,8 @@ namespace JSONParser
 
                 cpu_mesh tempMesh = CreateMesh(currentObj);
                 
+
+
                 cpu_material* mat;
                 
                 vObject.push_back(tempMesh);
@@ -109,6 +111,8 @@ namespace JSONParser
                 entMesh->AddMesh(m);
             }
 
+            entMesh->Optimize();
+
             _pEnt->pMesh = entMesh;
 
             if (_pEnt->pMaterial == nullptr)
@@ -116,6 +120,11 @@ namespace JSONParser
                 _pEnt->pMaterial = new cpu_material;
                 _pEnt->pMaterial->color = CPU_RED;
             }
+
+            float yaw = XMConvertToRadians(180.f);
+            //float pitch = XMConvertToRadians(-90.f);
+
+            _pEnt->transform.SetYPR(yaw);
 
             return;
         }
@@ -129,14 +138,8 @@ namespace JSONParser
 
             for (cpu_vertex& v : ver)
             {
-                cpu_vertex ve;
-                ve.pos = { v.pos.x, v.pos.y, v.pos.z };
-                ve.normal = { v.normal.x, v.normal.y, v.normal.z };
-                ve.uv = { v.uv.x, 1.f - v.uv.y };
-                m.vertices.push_back(ve);
+                m.vertices.push_back(v);
             }
-
-            //reconstruire le mesh + return
 
             return m;
         }
@@ -161,8 +164,8 @@ namespace JSONParser
                 // POSITION
                 XMFLOAT3 posV;
                 posV.x = vVertices[vIndex * 3 + 0].get<float>();
-                posV.y = vVertices[vIndex * 3 + 2].get<float>();
-                posV.z = vVertices[vIndex * 3 + 1].get<float>();
+                posV.y = vVertices[vIndex * 3 + 1].get<float>();
+                posV.z = vVertices[vIndex * 3 + 2].get<float>();
 
                 // UV
                 XMFLOAT2 uvV;

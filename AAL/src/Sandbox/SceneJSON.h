@@ -11,4 +11,5 @@ public:
 
 private:
 	cpu_entity* pEntity;
+	cpu_mesh m;
 };

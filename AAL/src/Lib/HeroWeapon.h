@@ -19,9 +19,9 @@ private:
 	float m_SpecialAttackRefreshTime;
 	float m_SpecialAttackCooldown;
 
-	HeroSword* Sword;
-	HeroBow* Bow;
-	HeroStaff* Staff;
+	HeroSword* m_Sword;
+	HeroBow* m_Bow;
+	HeroStaff* m_Staff;
 
 	int m_WeaponType;
 

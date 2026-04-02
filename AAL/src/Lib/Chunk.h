@@ -13,6 +13,7 @@ enum Biomes
 class Chunk : public AALentity
 {
 public:
+	~Chunk();
 
 	virtual void Init();
 	virtual void Init(Biomes _biome);

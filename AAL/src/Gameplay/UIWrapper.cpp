@@ -84,13 +84,13 @@ void UIWrapper::UIposition(float h, float w)
 
 void UIWrapper::UIpositionPixels(float h, float w)
 {
-	m_pSprite->x = w;
-	m_pSprite->y = h;
+	m_pSprite->x = (int)w;
+	m_pSprite->y = (int)h;
 }
 
 void UIWrapper::SetHeight(UIWrapper* ui, float h) {
 	if (m_mapTextureUsage.size() > 0) {
-		ui->m_pSprite->pTexture->height = h;
+		ui->m_pSprite->pTexture->height = (int)h;
 	}
 }
 

@@ -15,15 +15,20 @@ private:
 	float mPuddleCooldown;
 
 	float mSize = .5f;
-	float mWidth = .1;
+	float mWidth = .1f;
 	cpu_mesh m_meshStaff;
 	cpu_mesh m_meshProjectile;
 
 public:
 
-	cpu_entity* m_pEntity;
+	cpu_entity* m_pEntity = nullptr;
 
 	bool mIsEquiped = false;
+
+	~GenericStaff()
+	{
+		CPU_DELPTR(m_pEntity);
+	}
 
 	void Init();
 	void Update(float dt);

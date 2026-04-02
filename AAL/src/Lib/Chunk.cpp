@@ -1,6 +1,11 @@
 #include "pch.h"
 #include "Chunk.h"
 
+Chunk::~Chunk()
+{
+	CPU_DELPTR(m_pEntity);
+}
+
 void Chunk::Init()
 {
 	m_mesh.CreatePlane();
@@ -17,8 +22,7 @@ void Chunk::Init()
 	m_pEntity->transform.up = CPU_VEC3_UP;
 	m_pEntity->transform.right = CPU_VEC3_RIGHT;
 
-	float pitch = XMConvertToRadians(90.f);
-	m_pEntity->transform.SetPitch(pitch);
+	m_pEntity->transform.SetPitch(XMConvertToRadians(90.f));
 
 	m_pEntity->transform.Scale(m_scale);
 }
@@ -52,7 +56,7 @@ void Chunk::Init(Biomes _biome)
 
 void Chunk::Delete()
 {
-	//CPU_RELEASE(m_pEntity);
+	
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////

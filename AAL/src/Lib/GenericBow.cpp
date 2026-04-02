@@ -2,6 +2,11 @@
 #include "GenericBow.h"
 #include "HeroBow.h"
 
+GenericBow::~GenericBow()
+{
+	CPU_DELPTR(m_pEntity);
+}
+
 void GenericBow::Init()
 {
 	m_pEntity = cpuEngine.CreateEntity();

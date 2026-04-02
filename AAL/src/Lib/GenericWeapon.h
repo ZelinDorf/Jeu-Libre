@@ -19,11 +19,11 @@ private:
 	float mSpecialAttackRefreshTime;
 	float mSpecialAttackCooldown;
 
-	GenericSword* Sword;
-	GenericBow* Bow;
-	GenericStaff* Staff;
+	GenericSword* Sword = nullptr;;
+	GenericBow* Bow = nullptr;;
+	GenericStaff* Staff = nullptr;;
 
-	int mWeaponType;
+	int mWeaponType=0;
 
 public:
 

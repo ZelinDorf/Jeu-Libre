@@ -5,26 +5,30 @@ private:
 
 	int mWeaponTypeId = 1;
 
-	XMFLOAT3 mPosition;
+	XMFLOAT3 mPosition = {0.0f,0.0f,0.0f};
 	float mPulloutTime = 0.5f;
 
 	float mShootingTime = 0.8f;
 	float mProjectileDamages;
 	float mPiercingTime = 2.0;
-	float mPiercingDamages;
-	float mPiercingCooldown;
+	float mPiercingDamages = 0.0f;
+	float mPiercingCooldown = 0.0f;
 
 	float mSize = .4f;
-	float mWidth = .2;
+	float mWidth = .2f;
 	cpu_mesh m_meshBow;
 	cpu_mesh m_meshProjectile;
 
 public:
 
-	cpu_entity* m_pEntity;
+	cpu_entity* m_pEntity = nullptr;;
 
 	bool mIsEquiped = false;
 
+	~HeroBow()
+	{
+		CPU_DELPTR(m_pEntity);
+	}
 	void Init();
 	void Update(float dt);
 

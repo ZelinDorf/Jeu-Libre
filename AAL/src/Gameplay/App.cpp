@@ -34,7 +34,7 @@ void App::OnUpdate()
 	float dt = cpuTime.delta;
 	InputSystem::HandleInput();
 
-	//if (InputSystem::IsKeyPressed(InputKeyboard::SPACE)) m_sceneManager.SetSceneActive<SceneGameplay>(true);
+	if (InputSystem::IsKeyPressed(InputKeyboard::SPACE)) m_sceneManager.SetSceneActive<SceneGameplay>(true);
 	if (InputSystem::IsKeyPressed(InputKeyboard::NUMPAD0)) m_sceneManager.SetSceneActive<SceneGameMenu>(true);
 	if (InputSystem::IsKeyPressed(InputKeyboard::ESC)) m_sceneManager.SetSceneActive<SceneMenu>(true);
 

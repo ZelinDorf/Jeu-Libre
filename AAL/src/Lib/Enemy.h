@@ -20,7 +20,7 @@ public:
 	//enemy id
 	int m_id = -1;
 
-	Enemy* m_pEnemy;
+	Enemy* m_pEnemy = nullptr;
 protected:
 	cpu_mesh m_meshEnemy;
 	cpu_material m_materialEnemy;

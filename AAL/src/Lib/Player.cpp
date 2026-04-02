@@ -3,6 +3,11 @@
 #include "InputSystem.h"
 
 
+Player::~Player()
+{
+	Destroy();
+}
+
 void Player::Init(int _class)
 {
 	
@@ -46,8 +51,6 @@ void Player::HandleInput(float dt)
 		return;
 
 	InputSystem::LockMouseCursor();
-
-	
 
 	if (InputSystem::IsKeyPressed(Z))
 		MoveForward(dt);

@@ -3,6 +3,20 @@
 
 ChunkManager* ChunkManager::m_pInstance = nullptr;
 
+ChunkManager::~ChunkManager()
+{
+	for (Chunk* chunk : m_vChunks)
+	{
+		delete chunk;
+		chunk = nullptr;
+	}
+	m_vChunks.clear();
+
+	delete m_pInstance;
+	m_pInstance = nullptr;
+
+}
+
 ChunkManager* ChunkManager::GetInstance()
 {
 	if (m_pInstance == nullptr)

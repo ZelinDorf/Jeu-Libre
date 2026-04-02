@@ -1,6 +1,8 @@
 #pragma once
 enum EntityType
 {
+	NO_ENTITY,
+
 	PLAYER,
 	ENEMY,
 	PROJECTILE,
@@ -27,6 +29,9 @@ public:
 	cpu_entity* m_pEntity;
 
 public:
+	AALentity() : m_entityType(NO_ENTITY), m_uiType(NO_ENTITY), m_pEntity(nullptr){}
+	
+
 	virtual void Update(float dt) = 0;
 
 	void SetVisible(bool active);

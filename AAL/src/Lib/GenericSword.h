@@ -16,14 +16,19 @@ private:
 
 
 	float mSwordSize = .5f;
-	float mSwordWidth = .1;
+	float mSwordWidth = .1f;
 	cpu_mesh m_meshSword;
 
 public:
 
-	cpu_entity* m_pEntity;
+	cpu_entity* m_pEntity = nullptr;
 
 	bool mIsEquiped = false;
+
+	~GenericSword()
+	{
+		CPU_DELPTR(m_pEntity);
+	}
 
 	void Init();
 	void Update(float dt);

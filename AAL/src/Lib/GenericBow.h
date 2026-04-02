@@ -15,16 +15,16 @@ private:
 	float mPiercingCooldown;
 
 	float mSize = .4f;
-	float mWidth = .2;
+	float mWidth = .2f;
 	cpu_mesh m_meshBow;
 	cpu_mesh m_meshProjectile;
 
 public:
 
-	cpu_entity* m_pEntity;
+	cpu_entity* m_pEntity = nullptr;
 
 	bool mIsEquiped = false;
-
+	~GenericBow();
 	void Init();
 	void Update(float dt);
 

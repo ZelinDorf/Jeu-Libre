@@ -5,26 +5,30 @@ private:
 
 	int mWeaponTypeId = 0;
 
-	XMFLOAT3 mPosition;
+	XMFLOAT3 mPosition = {0.0f,0.0f,0.0f};
 	float mPulloutTime = 0.3f;
 
 	float mSwingTime = 0.6f;
-	float mSwingDamages;
+	float mSwingDamages = 0.0f;
 	float mPoundTime = 1.0f;
-	float mPoundDamages;
-	float mPoundCooldown;
+	float mPoundDamages = 0.0f;
+	float mPoundCooldown = 0.0f;
 
 
 	float mSwordSize = .5f;
-	float mSwordWidth = .1;
+	float mSwordWidth = .1f;
 	cpu_mesh m_meshSword;
 
 public:
 
-	cpu_entity* m_pEntity;
+	cpu_entity* m_pEntity = nullptr;
 
 	bool mIsEquiped = false;
 
+	~HeroSword()
+	{
+		CPU_DELPTR(m_pEntity);
+	}
 	void Init();
 	void Update(float dt);
 

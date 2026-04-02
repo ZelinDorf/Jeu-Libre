@@ -14,7 +14,8 @@ App::App()
 
 App::~App()
 {
-
+	chunkManager->~ChunkManager();
+	//m_sceneManager.~SceneManager();
 }
 
 void App::OnStart()

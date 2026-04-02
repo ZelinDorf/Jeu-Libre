@@ -7,14 +7,9 @@ ChunkManager::~ChunkManager()
 {
 	for (Chunk* chunk : m_vChunks)
 	{
-		delete chunk;
-		chunk = nullptr;
+		CPU_DELPTR(chunk);
 	}
 	m_vChunks.clear();
-
-	delete m_pInstance;
-	m_pInstance = nullptr;
-
 }
 
 ChunkManager* ChunkManager::GetInstance()

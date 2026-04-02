@@ -41,4 +41,6 @@ void SceneGameplay::OnRender(int pass)
 void SceneGameplay::Update(float dt)
 {
 	Scene::Update(dt);
+
+
 }

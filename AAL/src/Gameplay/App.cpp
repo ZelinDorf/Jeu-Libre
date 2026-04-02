@@ -12,7 +12,7 @@ App::App()
 
 App::~App()
 {
-	m_Player = nullptr;
+	m_player = nullptr;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -21,8 +21,8 @@ App::~App()
 
 void App::OnStart()
 {
-	m_Player = new Player();
-	m_Player->Init(0);
+	m_player = new Player();
+	m_player->Init(0);
 
 	m_meshGround.CreateCube(m_GroundSize, CPU_BLACK);
 	p_Ground = cpuEngine.CreateEntity();
@@ -35,7 +35,7 @@ void App::OnUpdate()
 	float dt = cpuTime.delta;
 	float time = cpuTime.total;
 
-	m_Player->Update(dt);
+	m_player->Update(dt);
 
 	InputSystem::HandleInput();
 
@@ -62,8 +62,8 @@ void App::OnUpdate()
 
 void App::OnExit()
 {
-	m_Player->Destroy();
-	delete m_Player;
+	m_player->Destroy();
+	delete m_player;
 	p_Ground = cpuEngine.Release(p_Ground);
 }
 

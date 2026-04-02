@@ -7,12 +7,12 @@ class Player
 {
 private:
 
-	XMFLOAT3 m_Position;
+	XMFLOAT3 m_position;
 
-	float m_PlayerSize = .5f;
+	float m_playerSize = .5f;
 
-	float m_BaseSpeed = 15;
-	float m_Speed;
+	float m_baseSpeed = 15;
+	float m_speed;
 	float m_CrouchedSpeed = 5;
 
 	float m_AttackRefreshing = 0.f;
@@ -37,8 +37,8 @@ private:
 	void WeaponEquiped(float dt);
 
 	bool m_IsWeaponEquiped = true;
-	float m_WeaponEquipement = 0.0f;
-	float m_WeaponEquipementDuration;
+	float m_weaponEquipement = 0.0f;
+	float m_weaponEquipementDuration;
 
 	void Attack();
 	void RefreshAttack(float dt);
@@ -51,12 +51,12 @@ private:
 	void Inventory();
 	void UpgradesPage();
 
-	int m_PlayerClass;
+	int m_playerClass;
 
-	Weapon* m_Weapon1 = nullptr;
-	Weapon* m_Weapon2 = nullptr;
+	Weapon* m_weapon1 = nullptr;
+	Weapon* m_weapon2 = nullptr;
 
-	PlayerStatsManager m_Stats;
+	PlayerStatsManager m_stats;
 
 public:
 	cpu_entity* m_pEntity;

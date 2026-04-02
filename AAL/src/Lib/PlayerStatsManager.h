@@ -2,31 +2,31 @@
 class PlayerStatsManager
 {
 private:
-	float m_BaseSpeed;
-	float m_SpeedMultiplier;
-	float m_FinalSpeed;
+	float m_baseSpeed;
+	float m_speedMultiplier;
+	float m_finalSpeed;
 
-	float m_BaseJumpForce;
-	float m_JumpForceMultiplier;
-	float m_FinalJumpForce;
+	float m_baseJumpForce;
+	float m_jumpForceMultiplier;
+	float m_finalJumpForce;
 
-	float m_Weapon1BaseAttackDamage;
-	float m_Weapon1AdditionalAttackDamage;
-	float m_Weapon1AttackDamageMultiplier;
-	float m_Weapon1FinalAttackDamage;
+	float m_weapon1BaseAttackDamage;
+	float m_weapon1AdditionalAttackDamage;
+	float m_weapon1AttackDamageMultiplier;
+	float m_weapon1FinalAttackDamage;
 
-	float m_Weapon1BaseAttackRefreshingTime;
-	float m_Weapon1AttackRefreshingTimeMultiplier;
-	float m_Weapon1FinalAttackRefreshingtime;
+	float m_weapon1BaseAttackRefreshingTime;
+	float m_weapon1AttackRefreshingTimeMultiplier;
+	float m_weapon1FinalAttackRefreshingtime;
 
-	float m_Weapon2BaseAttackDamage;
-	float m_Weapon2AdditionalAttackDamage;
-	float m_Weapon2AttackDamageMultiplier;
-	float m_Weapon2FinalAttackDamage;
+	float m_weapon2BaseAttackDamage;
+	float m_weapon2AdditionalAttackDamage;
+	float m_weapon2AttackDamageMultiplier;
+	float m_weapon2FinalAttackDamage;
 
-	float m_Weapon2BaseAttackRefreshingTime;
-	float m_Weapon2AttackRefreshingTimeMultiplier;
-	float m_Weapon2FinalAttackRefreshingtime;
+	float m_weapon2BaseAttackRefreshingTime;
+	float m_weapon2AttackRefreshingTimeMultiplier;
+	float m_weapon2FinalAttackRefreshingtime;
 
 public:
 

@@ -8,21 +8,21 @@ void Weapon::Init(int _type, int _playerClass)
         m_HeroWeapon->Init(_type);
         m_IsHeroWeapon = true;
 
-        m_PulloutTime = m_HeroWeapon->GetPulloutTime();
-        m_BasicAttackRefreshTime = m_HeroWeapon->GetBasicAttackRefreshTime();
-        m_SpecialAttackRefreshTime = m_HeroWeapon->GetSpecialAttackRefreshTime();
+        m_pulloutTime = m_HeroWeapon->GetPulloutTime();
+        m_basicAttackRefreshTime = m_HeroWeapon->GetBasicAttackRefreshTime();
+        m_specialAttackRefreshTime = m_HeroWeapon->GetSpecialAttackRefreshTime();
     }
     else
     {
         m_GenericWeapon->Init(_type);
         m_IsHeroWeapon = false;
 
-        m_PulloutTime = m_GenericWeapon->GetPulloutTime();
-        m_BasicAttackRefreshTime = m_GenericWeapon->GetBasicAttackRefreshTime();
-        m_SpecialAttackRefreshTime = m_GenericWeapon->GetSpecialAttackRefreshTime();
+        m_pulloutTime = m_GenericWeapon->GetPulloutTime();
+        m_basicAttackRefreshTime = m_GenericWeapon->GetBasicAttackRefreshTime();
+        m_specialAttackRefreshTime = m_GenericWeapon->GetSpecialAttackRefreshTime();
     }
 
-    m_WeaponType = _type;
+    m_weaponType = _type;
 }
 
 void Weapon::Update(float dt)
@@ -75,35 +75,35 @@ void Weapon::SpecialAttack()
 
 float Weapon::GetPulloutTime()
 {
-    return m_PulloutTime;
+    return m_pulloutTime;
 }
 
 float Weapon::GetBasicAttackDamages()
 {
-    return m_BasicAttackDamages;
+    return m_basicAttackDamages;
 }
 
 float Weapon::GetSpecialAttackDamages()
 {
-    return m_SpecialAttackDamages;
+    return m_specialAttackDamages;
 }
 
 float Weapon::GetBasicAttackRefreshTime()
 {
-    return m_BasicAttackRefreshTime;
+    return m_basicAttackRefreshTime;
 }
 
 float Weapon::GetSpecialAttackRefreshTime()
 {
-    return m_SpecialAttackRefreshTime;
+    return m_specialAttackRefreshTime;
 }
 
 float Weapon::GetSpecialAttackCooldown()
 {
-    return m_SpecialAttackCooldown;
+    return m_specialAttackCooldown;
 }
 
 int Weapon::GetWeaponType()
 {
-    return m_WeaponType;
+    return m_weaponType;
 }

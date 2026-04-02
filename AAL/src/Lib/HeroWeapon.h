@@ -8,22 +8,22 @@ class HeroWeapon
 {
 private:
 
-	XMFLOAT3 m_Position;
+	XMFLOAT3 m_position;
 
-	float m_PulloutTime;
+	float m_pulloutTime;
 
-	float m_BasicAttackDamages;
-	float m_SpecialAttackDamages;
+	float m_basicAttackDamages;
+	float m_specialAttackDamages;
 
-	float m_BasicAttackRefreshTime;
-	float m_SpecialAttackRefreshTime;
-	float m_SpecialAttackCooldown;
+	float m_basicAttackRefreshTime;
+	float m_specialAttackRefreshTime;
+	float m_specialAttackCooldown;
 
-	HeroSword* m_Sword;
-	HeroBow* m_Bow;
-	HeroStaff* m_Staff;
+	HeroSword* m_sword;
+	HeroBow* m_bow;
+	HeroStaff* m_staff;
 
-	int m_WeaponType;
+	int m_weaponType;
 
 public:
 

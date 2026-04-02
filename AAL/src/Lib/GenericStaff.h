@@ -3,18 +3,18 @@ class GenericStaff
 {
 private:
 
-	int m_WeaponTypeId = 2;
+	int m_weaponTypeId = 2;
 
-	XMFLOAT3 m_Position;
-	float m_PulloutTime = 0.4f;
+	XMFLOAT3 m_position;
+	float m_pulloutTime = 0.4f;
 
-	float m_ShootingTime = 1.0f;
-	float m_ProjectileDamages;
-	float m_PuddleTime = 5.0f;
-	float m_PuddleDamages;
-	float m_PuddleCooldown;
+	float m_shootingTime = 1.0f;
+	float m_projectileDamages;
+	float m_puddleTime = 5.0f;
+	float m_puddleDamages;
+	float m_puddleCooldown;
 
-	float m_Size = .5f;
+	float m_size = .5f;
 	float m_Width = .1;
 	cpu_mesh m_meshStaff;
 	cpu_mesh m_meshProjectile;

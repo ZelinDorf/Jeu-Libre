@@ -3,7 +3,7 @@
 #include "InputSystem.h"
 
 
-void Player::Init(int _class)
+void Player::Init(int _class, int _weapon1Class, int _weapon2Class)
 {
 	
 	//cpuEngine.GetCamera()->transform.SetYPR(0.f, 1.570796f, 0.f);
@@ -23,6 +23,15 @@ void Player::Init(int _class)
 
 	m_playerClass = _class;
 
+	m_weapon1 = new Weapon();
+	m_weapon1->Init(_weapon1Class, m_playerClass);
+	m_weapon1->Equip();
+
+	m_weapon2 = new Weapon();
+	m_weapon2->Init(_weapon2Class, m_playerClass);
+
+	m_currentWeapon = 1;
+
 }
 
 void Player::Update(float dt)
@@ -38,6 +47,7 @@ void Player::Update(float dt)
 
 	HandleInput(dt);
 	RefreshAttack(dt);
+	WeaponEquiped(dt);
 }
 
 void Player::HandleInput(float dt)
@@ -106,12 +116,27 @@ void Player::Destroy()
 	m_pEntity = cpuEngine.Release(m_pEntity);
 }
 
+Weapon* Player::GetWeapon(int _weapon)
+{
+	if (_weapon == 1)
+	{
+		return m_weapon1;
+	}
+	else if (_weapon == 2)
+	{
+		return m_weapon2;
+	}
+}
+
 void Player::SetWeaponDirection()
 {
-	if (m_currentWeapon == nullptr)
+	if (m_currentWeapon == 0)
 		return;
 
-	m_currentWeapon->SetDirection(m_pEntity->transform.dir);
+	if (m_currentWeapon == 1)
+		m_weapon1->SetDirection(m_pEntity->transform.dir);
+	if (m_currentWeapon == 2)
+		m_weapon2->SetDirection(m_pEntity->transform.dir);
 }
 
 void Player::SetPosition(XMFLOAT3 _position)
@@ -189,14 +214,17 @@ void Player::WeaponEquiped(float dt)
 
 void Player::Attack()
 {
-	if (m_currentWeapon == nullptr)
+	if (m_currentWeapon == 0)
 		return;
 
 	if (m_attackRefreshing < m_attackRefreshDuration || m_isWeaponEquiped == false)
 		return;
 
-	m_currentWeapon->BasicAttack();
-
+	if (m_currentWeapon == 1)
+		m_weapon1->BasicAttack();
+	else if (m_currentWeapon == 2)
+		m_weapon2->BasicAttack();
+	
 	m_attackRefreshing = 0.f;
 }
 
@@ -207,26 +235,27 @@ void Player::RefreshAttack(float dt)
 
 void Player::SwapWeapon()
 {
-	if (m_currentWeapon == nullptr)
+	if (m_currentWeapon == 0)
 		return;
 
 	if (m_attackRefreshing < m_attackRefreshDuration)
 		return;
 
-	if (m_currentWeapon == m_weapon1)
+	if (m_currentWeapon == 1)
 	{
-		m_currentWeapon = m_weapon2;
+		m_currentWeapon = 2;
+		m_weaponEquipementDuration = m_weapon2->GetPulloutTime();
+		m_attackRefreshDuration = m_weapon2->GetBasicAttackRefreshTime();
 	}
-	else if (m_currentWeapon == m_weapon2)
+	else if (m_currentWeapon == 2)
 	{
-		m_currentWeapon = m_weapon1;
+		m_currentWeapon = 1;
+		m_weaponEquipementDuration = m_weapon1->GetPulloutTime();
+		m_attackRefreshDuration = m_weapon1->GetBasicAttackRefreshTime();
 	}
 
 	m_isWeaponEquiped = false;
 	m_weaponEquipement = 0.0f;
-	m_weaponEquipementDuration = m_currentWeapon->GetPulloutTime();
-	
-	m_attackRefreshDuration = m_currentWeapon->GetBasicAttackRefreshTime();
 }
 
 void Player::Inventory()

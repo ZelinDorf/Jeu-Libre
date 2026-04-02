@@ -8,6 +8,8 @@ class Weapon
 private:
 	XMFLOAT3 m_position;
 
+	bool m_isEquiped;
+
 	float m_pulloutTime;
 
 	float m_basicAttackDamages;
@@ -18,16 +20,19 @@ private:
 	float m_specialAttackCooldown;
 
 	int m_weaponType;
-	bool m_IsHeroWeapon;
+	bool m_isHeroWeapon;
 
-	HeroWeapon* m_HeroWeapon = nullptr;
+	HeroWeapon* m_heroWeapon = nullptr;
 
-	GenericWeapon* m_GenericWeapon = nullptr;
+	GenericWeapon* m_genericWeapon = nullptr;
 
 
 public:
 	void Init(int _type, int _playerClass);
 	void Update(float dt);
+
+	void Equip();
+	void Unequip();
 
 	void SetDirection(XMFLOAT3 _dir);
 

@@ -22,10 +22,11 @@ SceneGameplay::SceneGameplay()
 
 	m_entities.push_back(m_pEnemy);
 
-	mPlayer = new Player();
-	mPlayer->Init(0);
+	m_player = new Player();
+	m_player->Init(0, 0, 1);
 
-	m_entities.push_back(mPlayer);
+	m_entities.push_back(m_player);
+
 }
 
 SceneGameplay::~SceneGameplay()

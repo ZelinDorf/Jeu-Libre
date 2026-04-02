@@ -14,9 +14,7 @@ App::App()
 
 App::~App()
 {
-	m_player = nullptr;
-}
-
+	//m_player = nullptr;
 }
 
 void App::OnStart()

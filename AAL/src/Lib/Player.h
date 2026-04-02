@@ -62,13 +62,15 @@ public:
 
 	bool m_isActive = false;
 
-	void Init(int _class);
+	void Init(int _class, int _weapon1Class, int _weapon2Class);
 	void Update(float dt);
 	void HandleInput(float dt);
 
 	void Destroy();
 
-	Weapon* m_currentWeapon;
+	int m_currentWeapon = 0;
+
+	Weapon* GetWeapon(int _weapon);
 
 	void SetWeaponDirection();
 

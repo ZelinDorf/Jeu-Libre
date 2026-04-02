@@ -5,21 +5,23 @@ void Weapon::Init(int _type, int _playerClass)
 {
     if (_type == _playerClass)
     {
-        m_HeroWeapon->Init(_type);
-        m_IsHeroWeapon = true;
+        m_heroWeapon = new HeroWeapon();
+        m_heroWeapon->Init(_type);
+        m_isHeroWeapon = true;
 
-        m_pulloutTime = m_HeroWeapon->GetPulloutTime();
-        m_basicAttackRefreshTime = m_HeroWeapon->GetBasicAttackRefreshTime();
-        m_specialAttackRefreshTime = m_HeroWeapon->GetSpecialAttackRefreshTime();
+        m_pulloutTime = m_heroWeapon->GetPulloutTime();
+        m_basicAttackRefreshTime = m_heroWeapon->GetBasicAttackRefreshTime();
+        m_specialAttackRefreshTime = m_heroWeapon->GetSpecialAttackRefreshTime();
     }
     else
     {
-        m_GenericWeapon->Init(_type);
-        m_IsHeroWeapon = false;
+        m_genericWeapon = new GenericWeapon();
+        m_genericWeapon->Init(_type);
+        m_isHeroWeapon = false;
 
-        m_pulloutTime = m_GenericWeapon->GetPulloutTime();
-        m_basicAttackRefreshTime = m_GenericWeapon->GetBasicAttackRefreshTime();
-        m_specialAttackRefreshTime = m_GenericWeapon->GetSpecialAttackRefreshTime();
+        m_pulloutTime = m_genericWeapon->GetPulloutTime();
+        m_basicAttackRefreshTime = m_genericWeapon->GetBasicAttackRefreshTime();
+        m_specialAttackRefreshTime = m_genericWeapon->GetSpecialAttackRefreshTime();
     }
 
     m_weaponType = _type;
@@ -27,49 +29,77 @@ void Weapon::Init(int _type, int _playerClass)
 
 void Weapon::Update(float dt)
 {
-    if (m_IsHeroWeapon == true)
+    if (m_isHeroWeapon == true)
     {
-        m_HeroWeapon->Update(dt);
+        m_heroWeapon->Update(dt);
     }
     else
     {
-        m_GenericWeapon->Update(dt);
+        m_genericWeapon->Update(dt);
+    }
+}
+
+void Weapon::Equip()
+{
+    m_isEquiped = true;
+
+    if (m_isHeroWeapon == true)
+    {
+        m_heroWeapon->Equip();
+    }
+    else
+    {
+        m_genericWeapon->Equip();
+    }
+}
+
+void Weapon::Unequip()
+{
+    m_isEquiped = false;
+
+    if (m_isHeroWeapon == true)
+    {
+        m_heroWeapon->Unequip();
+    }
+    else
+    {
+        m_genericWeapon->Unequip();
     }
 }
 
 void Weapon::SetDirection(XMFLOAT3 _dir)
 {
-    if (m_IsHeroWeapon == true)
+    if (m_isHeroWeapon == true)
     {
-        m_HeroWeapon->SetDirection(_dir);
+        m_heroWeapon->SetDirection(_dir);
     }
     else
     {
-        m_GenericWeapon->SetDirection(_dir);
+        m_genericWeapon->SetDirection(_dir);
     }
 }
 
 void Weapon::BasicAttack()
 {
-    if (m_IsHeroWeapon == true)
+    if (m_isHeroWeapon == true)
     {
-        m_HeroWeapon->BasicAttack();
+        m_heroWeapon->BasicAttack();
     }
     else
     {
-        m_GenericWeapon->BasicAttack();
+        m_genericWeapon->BasicAttack();
     }
 }
 
 void Weapon::SpecialAttack()
 {
-    if (m_IsHeroWeapon == true)
+    if (m_isHeroWeapon == true)
     {
-        m_HeroWeapon->SpecialAttack();
+        m_heroWeapon->SpecialAttack();
     }
     else
     {
-        m_GenericWeapon->SpecialAttack();
+        m_genericWeapon->SpecialAttack();
     }
 }
 

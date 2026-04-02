@@ -5,6 +5,8 @@ private:
 
 	int m_weaponTypeId = 0;
 
+	bool m_isEquiped;
+
 	XMFLOAT3 m_position;
 	float m_pulloutTime = 0.3f;
 
@@ -23,11 +25,12 @@ public:
 
 	cpu_entity* m_pEntity;
 
-	bool m_IsEquiped = false;
-
 	void Init();
 	void Update(float dt);
 
+	void Equip();
+	void Unequip();
+	
 	XMFLOAT3 GetPosition();
 	void SetPosition(XMFLOAT3 _pos);
 

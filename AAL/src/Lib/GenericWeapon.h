@@ -10,6 +10,8 @@ private:
 
 	XMFLOAT3 m_position;
 
+	bool m_isEquiped;
+
 	float m_pulloutTime;
 
 	float m_basicAttackDamages;
@@ -29,6 +31,9 @@ public:
 
 	void Init(int _type);
 	void Update(float dt);
+
+	void Equip();
+	void Unequip();
 
 	void SetDirection(XMFLOAT3 _dir);
 

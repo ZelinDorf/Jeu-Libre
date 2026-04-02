@@ -5,6 +5,8 @@ private:
 
 	int m_weaponTypeId = 2;
 
+	bool m_isEquiped;
+
 	XMFLOAT3 m_position;
 	float m_pulloutTime = 0.4f;
 
@@ -15,7 +17,7 @@ private:
 	float m_puddleCooldown;
 
 	float m_size = .5f;
-	float m_Width = .1;
+	float m_width = .1;
 	cpu_mesh m_meshStaff;
 	cpu_mesh m_meshProjectile;
 
@@ -23,10 +25,11 @@ public:
 
 	cpu_entity* m_pEntity;
 
-	bool m_IsEquiped = false;
-
 	void Init();
 	void Update(float dt);
+
+	void Equip();
+	void Unequip();
 
 	XMFLOAT3 GetPosition();
 	void SetPosition(XMFLOAT3 _pos);

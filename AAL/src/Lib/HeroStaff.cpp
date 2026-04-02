@@ -3,9 +3,7 @@
 
 void HeroStaff::Init()
 {
-	m_pEntity = cpuEngine.CreateEntity();
-	m_meshStaff.CreateCylinder(m_size, m_Width, 5, true, true, CPU_BLUE);
-	m_pEntity->pMesh = &m_meshStaff;
+	m_meshStaff.CreateCylinder(m_size, m_width, 5, true, true, CPU_BLUE);
 }
 
 void HeroStaff::Update(float dt)
@@ -16,6 +14,17 @@ void HeroStaff::Update(float dt)
 	XMFLOAT3 m_offset = XMFLOAT3(m_xDir * .5f, 0.f, m_zDir * .5f);
 	m_position = XMFLOAT3(m_position.x + m_offset.x, m_position.y + m_offset.y, m_position.z + m_offset.z);
 	m_pEntity->transform.pos = m_position;
+}
+
+void HeroStaff::Equip()
+{
+	m_pEntity = cpuEngine.CreateEntity();
+	m_pEntity->pMesh = &m_meshStaff;
+}
+
+void HeroStaff::Unequip()
+{
+	m_pEntity = cpuEngine.Release(m_pEntity);
 }
 
 void HeroStaff::SetPosition(XMFLOAT3 _pos)

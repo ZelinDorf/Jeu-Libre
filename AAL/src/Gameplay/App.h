@@ -1,6 +1,11 @@
 #pragma once
 #include "../Lib/Player.h"
 
+#include "SceneGameplay.h"
+#include "SceneMenu.h"
+#include <vector>
+#include <string>
+
 class App
 {
 public:
@@ -15,16 +20,17 @@ public:
 	void OnRender(int pass);
 
 	static void MyPixelShader(cpu_ps_io& io);
-
-	float m_GroundSize = 18.75f;
+	cpu_font* GetFont();
 
 private:
+	cpu_font m_font;
 	inline static App* s_pApp = nullptr;
+	
+	Enemy* m_pEnemy;
+	SceneManager m_sceneManager;
 
 	cpu_entity* p_Ground = nullptr;
 	cpu_mesh m_meshGround;
 
-	Player* m_player = nullptr;
-
-	void SpawnPlayer();
 };
+

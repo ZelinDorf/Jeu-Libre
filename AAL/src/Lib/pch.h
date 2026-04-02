@@ -3,4 +3,6 @@
 
 #include "framework.h"
 
+#include <iostream>
+
 #endif

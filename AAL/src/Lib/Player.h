@@ -3,7 +3,7 @@
 #include "Weapon.h"
 #include "PlayerStatsManager.h"
 
-class Player
+class Player : public AALentity
 {
 private:
 
@@ -13,10 +13,10 @@ private:
 
 	float m_baseSpeed = 15;
 	float m_speed;
-	float m_CrouchedSpeed = 5;
+	float m_crouchedSpeed = 5;
 
-	float m_AttackRefreshing = 0.f;
-	float m_AttackRefreshDuration;
+	float m_attackRefreshing = 0.f;
+	float m_attackRefreshDuration;
 
 	void MouseInput();
 
@@ -29,14 +29,14 @@ private:
 	void Crouch();
 	void Uncrouch();
 
-	bool m_IsJumping;
-	bool m_IsCrouched;
+	bool m_isJumping;
+	bool m_isCrouched;
 
 	cpu_mesh m_meshPlayer;
 
 	void WeaponEquiped(float dt);
 
-	bool m_IsWeaponEquiped = true;
+	bool m_isWeaponEquiped = true;
 	float m_weaponEquipement = 0.0f;
 	float m_weaponEquipementDuration;
 
@@ -45,8 +45,8 @@ private:
 
 	void SwapWeapon();
 
-	bool m_IsInventoryOpened;
-	bool m_IsUpgradePageOpened;
+	bool m_isInventoryOpened;
+	bool m_isUpgradePageOpened;
 
 	void Inventory();
 	void UpgradesPage();
@@ -59,9 +59,8 @@ private:
 	PlayerStatsManager m_stats;
 
 public:
-	cpu_entity* m_pEntity;
 
-	bool m_IsActive = false;
+	bool m_isActive = false;
 
 	void Init(int _class);
 	void Update(float dt);
@@ -69,7 +68,7 @@ public:
 
 	void Destroy();
 
-	Weapon* m_CurrentWeapon;
+	Weapon* m_currentWeapon;
 
 	void SetWeaponDirection();
 

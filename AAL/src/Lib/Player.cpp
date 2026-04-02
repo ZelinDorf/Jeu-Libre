@@ -17,7 +17,7 @@ void Player::Init(int _class)
 
 	m_position = XMFLOAT3(0.0f, 0.0f, 0.0f);
 	m_speed = m_baseSpeed;
-	m_CrouchedSpeed *= m_speed;
+	m_crouchedSpeed *= m_speed;
 
 	//mAttackRefreshDuration = mCurrentWeapon->GetBasicAttackRefreshTime();
 
@@ -42,7 +42,7 @@ void Player::Update(float dt)
 
 void Player::HandleInput(float dt)
 {
-	if (m_IsActive)
+	if (m_isActive)
 		return;
 
 	InputSystem::LockMouseCursor();
@@ -71,18 +71,18 @@ void Player::HandleInput(float dt)
 	if (InputSystem::IsKeyPressed(SPACEBAR))
 	{
 		Jump();
-		m_IsJumping = true;
+		m_isJumping = true;
 	}
 
 	if (InputSystem::IsKeyDown(LCTRL))
 	{
 		Crouch();
-		m_IsCrouched = true;
+		m_isCrouched = true;
 	}
 	else
 	{
 		Uncrouch();
-		m_IsCrouched = false;
+		m_isCrouched = false;
 	}
 
 	if (InputSystem::IsMouseButtonPressed(LEFT_MOUSE))
@@ -108,10 +108,10 @@ void Player::Destroy()
 
 void Player::SetWeaponDirection()
 {
-	if (m_CurrentWeapon == nullptr)
+	if (m_currentWeapon == nullptr)
 		return;
 
-	m_CurrentWeapon->SetDirection(m_pEntity->transform.dir);
+	m_currentWeapon->SetDirection(m_pEntity->transform.dir);
 }
 
 void Player::SetPosition(XMFLOAT3 _position)
@@ -171,7 +171,7 @@ void Player::Jump()
 
 void Player::Crouch()
 {
-	m_speed = m_CrouchedSpeed;
+	m_speed = m_crouchedSpeed;
 }
 void Player::Uncrouch()
 {
@@ -183,75 +183,75 @@ void Player::WeaponEquiped(float dt)
 	m_weaponEquipement += dt;
 	if (m_weaponEquipement > m_weaponEquipementDuration)
 	{
-		m_IsWeaponEquiped = true;
+		m_isWeaponEquiped = true;
 	}
 }
 
 void Player::Attack()
 {
-	if (m_CurrentWeapon == nullptr)
+	if (m_currentWeapon == nullptr)
 		return;
 
-	if (m_AttackRefreshing < m_AttackRefreshDuration || m_IsWeaponEquiped == false)
+	if (m_attackRefreshing < m_attackRefreshDuration || m_isWeaponEquiped == false)
 		return;
 
-	m_CurrentWeapon->BasicAttack();
+	m_currentWeapon->BasicAttack();
 
-	m_AttackRefreshing = 0.f;
+	m_attackRefreshing = 0.f;
 }
 
 void Player::RefreshAttack(float dt)
 {
-	m_AttackRefreshing += dt;
+	m_attackRefreshing += dt;
 }
 
 void Player::SwapWeapon()
 {
-	if (m_CurrentWeapon == nullptr)
+	if (m_currentWeapon == nullptr)
 		return;
 
-	if (m_AttackRefreshing < m_AttackRefreshDuration)
+	if (m_attackRefreshing < m_attackRefreshDuration)
 		return;
 
-	if (m_CurrentWeapon == m_weapon1)
+	if (m_currentWeapon == m_weapon1)
 	{
-		m_CurrentWeapon = m_weapon2;
+		m_currentWeapon = m_weapon2;
 	}
-	else if (m_CurrentWeapon == m_weapon2)
+	else if (m_currentWeapon == m_weapon2)
 	{
-		m_CurrentWeapon = m_weapon1;
+		m_currentWeapon = m_weapon1;
 	}
 
-	m_IsWeaponEquiped = false;
+	m_isWeaponEquiped = false;
 	m_weaponEquipement = 0.0f;
-	m_weaponEquipementDuration = m_CurrentWeapon->GetPulloutTime();
+	m_weaponEquipementDuration = m_currentWeapon->GetPulloutTime();
 	
-	m_AttackRefreshDuration = m_CurrentWeapon->GetBasicAttackRefreshTime();
+	m_attackRefreshDuration = m_currentWeapon->GetBasicAttackRefreshTime();
 }
 
 void Player::Inventory()
 {
-	if (m_IsInventoryOpened == false)
+	if (m_isInventoryOpened == false)
 	{
-		m_IsInventoryOpened = true;
+		m_isInventoryOpened = true;
 	}
 		
 	else
 	{
-		m_IsInventoryOpened = false;
+		m_isInventoryOpened = false;
 	}
 		
 }
 
 void Player::UpgradesPage()
 {
-	if (m_IsUpgradePageOpened == false)
+	if (m_isUpgradePageOpened == false)
 	{
-		m_IsUpgradePageOpened = true;
+		m_isUpgradePageOpened = true;
 	}
 
 	else
 	{
-		m_IsUpgradePageOpened = false;
+		m_isUpgradePageOpened = false;
 	}
 }

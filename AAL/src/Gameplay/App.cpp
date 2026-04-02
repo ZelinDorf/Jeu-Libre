@@ -1,5 +1,7 @@
 #include "pch.h"
-#include "InputSystem.h"
+#include "App.h"
+
+#include <iostream>
 
 App::App()
 {
@@ -15,46 +17,34 @@ App::~App()
 	m_player = nullptr;
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+}
 
 void App::OnStart()
 {
-	m_player = new Player();
-	m_player->Init(0);
+	m_font.Create(20);
 
-	m_meshGround.CreateCube(m_GroundSize, CPU_BLACK);
-	p_Ground = cpuEngine.CreateEntity();
-	p_Ground->pMesh = &m_meshGround;
-	p_Ground->transform.pos = XMFLOAT3(0.f, -20.f, 0.f);
+	m_sceneManager.SetSceneActive<SceneMenu>(true);
+
+	//camera
+	CAMERA->transform.pos.z = -2.0f;
+	CAMERA->transform.pos.y = 1.0f;
+
 }
 
 void App::OnUpdate()
 {
 	float dt = cpuTime.delta;
-	float time = cpuTime.total;
-
-	m_player->Update(dt);
-
 	InputSystem::HandleInput();
 
+	if (InputSystem::IsKeyPressed(InputKeyboard::SPACE)) m_sceneManager.SetSceneActive<SceneGameplay>(true);
+	if (InputSystem::IsKeyPressed(InputKeyboard::ESC)) m_sceneManager.SetSceneActive<SceneMenu>(true);
 
-	// Camera movement
-	if (InputSystem::IsKeyDown(LEFT))
-		cpuEngine.GetCamera()->transform.AddYPR(-1.5f * dt);
-	if (InputSystem::IsKeyDown(RIGHT))
-		cpuEngine.GetCamera()->transform.AddYPR(1.5f * dt);
-	if (InputSystem::IsKeyDown(UP))
-		cpuEngine.GetCamera()->transform.Move(10.0f * dt);
-	if (InputSystem::IsKeyDown(DOWN))
-		cpuEngine.GetCamera()->transform.Move(-10.0f * dt);
+	m_sceneManager.Update(dt);
 
-	if (InputSystem::IsKeyDown(SPACEBAR))
-		cpuEngine.GetCamera()->transform.SetYPR(0.f, 1.570796f, 0.f);
+	float time = cpuTime.total;
 
 	// Quit
-	if (InputSystem::IsKeyPressed(ESCAPE))
+	if (InputSystem::IsKeyPressed(RETURN))
 	{
 		cpuEngine.Quit();
 	}
@@ -62,13 +52,22 @@ void App::OnUpdate()
 
 void App::OnExit()
 {
-	m_player->Destroy();
-	delete m_player;
-	p_Ground = cpuEngine.Release(p_Ground);
 }
 
 void App::OnRender(int pass)
 {
+	m_sceneManager.OnRender(pass);
+
+	// Debug
+	cpu_stats& stats = *cpuEngine.GetStats();
+	std::string info = CPU_STR(cpuTime.fps) + " fps, ";
+	info += CPU_STR(stats.drawnTriangleCount) + " triangles, ";
+	//info += CPU_STR(stats.clipEntityCount) + " clipped entities\n";
+	//info += CPU_STR(cpuEngine.GetParticleData()->alive) + " particles, ";
+
+	XMFLOAT3 tint = { 1.0f, 1.0f, 0.8f };
+	
+	cpuDevice.DrawText(&m_font, info.c_str(), (int)(cpuDevice.GetWidth() * 0.5f), 10, CPU_TEXT_CENTER, &tint);
 }
 
 void App::MyPixelShader(cpu_ps_io& io)
@@ -76,8 +75,7 @@ void App::MyPixelShader(cpu_ps_io& io)
 	io.color = io.p.color;
 }
 
-
-
-void App::SpawnPlayer()
+cpu_font* App::GetFont()
 {
+	return &m_font;
 }

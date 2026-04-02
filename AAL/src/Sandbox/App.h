@@ -17,4 +17,6 @@ public:
 
 private:
 	inline static App* s_pApp = nullptr;
+
+	ChunkManager* m_pChunkManager;
 };

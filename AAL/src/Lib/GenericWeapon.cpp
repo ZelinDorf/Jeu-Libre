@@ -87,6 +87,22 @@ void GenericWeapon::Unequip()
 	}
 }
 
+void GenericWeapon::SetPosition(XMFLOAT3 _pos)
+{
+	if (m_weaponType == 0)
+	{
+		m_sword->SetPosition(_pos);
+	}
+	if (m_weaponType == 1)
+	{
+		m_bow->SetPosition(_pos);
+	}
+	if (m_weaponType == 2)
+	{
+		m_staff->SetPosition(_pos);
+	}
+}
+
 void GenericWeapon::SetDirection(XMFLOAT3 _dir)
 {
 	if (m_weaponType == 0)

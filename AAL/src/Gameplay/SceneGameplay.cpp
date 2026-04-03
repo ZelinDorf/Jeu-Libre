@@ -27,6 +27,9 @@ SceneGameplay::SceneGameplay()
 
 	m_entities.push_back(m_player);
 
+	//m_entities.push_back(m_player->GetWeapon(1));
+	//m_entities.push_back(m_player->GetWeapon(2));
+
 }
 
 SceneGameplay::~SceneGameplay()

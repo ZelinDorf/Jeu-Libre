@@ -67,6 +67,21 @@ void Weapon::Unequip()
     }
 }
 
+void Weapon::SetPosition(XMFLOAT3 _pos)
+{
+    //if (m_isEquiped == true)
+    {
+        if (m_isHeroWeapon == true)
+        {
+            m_heroWeapon->SetPosition(_pos);
+        }
+        else
+        {
+            m_genericWeapon->SetPosition(_pos);
+        }
+    }
+}
+
 void Weapon::SetDirection(XMFLOAT3 _dir)
 {
     if (m_isHeroWeapon == true)

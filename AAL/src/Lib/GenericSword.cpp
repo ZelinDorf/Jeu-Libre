@@ -3,7 +3,7 @@
 
 void GenericSword::Init()
 {
-	m_meshSword.CreateCylinder(m_swordSize, m_swordWidth, 5, true, true, CPU_BLUE);
+	m_meshSword.CreateCylinder(m_swordSize, m_swordWidth, 5, true, true, CPU_GRAY);
 }
 
 void GenericSword::Update(float dt)

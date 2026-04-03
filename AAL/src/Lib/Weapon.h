@@ -3,7 +3,7 @@
 #include "GenericWeapon.h"
 #include "HeroWeapon.h"
 
-class Weapon
+class Weapon : public AALentity
 {
 private:
 	XMFLOAT3 m_position;
@@ -34,6 +34,7 @@ public:
 	void Equip();
 	void Unequip();
 
+	void SetPosition(XMFLOAT3 _pos);
 	void SetDirection(XMFLOAT3 _dir);
 
 	void BasicAttack();

@@ -38,16 +38,21 @@ void Player::Update(float dt)
 {
 	m_pEntity->transform.pos = m_position;
 
+	m_weapon1->SetPosition(m_position);
+	m_weapon2->SetPosition(m_position);
+
 	XMFLOAT3 m_camPos = XMFLOAT3(m_position.x + 2.f, m_position.y + 2.f, m_position.z - 4.f);
 	//cpuEngine.GetCamera()->transform.SetYPR(0.f, .2f, 0.f);
 	cpuEngine.GetCamera()->transform.pos = m_camPos;
 
 	m_pEntity->transform.dir = cpuEngine.GetCamera()->transform.dir;
-	SetWeaponDirection();
+	//SetWeaponDirection();
 
 	HandleInput(dt);
 	RefreshAttack(dt);
 	WeaponEquiped(dt);
+
+	
 }
 
 void Player::HandleInput(float dt)

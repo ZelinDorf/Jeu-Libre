@@ -3,7 +3,7 @@
 
 void HeroStaff::Init()
 {
-	m_meshStaff.CreateCylinder(m_size, m_width, 5, true, true, CPU_BLUE);
+	m_meshStaff.CreateCylinder(m_size, m_width, 5, true, true, CPU_MAGENTA);
 }
 
 void HeroStaff::Update(float dt)

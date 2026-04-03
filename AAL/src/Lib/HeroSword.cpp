@@ -3,7 +3,7 @@
 
 void HeroSword::Init()
 {
-	m_meshSword.CreateCylinder(m_swordSize, m_swordWidth, 5, true, true, CPU_BLUE);
+	m_meshSword.CreateCylinder(m_swordSize, m_swordWidth, 5, true, true, CPU_ORANGE);
 }
 
 void HeroSword::Update(float dt)
@@ -11,8 +11,8 @@ void HeroSword::Update(float dt)
 	float m_xDir = m_pEntity->transform.dir.x;
 	float m_zDir = m_pEntity->transform.dir.z;
 
-	XMFLOAT3 m_offset = XMFLOAT3(m_xDir * .5f, 0.f, m_zDir * .5f);
-	m_position = XMFLOAT3(m_position.x + m_offset.x, m_position.y + m_offset.y, m_position.z + m_offset.z);
+	/*XMFLOAT3 m_offset = XMFLOAT3(m_xDir * .5f, 0.f, m_zDir * .5f);
+	m_position = XMFLOAT3(m_position.x + m_offset.x, m_position.y + m_offset.y, m_position.z + m_offset.z);*/
 	m_pEntity->transform.pos = m_position;
 }
 
@@ -29,7 +29,7 @@ void HeroSword::Unequip()
 
 void HeroSword::SetPosition(XMFLOAT3 _pos)
 {
-	m_position = _pos;
+	m_pEntity->transform.pos = _pos;
 }
 
 XMFLOAT3 HeroSword::GetPosition()

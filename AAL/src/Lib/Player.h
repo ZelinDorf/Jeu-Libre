@@ -5,7 +5,6 @@
 class Player : public AALentity
 {
 private:
-
 	XMFLOAT3 m_position = {0.0f,0.0f,0.0f};
 
 	float m_playerSize = 0.5f;

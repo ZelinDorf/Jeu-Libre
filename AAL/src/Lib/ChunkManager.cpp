@@ -48,7 +48,6 @@ void ChunkManager::InitMap(float _mapSize)
 			mapH += sca;
 			
 			m_vChunks.push_back(pNextChunk);
-			
 		}
 		mapW += sca;
 		mapH = 0.f;

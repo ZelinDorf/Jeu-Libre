@@ -12,6 +12,7 @@ void Chunk::Init()
 	m_mat.color = TO_COLOR(70, 190, 25);
 
 	m_biome = PLAIN;
+	m_entityType = WORLD_OBJECT;
 
 	m_pEntity = cpuEngine.CreateEntity();
 	m_pEntity->pMaterial = &m_mat;
@@ -25,6 +26,7 @@ void Chunk::Init()
 	m_pEntity->transform.SetPitch(XMConvertToRadians(90.f));
 
 	m_pEntity->transform.Scale(m_scale);
+
 }
 
 void Chunk::Init(Biomes _biome)

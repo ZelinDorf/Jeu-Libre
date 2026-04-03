@@ -24,6 +24,8 @@ void Player::Init(int _class)
 	m_speed = m_baseSpeed;
 	m_crouchedSpeed *= m_speed;
 
+	m_entityType = PLAYER;
+
 	//mAttackRefreshDuration = mCurrentWeapon->GetBasicAttackRefreshTime();
 
 	m_playerClass = _class;
@@ -125,6 +127,7 @@ void Player::SetPosition(XMFLOAT3 _position)
 XMFLOAT3 Player::GetPosition()
 {
 	return m_position;
+	m_pEntity->transform.pos;
 }
 
 void Player::MouseInput()

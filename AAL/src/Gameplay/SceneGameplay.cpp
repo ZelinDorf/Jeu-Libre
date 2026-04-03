@@ -24,6 +24,7 @@ SceneGameplay::SceneGameplay()
 	mPlayer = new Player();
 	mPlayer->Init(0);
 
+
 	m_entities.push_back(mPlayer);
 }
 

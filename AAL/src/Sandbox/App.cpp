@@ -25,7 +25,8 @@ void App::OnStart()
 
 	m_sceneManager.SetSceneActive<SceneJSON>(true);
 
-	cpuEngine.GetCamera()->transform.pos.z = -5.0f;
+	CAMERA->transform.pos.z = -5.0f;
+	CAMERA->transform.dir.z = 0.0f;
 }
 
 void App::OnUpdate()
@@ -37,18 +38,18 @@ void App::OnUpdate()
 	
 	float speed = 10.f;
 
-	/*if (cpuInput.IsUp())
-		CAMERA->transform.dir.z = speed;
+	if (cpuInput.IsUp())
+		CAMERA->transform.dir.y = speed;
 	else if (cpuInput.IsDown())
-		CAMERA->transform.dir.z = -speed;
+		CAMERA->transform.dir.y = -speed;
 	else
-		CAMERA->transform.dir.z = 0.0f;
+		CAMERA->transform.dir.y = 0.0f;
 	if (cpuInput.IsRight())
 		CAMERA->transform.dir.x = speed;
 	else if (cpuInput.IsLeft())
 		CAMERA->transform.dir.x = -speed;
 	else
-		CAMERA->transform.dir.x = 0.0f;*/
+		CAMERA->transform.dir.x = 0.0f;
 
 	CAMERA->transform.Move(1.0f * cpuTime.delta);
 

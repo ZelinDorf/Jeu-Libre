@@ -44,7 +44,7 @@ def export_mesh(obj, apply_world_matrix=False):
             # UV
             if has_uv:
                 uv = uv_layer[loop_id].uv
-                uvs_flat.extend([float(uv.x), float(uv.y)])
+                uvs_flat.extend([float(uv.x), 1.0 - float(uv.y)])
 
             # NORMAL from loop
             n = mesh.loops[loop_id].normal

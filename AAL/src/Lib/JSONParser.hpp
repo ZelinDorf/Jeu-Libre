@@ -121,7 +121,7 @@ namespace JSONParser
                 _pEnt->pMaterial->color = CPU_RED;
             }
 
-            float yaw = XMConvertToRadians(180.f);
+            constexpr float yaw = XMConvertToRadians(180.f);
             //float pitch = XMConvertToRadians(-90.f);
 
             _pEnt->transform.SetYPR(yaw);

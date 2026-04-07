@@ -54,6 +54,8 @@ using StringView							= std::string_view;
 #include "JSONParser.hpp"
 #include "Math_Utils.h"
 
+#include "UIWrapper.h"
+
 #include "AALentity.h"
 #include "EnemiesRegistery.h"
 #include "Enemy.h"
@@ -64,6 +66,5 @@ using StringView							= std::string_view;
 #include "Scene.h"
 
 #include "ChunkManager.h"
-
-//	chunk
 #include "Chunk.h"
+

@@ -1,5 +1,7 @@
 #pragma once
 
+enum EntityType;
+
 class RessourcesManager
 {
 public:
@@ -17,15 +19,28 @@ public:
 	static cpu_mesh* GetMeshWithName(String _name);
 	static Map<String, cpu_mesh*> GetMeshMap();
 
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	static cpu_texture* AddTexture(cpu_texture* _texture, String _name);
+
+	static cpu_texture* GetTextureWithName(String _name);
+	static Map<String, cpu_texture*> GetTextureMap();
+
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	static cpu_texture* CreateUI(EntityType ui);
 
 private:
 	inline static RessourcesManager* s_pInstance = nullptr;
 
-	static cpu_material* LoadTexture(String _name);
+	static cpu_material* CreateMaterial(String _name);
 	static cpu_mesh* CreateMesh(String _name);
+	static cpu_texture* LoadTexture(String _name);
+	static cpu_texture* LoadTexture(EntityType _type);
 
 	inline static Map<String, cpu_material*> m_mMat;
 	inline static Map<String, cpu_mesh*> m_mMesh;
+	inline static Map<String, cpu_texture*> m_mTexture;
 
 };
 

@@ -1,4 +1,5 @@
 #include "pch.h"
+
 #include "SceneJSON.h"
 
 App::App()
@@ -23,16 +24,18 @@ void App::OnStart()
 {
 	// YOUR CODE HERE
 	RessourcesManager rm;
+	m_pCM = new ChunkManager;
+	m_pSM = new SceneManager;
 
-	m_sceneManager.SetSceneActive<SceneJSON>(true);
+	m_pSM->SetSceneActive<SceneJSON>(true);
 
 	//camera
 	CAMERA->transform.pos.z = -5.0f;
 	CAMERA->transform.pos.y = 1.0f;
 
 	//chunkManager
-	m_pChunkManager = chunkManager;
-	m_pChunkManager->InitMap(15.f);
+	m_pCM = chunkManager;
+	m_pCM->InitMap(15.f);
 }
 
 void App::OnUpdate()
@@ -41,8 +44,8 @@ void App::OnUpdate()
 
 	float dt = cpuTime.delta;
 
-	m_sceneManager.Update(dt); 
-	m_pChunkManager->OnUpdate(dt);
+	m_pSM->Update(dt); 
+	m_pCM->Update(dt);
 
 	float speed = 10.f;
 
@@ -72,7 +75,7 @@ void App::OnExit()
 void App::OnRender(int pass)
 {
 	// YOUR CODE HERE
-	m_sceneManager.OnRender(pass);
+	m_pSM->OnRender(pass);
 }
 
 void App::MyPixelShader(cpu_ps_io& io)

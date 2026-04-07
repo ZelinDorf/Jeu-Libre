@@ -8,19 +8,9 @@ Chunk::~Chunk()
 
 void Chunk::Init()
 {
-	m_mesh.CreatePlane();
-	m_mat.color = TO_COLOR(70, 190, 25);
-
 	m_biome = PLAIN;
 
-	m_pEntity = cpuEngine.CreateEntity();
-	m_pEntity->pMaterial = &m_mat;
-	m_pEntity->pMesh = &m_mesh;
-	m_pEntity->transform.pos = { 0.0f, 0.0f, 0.0f };
-
-	m_pEntity->transform.dir = CPU_VEC3_DIR;
-	m_pEntity->transform.up = CPU_VEC3_UP;
-	m_pEntity->transform.right = CPU_VEC3_RIGHT;
+	JsonObj::JsonLoader(JSON_PATH"rockyGround.json", nullptr, m_pEntity);
 
 	m_pEntity->transform.SetPitch(XMConvertToRadians(90.f));
 
@@ -31,7 +21,7 @@ void Chunk::Init(Biomes _biome)
 {
 	Init();
 
-	switch (_biome)
+	/*switch (_biome)
 	{
 	case PLAIN:
 		m_mat.color = TO_COLOR(81, 104, 52);
@@ -50,7 +40,7 @@ void Chunk::Init(Biomes _biome)
 		break;
 	default:
 		break;
-	}
+	}*/
 
 }
 
@@ -64,7 +54,7 @@ void Chunk::Delete()
 
 void Chunk::SetBiome(Biomes _biome)
 {
-	switch (_biome)
+	/*switch (_biome)
 	{
 	case PLAIN:
 		m_mat.color = TO_COLOR(81, 104, 52);
@@ -83,7 +73,7 @@ void Chunk::SetBiome(Biomes _biome)
 		break;
 	default:
 		break;
-	}
+	}*/
 }
 
 void Chunk::SetPos(XMFLOAT3 _pos)

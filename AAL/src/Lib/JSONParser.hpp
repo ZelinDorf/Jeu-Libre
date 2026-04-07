@@ -28,7 +28,7 @@ namespace JSONParser
             Vector<cpu_mesh*> vObject;
             _pEnt = cpuEngine.CreateEntity();
 
-            if (_pScene == nullptr) return;
+            //if (_pScene == nullptr) return;
 
             std::ifstream file(_path);
             if (!file.is_open()) 

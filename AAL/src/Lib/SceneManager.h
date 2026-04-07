@@ -5,6 +5,8 @@
 #include "Gameplay/SceneMenu.h"
 #include "Gameplay/SceneGameMenu.h"
 
+#include "Sandbox/SceneJSON.h"
+
 #include <vector>
 
 class SceneManager

@@ -3,7 +3,7 @@
 
 SceneJSON::SceneJSON()
 {
-	JsonObj::JsonLoader(JSON_PATH"fox.json", this, pEntity);
+	JsonObj::JsonLoader(JSON_PATH"invertFox.json", this, pEntity);
 }
 
 SceneJSON::~SceneJSON()

@@ -1,7 +1,7 @@
 {
     "objects": [
         {
-            "name": "floor_dirt_large_rocky",
+            "name": "Dirt",
             "type": "MESH",
             "position": [
                 0.0,

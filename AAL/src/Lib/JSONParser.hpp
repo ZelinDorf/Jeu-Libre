@@ -25,7 +25,7 @@ namespace JSONParser
             }
             */
 
-            Vector<cpu_mesh> vObject;
+            Vector<cpu_mesh*> vObject;
             _pEnt = cpuEngine.CreateEntity();
 
             if (_pScene == nullptr) return;
@@ -47,27 +47,16 @@ namespace JSONParser
             {
                 json currentObj = jObjects[i];
 
-                cpu_mesh tempMesh = CreateMesh(currentObj);
-                
-
+                cpu_mesh* tempMesh = CreateMesh(currentObj);              
 
                 cpu_material* mat;
                 
                 vObject.push_back(tempMesh);
 
-                if (currentObj.contains("_texture") && currentObj["_texture"].is_string())
+                if (currentObj.contains("texture") && currentObj["texture"].is_string())
                 {
                     String path;
-                    path.append(TEXTURE_PATH"Chunk_Texture");
-                    path.append(currentObj["_texture"].get<String>());
-
-                    mat = RessourcesManager::GetMatWithName(path);
-                    _pEnt->pMaterial = mat;
-                }
-                else if (currentObj.contains("texture") && currentObj["texture"].is_string())
-                {
-                    String path;
-                    path.append(TEXTURE_PATH);
+                    //path.append(TEXTURE_PATH);
                     path.append(currentObj["texture"].get<String>());
 
                     mat = RessourcesManager::GetMatWithName(path);
@@ -106,9 +95,9 @@ namespace JSONParser
 
             cpu_mesh* entMesh = new cpu_mesh;
 
-            for (cpu_mesh& m : vObject)
+            for (cpu_mesh* m : vObject)
             {
-                entMesh->AddMesh(m);
+                entMesh->AddMesh(*m);
             }
 
             entMesh->Optimize();
@@ -130,15 +119,21 @@ namespace JSONParser
         }
 
     private:
-        static cpu_mesh CreateMesh(json const& _obj)//construit la geo/mesh custom
+        static cpu_mesh* CreateMesh(json const& _obj)//construit la geo/mesh custom
         {
-            cpu_mesh m;
+            String name;
+            name.append(_obj["name"].get<String>());
+            
+            cpu_mesh* m = RessourcesManager::GetMeshWithName(name);
 
-            Vector<cpu_vertex> ver = LoadObj(_obj);
-
-            for (cpu_vertex& v : ver)
+            if (m->vertices.size() <= 0)
             {
-                m.vertices.push_back(v);
+                Vector<cpu_vertex> ver = LoadObj(_obj);
+
+                for (cpu_vertex& v : ver)
+                {
+                    m->vertices.push_back(v);
+                }
             }
 
             return m;

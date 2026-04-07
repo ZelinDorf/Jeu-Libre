@@ -29,6 +29,7 @@ protected:
 	bool m_active = false;
 
 	Vector<AALentity*> m_entities;
+	Vector<AALentity*> m_enemies;
 	Vector<int> m_entitiesID;
 
 	

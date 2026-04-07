@@ -11,6 +11,13 @@ public:
 	void OnRender(int pass) override;
 	void Update(float dt) override;
 
+	bool Spawning(EnemiesList type=SKELETAL_GRUNT, XMFLOAT3 pos={0,0,0});
+	void Creditcheck(float dt);
+	void MoveEnemiesApart();
+
+	XMFLOAT3 RandPos();
+
+	float m_credits = 0.0f;
 private:
 	Enemy* m_pEnemy = nullptr;
 	ChunkManager* m_pChunkManager = nullptr;

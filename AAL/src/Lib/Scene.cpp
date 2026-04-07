@@ -38,12 +38,11 @@ void Scene::SetActive(bool active)
 
 void Scene::Update(float dt)
 {
-	for(auto entity : m_entities)
+	for (auto entity : m_entities)
 	{
 		entity->Update(dt);
-	}
+	};
 }
-
 void Scene::OnRender(int pass)
 {
 

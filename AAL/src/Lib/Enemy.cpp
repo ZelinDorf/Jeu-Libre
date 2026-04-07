@@ -157,3 +157,4 @@ void Enemy::ChangeStats(Vector<StatsEnum> e, Vector<float> value)
 		}
 	}
 }
+

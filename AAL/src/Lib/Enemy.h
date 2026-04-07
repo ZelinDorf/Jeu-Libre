@@ -21,6 +21,8 @@ public:
 	int m_id = -1;
 
 	Enemy* m_pEnemy = nullptr;
+
+
 protected:
 	cpu_mesh m_meshEnemy;
 	cpu_material m_materialEnemy;
@@ -46,5 +48,4 @@ public:
 
 	// Replaces enemy stats by a value	 
 	void ChangeStats(Vector<StatsEnum> e, Vector<float> value);
-
 };

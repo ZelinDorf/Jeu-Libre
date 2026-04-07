@@ -61,8 +61,19 @@ void Player::HandleInput(float dt)
 		return;
 
 	InputSystem::LockMouseCursor();
+	//InputSystem::HideMouseCursor();
+
+	if (InputSystem::IsKeyDown(N))
+		MouseInput();
 
 	
+
+	
+
+	cpuEngine.GetCamera()->transform.AddYPR(m_mousePosition.x - m_currentMousePosition.x, m_mousePosition.y - m_currentMousePosition.y);
+
+	m_currentMousePosition = m_mousePosition;
+
 
 	if (InputSystem::IsKeyPressed(Z))
 		MoveForward(dt);
@@ -156,6 +167,7 @@ XMFLOAT3 Player::GetPosition()
 
 void Player::MouseInput()
 {
+	m_mousePosition = InputSystem::GetMousePosition();
 }
 
 void Player::MoveForward(float dt)

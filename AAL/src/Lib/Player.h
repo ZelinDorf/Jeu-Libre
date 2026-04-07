@@ -9,6 +9,10 @@ private:
 
 	XMFLOAT3 m_position;
 
+	XMINT2 m_mousePosition;
+
+	XMINT2 m_currentMousePosition;
+
 	float m_playerSize = .5f;
 
 	float m_baseSpeed = 15;

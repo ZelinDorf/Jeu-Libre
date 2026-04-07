@@ -1,10 +1,10 @@
 #pragma once
+#include <unordered_map>
+#include "AALentity.h"
 
-class Player;
 class UIWrapper;
-class AALentity;
-
 class Scene
+
 {
 public:
 	Scene();
@@ -20,9 +20,14 @@ public:
 
 	void AddEntity(AALentity* entity);
 
+	UIWrapper* AddUI(EntityType entityType);
+	UIWrapper* GetUI(EntityType entityType);
+
+	std::unordered_map<EntityType, UIWrapper*> m_mapUI;
+
 protected:
 	bool m_active = false;
-	
+
 	Vector<AALentity*> m_entities;
 	Vector<int> m_entitiesID;
 };

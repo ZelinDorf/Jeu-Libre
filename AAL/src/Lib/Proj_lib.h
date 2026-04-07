@@ -16,8 +16,9 @@ using json									= nlohmann::json;
 #define TO_COLOR							cpu::ToColor
 #define CAMERA								cpuEngine.GetCamera()
 
-//	namespace
+//	singleton
 //////////////
+#define chunkManager						ChunkManager::GetInstance()
 
 //	std using
 //////////////
@@ -51,12 +52,18 @@ using StringView							= std::string_view;
 #include "InputSystem.h"
 #include "RessourcesManager.h"
 #include "JSONParser.hpp"
+#include "Math_Utils.h"
 
+#include "AALentity.h"
 #include "EnemiesRegistery.h"
 #include "Enemy.h"
 #include "EnemyFactory.h"
 #include "StatsEnum.h"
-#include "AALentity.h"
 
 #include "SceneManager.h"
 #include "Scene.h"
+
+#include "ChunkManager.h"
+
+//	chunk
+#include "Chunk.h"

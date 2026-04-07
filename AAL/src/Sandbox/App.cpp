@@ -12,6 +12,7 @@ App::App()
 
 App::~App()
 {
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -25,25 +26,32 @@ void App::OnStart()
 
 	m_sceneManager.SetSceneActive<SceneJSON>(true);
 
+	//camera
 	CAMERA->transform.pos.z = -5.0f;
-	CAMERA->transform.dir.z = 0.0f;
+	CAMERA->transform.pos.y = 1.0f;
+
+	//chunkManager
+	m_pChunkManager = chunkManager;
+	m_pChunkManager->InitMap(15.f);
 }
 
 void App::OnUpdate()
 {
 	// YOUR CODE HERE
+
 	float dt = cpuTime.delta;
 
 	m_sceneManager.Update(dt); 
-	
+	m_pChunkManager->OnUpdate(dt);
+
 	float speed = 10.f;
 
 	if (cpuInput.IsUp())
-		CAMERA->transform.dir.y = speed;
+		CAMERA->transform.dir.z = speed;
 	else if (cpuInput.IsDown())
-		CAMERA->transform.dir.y = -speed;
+		CAMERA->transform.dir.z = -speed;
 	else
-		CAMERA->transform.dir.y = 0.0f;
+		CAMERA->transform.dir.z = 0.0f;
 	if (cpuInput.IsRight())
 		CAMERA->transform.dir.x = speed;
 	else if (cpuInput.IsLeft())

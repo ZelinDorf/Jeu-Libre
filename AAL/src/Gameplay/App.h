@@ -1,4 +1,6 @@
 #pragma once
+#include "../Lib/Player.h"
+
 #include "SceneGameplay.h"
 #include "SceneMenu.h"
 #include <vector>
@@ -18,11 +20,12 @@ public:
 	void OnRender(int pass);
 
 	static void MyPixelShader(cpu_ps_io& io);
+	cpu_font* GetFont();
 
 private:
 	cpu_font m_font;
 	inline static App* s_pApp = nullptr;
-	Enemy* m_pEnemy;
+	
 	SceneManager m_sceneManager;
 };
 

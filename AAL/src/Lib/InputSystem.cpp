@@ -3,12 +3,6 @@
 
 #include <windows.h>
 
-InputSystem& InputSystem::GetInstance()
-{
-    static InputSystem* pInput = new InputSystem;
-    return *pInput;
-}
-
 UnorderedMap<UINT8, INT32> InputSystem::s_keyboardMap{
     { BACKSPACE,       VK_BACK     },
     { TAB,             VK_TAB      },

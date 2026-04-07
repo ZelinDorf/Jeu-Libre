@@ -4166,8 +4166,8 @@ struct is_ordered_map
         char x[2]; // NOLINT(cppcoreguidelines-avoid-c-arrays,hicpp-avoid-c-arrays,modernize-avoid-c-arrays)
     };
 
-    template <typename C> static one test( decltype(&C::capacity) ) ;
-    template <typename C> static two test(...);
+    //template <typename C> static one test( decltype(&C::capacity) ) ;
+    //template <typename C> static two test(...);
 
     enum { value = sizeof(test<T>(nullptr)) == sizeof(char) }; // NOLINT(cppcoreguidelines-pro-type-vararg,hicpp-vararg)
 };
@@ -7887,46 +7887,11 @@ class lexer : public lexer_base<BasicJsonType>
                 }
             }
 
-            // multi-line comments skip input until */ is read
-            case '*':
-            {
-                while (true)
-                {
-                    switch (get())
-                    {
-                        case char_traits<char_type>::eof():
-                        case '\0':
-                        {
-                            error_message = "invalid comment; missing closing '*/'";
-                            return false;
-                        }
-
-                        case '*':
-                        {
-                            switch (get())
-                            {
-                                case '/':
-                                    return true;
-
-                                default:
-                                {
-                                    unget();
-                                    continue;
-                                }
-                            }
-                        }
-
-                        default:
-                            continue;
-                    }
-                }
-            }
-
             // unexpected character after reading '/'
             default:
             {
-                error_message = "invalid comment; expecting '/' or '*' after '/'";
-                return false;
+                //error_message = "invalid comment; expecting '/' or '*' after '/'";
+                //return false;
             }
         }
     }
@@ -24296,8 +24261,8 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
     static std::vector<std::uint8_t> to_cbor(const basic_json& j)
     {
         std::vector<std::uint8_t> result;
-        to_cbor(j, result);
-        return result;
+        //to_cbor(j, result);
+        //return result;
     }
 
     /// @brief create a CBOR serialization of a given JSON value

@@ -65,8 +65,6 @@ class InputSystem
 {
 public:
 
-    static InputSystem& GetInstance();
-
     InputSystem() = default;
     ~InputSystem() = default;
 
@@ -105,3 +103,5 @@ private:
 
     void Update(float _dt);
 };
+
+//define for all functions todo

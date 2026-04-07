@@ -56,5 +56,14 @@ void SceneManager::Init()
 { 
 	Scene* scene = new SceneJSON();
 	m_scenes.push_back(scene);
+	
+	Scene* sceneGameplay = new SceneGameplay();
+	m_scenes.push_back(sceneGameplay);
+
+	Scene* sceneMenu = new SceneMenu();
+	m_scenes.push_back(sceneMenu);
+
+	Scene* sceneGameMenu = new SceneGameMenu();
+	m_scenes.push_back(sceneGameMenu);
 }
 

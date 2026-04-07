@@ -1,5 +1,7 @@
 #pragma once
 #include "Scene.h"
+#include "Player.h"
+#include "ChunkManager.h"
 
 class SceneGameplay : public Scene
 {
@@ -10,6 +12,9 @@ public:
 	void Update(float dt) override;
 
 private:
-	Enemy* m_pEnemy;
+	Enemy* m_pEnemy = nullptr;
+	ChunkManager* m_pChunkManager = nullptr;
+
+	Player* mPlayer = nullptr;
 };
 

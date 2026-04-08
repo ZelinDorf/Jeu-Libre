@@ -28,7 +28,6 @@ void Player::Init(int _class)
 	m_crouchedSpeed *= m_speed;
 
 	s_pInstance->m_entityType = PLAYER;
-
 	//mAttackRefreshDuration = mCurrentWeapon->GetBasicAttackRefreshTime();
 
 	m_playerClass = _class;

@@ -7,7 +7,7 @@ class Player : public AALentity
 private:
 	inline static Player* s_pInstance = nullptr;
 
-	inline static XMFLOAT3 m_position = {0.0f,0.0f,0.0f};
+	inline static XMFLOAT3 m_position = {80.0f,0.0f,80.0f};
 
 	inline static float m_playerSize = 0.5f;
 

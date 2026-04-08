@@ -57,7 +57,6 @@ void Enemy::Assemble(EnemiesList type, Enemy* enemy)
 
 	case EnemiesList::CINUT:
 		JSON_OBJ(JSON_PATH"invertFox.json", nullptr, m_pEntity);
-
 		break;
 	default:
 		break;
@@ -160,6 +159,14 @@ void Enemy::ChangeStats(Vector<StatsEnum> e, Vector<float> value)
 		default:
 			break;
 		}
+	}
+}
+
+void Enemy::Death()
+{
+	if (m_currentHealth <= 0)
+	{
+		Destroy();
 	}
 }
 

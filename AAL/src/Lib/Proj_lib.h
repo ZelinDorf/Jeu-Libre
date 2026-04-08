@@ -15,6 +15,7 @@ using json									= nlohmann::json;
 //////////
 #define TO_COLOR							cpu::ToColor
 #define CAMERA								cpuEngine.GetCamera()
+#define JSON_OBJ							JsonObj::JsonLoader
 
 //	singleton
 //////////////

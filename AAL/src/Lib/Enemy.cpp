@@ -11,12 +11,12 @@ Enemy::~Enemy()
 	Destroy();
 }
 
-void Enemy::Create(cpu_mesh* pMesh, cpu_material* pMaterial)
-{
-	m_pEntity = cpuEngine.CreateEntity();
-	m_pEntity->pMesh = pMesh;
-	m_pEntity->pMaterial = pMaterial;
-}
+//void Enemy::Create(cpu_mesh* pMesh, cpu_material* pMaterial)
+//{
+//	/*m_pEntity = cpuEngine.CreateEntity();
+//	m_pEntity->pMesh = pMesh;
+//	m_pEntity->pMaterial = pMaterial;*/
+//}
 
 void Enemy::Destroy()
 {
@@ -35,24 +35,29 @@ void Enemy::Assemble(EnemiesList type, Enemy* enemy)
 	{
 	case EnemiesList::SKELETAL_GRUNT:
 
-		m_meshEnemy.CreateSpaceship();
-		m_materialEnemy.color = cpu::ToColor(col1, col2, col3);
-		enemy->Create(&m_meshEnemy, &m_materialEnemy);
+		//m_meshEnemy.CreateSpaceship();
+		//m_materialEnemy.color = cpu::ToColor(col1, col2, col3);
+		//enemy->Create(&m_meshEnemy, &m_materialEnemy);
 
-		// give entitytype for aalEntity logic later
-		enemy->m_entityType = ENEMY;
+		//// give entitytype for aalEntity logic later
+		//enemy->m_entityType = ENEMY;
 
 		break;
 
 	case EnemiesList::SKELETAL_MAGE:
-		m_meshEnemy.CreateCube(.5f);
+		/*m_meshEnemy.CreateCube(.5f);
 		m_materialEnemy.color = cpu::ToColor(col1, col2, col3);
 		enemy->Create(&m_meshEnemy, &m_materialEnemy);
 
-		enemy->GetEntity()->transform.SetPosition(2, 0, 0);
+		enemy->GetEntity()->transform.SetPosition(2, 0, 0);*/
 		break;
 
 	case EnemiesList::SKELETAL_ARCHER:
+		break;
+
+	case EnemiesList::CINUT:
+		JSON_OBJ(JSON_PATH"invertFox.json", nullptr, m_pEntity);
+
 		break;
 	default:
 		break;

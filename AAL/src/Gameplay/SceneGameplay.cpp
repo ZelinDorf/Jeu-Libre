@@ -18,7 +18,7 @@ SceneGameplay::SceneGameplay()
 
 
 	m_pEnemy = new Enemy;
-	m_pEnemy->Assemble(SKELETAL_GRUNT, m_pEnemy);
+	m_pEnemy->Assemble(CINUT, m_pEnemy);
 	m_entities.push_back(m_pEnemy);
 
 	mPlayer = new Player();

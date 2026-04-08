@@ -12,9 +12,13 @@ void Chunk::Init()
 
 	JsonObj::JsonLoader(JSON_PATH"rockyGround.json", nullptr, m_pEntity);
 
-	m_pEntity->transform.SetPitch(XMConvertToRadians(90.f));
+	//m_pEntity->transform.SetPitch(XMConvertToRadians(90.f));
 
+	//m_pEntity->transform.SetScaling(m_scale);
 	m_pEntity->transform.Scale(m_scale);
+
+	/*std::cout << m_pEntity->transform.sca.x << "||" << m_pEntity->transform.sca.z << "||" << m_biome << std::endl;
+	std::cout << m_pEntity->transform.pos.x << "||" << m_pEntity->transform.pos.z << "||" << m_biome << std::endl;*/
 }
 
 void Chunk::Init(Biomes _biome)
@@ -79,6 +83,8 @@ void Chunk::SetBiome(Biomes _biome)
 void Chunk::SetPos(XMFLOAT3 _pos)
 {
 	m_pEntity->transform.pos = _pos;
+
+	//std::cout << m_pEntity->transform.pos.x << "||" << m_pEntity->transform.pos.z << "||" << m_biome << std::endl;
 }
 
 void Chunk::Update(float _dt)

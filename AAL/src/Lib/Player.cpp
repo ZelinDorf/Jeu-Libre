@@ -183,10 +183,7 @@ void Player::UpdateCamera()
 	cpuEngine.GetCamera()->transform.pos = m_pEntity->transform.pos;
 	cpuEngine.GetCamera()->transform.pos.y += 2.f;
 
-	/*cpuEngine.GetCamera()->transform.pos.x += cpuEngine.GetCamera()->transform.dir.x*5.f;
-	cpuEngine.GetCamera()->transform.pos.z += cpuEngine.GetCamera()->transform.dir.z*5.f;
-
-	cpuEngine.GetCamera()->transform.Move(-2);*/
+	cpuEngine.GetCamera()->transform.Move(-2);
 }
 
 void Player::MouseInput()

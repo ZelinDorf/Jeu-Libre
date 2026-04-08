@@ -7,7 +7,7 @@ SceneGameplay::SceneGameplay()
 	//!\ ORDER FOR Z-INDEX /!\\
 	// needs UIWrapper
 
-	chunkManager->InitMap(3.f);
+	chunkManager->InitMap(10.f);
 
 	Vector<Chunk*> chunks = chunkManager->GetMap();
 	

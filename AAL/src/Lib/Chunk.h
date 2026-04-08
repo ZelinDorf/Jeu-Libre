@@ -3,11 +3,11 @@
 
 enum Biomes
 {
+	DIRT,
+	ROCKY,
 	PLAIN,
-	SAVANNA,
-	TAIGA,
-	DESERT,
-	SNOWY_PLAIN
+
+	BIOME_COUNT
 };
 
 class Chunk : public AALentity
@@ -15,8 +15,7 @@ class Chunk : public AALentity
 public:
 	~Chunk();
 
-	virtual void Init();
-	virtual void Init(Biomes _biome);
+	virtual void Init(Biomes _biome = DIRT);
 
 	virtual void Delete();
 

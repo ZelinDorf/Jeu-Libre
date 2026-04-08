@@ -66,10 +66,10 @@ void Enemy::Assemble(EnemiesList type, Enemy* enemy)
 
 void Enemy::Update(float dt)
 {
-	XMFLOAT3 camPos = cpuEngine.GetCamera()->transform.pos;
+	XMFLOAT3 camPos = CAMERA->transform.pos;
 
 	m_pEntity->transform.Move(dt);
-	m_pEntity->transform.LookAt(camPos.x, camPos.y, camPos.z);
+	m_pEntity->transform.LookAt(camPos.x, camPos.y - 2, camPos.z);
 }
 
 // fonctions tochange the statistic of the enemies

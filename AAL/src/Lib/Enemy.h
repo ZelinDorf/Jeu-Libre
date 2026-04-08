@@ -10,7 +10,7 @@ public:
 	float m_maxHealth = 10.f;
 	float m_damage = 1.f;
 	float m_armor = 0.f;
-	float m_speed = 1.f;
+	float m_speed = 0.f;
 	float m_cost = 10.f;
 	float m_atkSpeed = 1.f;
 	float m_xpDrop = 1.0f;

@@ -6,13 +6,13 @@ enum EntityType
 {
 	NO_ENTITY,
 
-
+//  -[ ENTITIES ]-  //
 	WORLD_OBJECT,
 	PLAYER,
 	ENEMY,
 	PROJECTILE,
 
-//	-[  U I  ]-   //
+// 	-[  UI  ]-   //
 
 	TITLE,
 	START, OPTION, QUIT,

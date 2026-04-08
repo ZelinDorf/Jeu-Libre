@@ -22,6 +22,6 @@ private:
 	Enemy* m_pEnemy = nullptr;
 	ChunkManager* m_pChunkManager = nullptr;
 
-	Player* mPlayer = nullptr;
+	Player* m_pPlayer = nullptr;
 };
 

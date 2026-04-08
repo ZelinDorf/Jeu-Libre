@@ -4,10 +4,7 @@
 
 SceneGameplay::SceneGameplay()
 {
-	//!\ ORDER FOR Z-INDEX /!\\
-	// needs UIWrapper
-
-	chunkManager->InitMap(3.f);
+	chunkManager->InitMap(10.f);
 
 	Vector<Chunk*> chunks = chunkManager->GetMap();
 	
@@ -18,6 +15,7 @@ SceneGameplay::SceneGameplay()
 
 	Player* player = new Player();
 	player->Init(0);
+	m_pPlayer = player;
 
 	m_entities.push_back(player);
 }
@@ -55,10 +53,11 @@ bool SceneGameplay::Spawning(EnemiesList type, XMFLOAT3 pos)
 void SceneGameplay::Creditcheck(float dt)
 {
 	m_credits++;
-	if (m_credits > 100) {
+	if (m_credits > 50 && m_entities.size() < 105) {
 		// enough credits to spawn
 		m_credits = 0.0f;
 		Spawning(CINUT, RandPos());
+
 	}
 }
 
@@ -105,7 +104,7 @@ XMFLOAT3 SceneGameplay::RandPos()
 	random_integer2 = lowest2 + int(range2 * rand() / (RAND_MAX + 1.0));
 
 
-	float x = mPlayer->GetPosition().x + random_integer * random_integer2;
+	float x = m_pPlayer->GetPosition().x + random_integer * random_integer2;
 
 	random_integer;
 	lowest = 5, highest = 10;
@@ -117,8 +116,8 @@ XMFLOAT3 SceneGameplay::RandPos()
 	range2 = (highest2 - lowest2) + 1;
 	random_integer2 = lowest2 + int(range2 * rand() / (RAND_MAX + 1.0));
 
-	float z = mPlayer->GetPosition().z + random_integer * random_integer2;
-	return {x, mPlayer->GetPosition().y + 2, z};
+	float z = m_pPlayer->GetPosition().z + random_integer * random_integer2;
+	return {x, m_pPlayer->GetPosition().y , z};
 }
 
 

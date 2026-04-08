@@ -41,11 +41,11 @@ void Player::Update(float dt)
 	m_weapon1->SetPosition(m_position);
 	m_weapon2->SetPosition(m_position);
 
-	XMFLOAT3 m_camPos = XMFLOAT3(m_position.x + 2.f, m_position.y + 2.f, m_position.z - 4.f);
+	//XMFLOAT3 m_camPos = XMFLOAT3(m_position.x + 2.f, m_position.y + 2.f, m_position.z - 4.f);
 	//cpuEngine.GetCamera()->transform.SetYPR(0.f, .2f, 0.f);
-	cpuEngine.GetCamera()->transform.pos = m_camPos;
+	//cpuEngine.GetCamera()->transform.pos = m_camPos;
 
-	m_pEntity->transform.dir = cpuEngine.GetCamera()->transform.dir;
+	//m_pEntity->transform.dir = cpuEngine.GetCamera()->transform.dir;
 	//SetWeaponDirection();
 
 	HandleInput(dt);
@@ -61,18 +61,14 @@ void Player::HandleInput(float dt)
 		return;
 
 	InputSystem::LockMouseCursor();
-	//InputSystem::HideMouseCursor();
+	InputSystem::HideMouseCursor();
 
-	if (InputSystem::IsKeyDown(N))
-		MouseInput();
+	m_center = { cpuEngine.GetWindow()->GetWidth() / 2.f, cpuEngine.GetWindow()->GetHeight() / 2.f };
 
-	
+	UpdateCamera();
 
-	
+	m_pEntity->transform.dir = cpuEngine.GetCamera()->transform.dir;
 
-	cpuEngine.GetCamera()->transform.AddYPR(m_mousePosition.x - m_currentMousePosition.x, m_mousePosition.y - m_currentMousePosition.y);
-
-	m_currentMousePosition = m_mousePosition;
 
 
 	if (InputSystem::IsKeyPressed(Z))
@@ -84,13 +80,12 @@ void Player::HandleInput(float dt)
 	if (InputSystem::IsKeyPressed(D))
 		StrafeRight(dt);
 
-	if (InputSystem::IsKeyPressed(C))
+	/*if (InputSystem::IsKeyPressed(C))
 		cpuEngine.GetCamera()->transform.AddYPR(-1.5f * dt);
 	if (InputSystem::IsKeyPressed(V))
-		cpuEngine.GetCamera()->transform.AddYPR(+1.5f * dt);
+		cpuEngine.GetCamera()->transform.AddYPR(+1.5f * dt);*/
 
 
-	XMFLOAT3 m_camOffset = XMFLOAT3(2.f * cpuEngine.GetCamera()->transform.dir.x, 0.f, 4.f * cpuEngine.GetCamera()->transform.dir.z);
 	if (InputSystem::IsKeyDown(T))
 
 
@@ -165,9 +160,37 @@ XMFLOAT3 Player::GetPosition()
 	return m_position;
 }
 
+void Player::UpdateCamera()
+{
+	//InputSystem::HideMouseCursor();
+
+	XMINT2 mousePos = InputSystem::GetMousePosition();
+
+	float deltaX = mousePos.x - m_center.x;
+	float deltaY = mousePos.y - m_center.y;
+
+	m_yaw += deltaX * m_sensivity;
+	m_pitch += deltaY * m_sensivity;
+
+	if (m_pitch > 1.55) { m_pitch = 1.55; }
+	if (m_pitch < -1.55) { m_pitch = -1.55; }
+
+	
+	cpuEngine.GetCamera()->transform.SetYPR(m_yaw, m_pitch);
+
+	InputSystem::SetMousePosition({ cpuEngine.GetWindow()->GetWidth() / 2, cpuEngine.GetWindow()->GetHeight() / 2 });
+
+	cpuEngine.GetCamera()->transform.pos = m_pEntity->transform.pos;
+	cpuEngine.GetCamera()->transform.pos.y += 2.f;
+
+	/*cpuEngine.GetCamera()->transform.pos.x += cpuEngine.GetCamera()->transform.dir.x*5.f;
+	cpuEngine.GetCamera()->transform.pos.z += cpuEngine.GetCamera()->transform.dir.z*5.f;
+
+	cpuEngine.GetCamera()->transform.Move(-2);*/
+}
+
 void Player::MouseInput()
 {
-	m_mousePosition = InputSystem::GetMousePosition();
 }
 
 void Player::MoveForward(float dt)

@@ -9,7 +9,11 @@ private:
 
 	XMFLOAT3 m_position;
 
-	XMINT2 m_mousePosition;
+	float m_yaw;
+	float m_pitch;
+	float m_sensivity = 0.01f;
+
+	XMFLOAT2 m_center;
 
 	XMINT2 m_currentMousePosition;
 
@@ -21,6 +25,8 @@ private:
 
 	float m_attackRefreshing = 0.f;
 	float m_attackRefreshDuration;
+
+	void UpdateCamera();
 
 	void MouseInput();
 

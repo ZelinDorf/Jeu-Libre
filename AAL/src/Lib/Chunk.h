@@ -1,6 +1,8 @@
 #pragma once
 #include "pch.h"
 
+#define ChunkSize 16.f
+
 enum Biomes
 {
 	DIRT,
@@ -27,9 +29,7 @@ public:
 	void Update(float _dt) override;
 
 private:
-	float m_scale = 16.0f;
+	float m_scale = ChunkSize;
 
 	int m_biome = -1;
-
-	cpu_mesh* m_mesh;
 };

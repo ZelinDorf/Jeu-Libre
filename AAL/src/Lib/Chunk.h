@@ -32,7 +32,5 @@ private:
 
 	int m_biome = -1;
 
-	cpu_mesh m_mesh;
-	cpu_material m_mat;
-	//texture?
+	cpu_mesh* m_mesh;
 };

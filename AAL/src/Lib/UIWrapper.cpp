@@ -1,10 +1,10 @@
 #include "pch.h"
 
 #include "UIWrapper.h"
-#include "App.h"
+//#include "App.h"
 #include <iostream>
 #include "AALEntity.h"
-#include "TextureRegister.h"
+//#include "TextureRegister.h"
 #include "Scene.h"
 
 
@@ -13,7 +13,7 @@ std::unordered_map<cpu_texture*, uint16_t> UIWrapper::m_mapTextureUsage;
 
 UIWrapper::UIWrapper(EntityType ui)
 {
-	m_pTexture = TextureRegister::GetTexture(ui);
+	m_pTexture = RessourcesManager::CreateUI(ui);
 
 	m_pSprite = cpuEngine.CreateSprite();
 	m_pSprite->pTexture = m_pTexture;

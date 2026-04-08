@@ -25,6 +25,23 @@ enum EntityType
 ////////////////////
 };
 
+inline static Map<EntityType, String> _mTypeString = {
+	{TITLE, "Title"},
+	{START, "Start"},
+	{OPTION, "Option"},
+	{QUIT, "Quit"},
+
+	{BASE_CARD, "Base_Card"},
+	{WEAPONS_CARD, "Weapon_Card"},
+	{WARRIOR_CARD, "Warrior_Card"},
+	{ROGUE_CARD, "Rogue_Card"},
+	{MAGE_CARD, "Mage_Card"},
+
+	{SWORD_CARD, "Sword_Card"},
+	{STAFF_CARD, "Staff_Card"},
+	{BOW_CARD, "Bow_Card"},
+};
+
 class AALentity
 {
 public:

@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "Scene.h"
-#include "Gameplay/UIWrapper.h"
 
 Scene::Scene()
 {

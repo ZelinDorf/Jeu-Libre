@@ -1,11 +1,10 @@
 #include "pch.h"
 #include "SceneManager.h"
-
-
+#include "Sandbox/SceneJSON.h"
 
 SceneManager::SceneManager()
 {
-	Init();
+	Init();//faire en template pour init plus simple depuis la scene direct???????
 }
 
 SceneManager::~SceneManager()
@@ -54,7 +53,10 @@ void SceneManager::Destroy()
 }
 
 void SceneManager::Init()
-{ 
+{
+	/*Scene* scene = new SceneJSON();
+	m_scenes.push_back(scene);*/
+
 	Scene* sceneGameplay = new SceneGameplay();
 	m_scenes.push_back(sceneGameplay);
 
@@ -62,6 +64,7 @@ void SceneManager::Init()
 	m_scenes.push_back(sceneMenu);
 
 	Scene* sceneGameMenu = new SceneGameMenu();
-	m_scenes.push_back(sceneGameMenu);
+	m_scenes.push_back(sceneGameMenu);	
+	
 }
 

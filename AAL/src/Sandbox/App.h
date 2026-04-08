@@ -18,5 +18,6 @@ public:
 private:
 	inline static App* s_pApp = nullptr;
 
-	ChunkManager* m_pChunkManager;
+	SceneManager* m_pSM = nullptr;
+	ChunkManager* m_pCM = nullptr;
 };

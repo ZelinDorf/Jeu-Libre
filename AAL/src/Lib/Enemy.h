@@ -21,18 +21,18 @@ public:
 	int m_id = -1;
 
 	Enemy* m_pEnemy = nullptr;
-
-
 protected:
+	/*
 	cpu_mesh m_meshEnemy;
 	cpu_material m_materialEnemy;
+	*/
 
 public:
 
 	Enemy();
 	~Enemy();
 
-	void Create(cpu_mesh* pMesh, cpu_material* pMaterial);
+	//void Create(cpu_mesh* pMesh, cpu_material* pMaterial);
 	void Destroy();
 
 	void Assemble(EnemiesList type, Enemy* enemy);

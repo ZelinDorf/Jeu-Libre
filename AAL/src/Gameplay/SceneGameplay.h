@@ -13,7 +13,7 @@ public:
 
 	bool Spawning(EnemiesList type=SKELETAL_GRUNT, XMFLOAT3 pos={0,0,0});
 	void Creditcheck(float dt);
-	void MoveEnemiesApart();
+	void MoveEnemiesApart(float dt);
 
 	XMFLOAT3 RandPos();
 

@@ -3,6 +3,11 @@
 #include "InputSystem.h"
 
 
+Player::Player()
+{
+	s_pInstance = this;
+}
+
 Player::~Player()
 {
 	Destroy();
@@ -13,18 +18,16 @@ void Player::Init(int _class)
 	
 	//cpuEngine.GetCamera()->transform.SetYPR(0.f, 1.570796f, 0.f);
 
-	m_pEntity = cpuEngine.CreateEntity();
-	m_meshPlayer.CreateSphere(m_playerSize, 20, 20, CPU_WHITE, CPU_WHITE);
-	m_pEntity->pMesh = &m_meshPlayer;
-	m_pEntity->transform.pos = m_position;
-	m_pEntity->transform.SetYPR(0.0f, 0.0f, 0.0f);
-	
+	s_pInstance->m_pEntity = cpuEngine.CreateEntity();
+	s_pInstance->m_meshPlayer.CreateSphere(m_playerSize, 20, 20, CPU_WHITE, CPU_WHITE);
+	s_pInstance->m_pEntity->pMesh = &s_pInstance->m_meshPlayer;
+	s_pInstance->m_pEntity->transform.SetPosition(m_position);
+	s_pInstance->m_pEntity->transform.SetYPR(0.0f, 0.0f, 0.0f);
 
-	m_position = XMFLOAT3(0.0f, 0.0f, 0.0f);
 	m_speed = m_baseSpeed;
 	m_crouchedSpeed *= m_speed;
 
-	m_entityType = PLAYER;
+	s_pInstance->m_entityType = PLAYER;
 
 	//mAttackRefreshDuration = mCurrentWeapon->GetBasicAttackRefreshTime();
 
@@ -108,7 +111,7 @@ void Player::HandleInput(float dt)
 
 void Player::Destroy()
 {
-	m_pEntity = cpuEngine.Release(m_pEntity);
+	s_pInstance->m_pEntity = cpuEngine.Release(s_pInstance->m_pEntity);
 }
 
 void Player::SetWeaponDirection()
@@ -116,7 +119,7 @@ void Player::SetWeaponDirection()
 	if (m_currentWeapon == nullptr)
 		return;
 
-	m_currentWeapon->SetDirection(m_pEntity->transform.dir);
+	m_currentWeapon->SetDirection(s_pInstance->m_pEntity->transform.dir);
 }
 
 void Player::SetPosition(XMFLOAT3 _position)
@@ -126,8 +129,7 @@ void Player::SetPosition(XMFLOAT3 _position)
 
 XMFLOAT3 Player::GetPosition()
 {
-	return m_position;
-	m_pEntity->transform.pos;
+	return s_pInstance->m_pEntity->transform.pos;
 }
 
 void Player::MouseInput()
@@ -136,8 +138,8 @@ void Player::MouseInput()
 
 void Player::MoveForward(float dt)
 {
-	float m_xDir = m_pEntity->transform.dir.x;
-	float m_zDir = m_pEntity->transform.dir.z;
+	float m_xDir = s_pInstance->m_pEntity->transform.dir.x;
+	float m_zDir = s_pInstance->m_pEntity->transform.dir.z;
 
 	m_position.x += m_xDir * m_speed * dt;
 	m_position.z += m_zDir * m_speed * dt;
@@ -145,8 +147,8 @@ void Player::MoveForward(float dt)
 
 void Player::MoveBackward(float dt)
 {
-	float m_xDir = m_pEntity->transform.dir.x;
-	float m_zDir = m_pEntity->transform.dir.z;
+	float m_xDir = s_pInstance->m_pEntity->transform.dir.x;
+	float m_zDir = s_pInstance->m_pEntity->transform.dir.z;
 
 	m_position.x -= m_xDir * m_speed * dt;
 	m_position.z -= m_zDir * m_speed * dt;
@@ -154,8 +156,8 @@ void Player::MoveBackward(float dt)
 
 void Player::StrafeLeft(float dt)
 {
-	float m_xDir = m_pEntity->transform.dir.x;
-	float m_zDir = m_pEntity->transform.dir.z;
+	float m_xDir = s_pInstance->m_pEntity->transform.dir.x;
+	float m_zDir = s_pInstance->m_pEntity->transform.dir.z;
 
 	m_position.x -= m_zDir * m_speed * dt;
 	m_position.z += m_xDir * m_speed * dt;
@@ -163,8 +165,8 @@ void Player::StrafeLeft(float dt)
 
 void Player::StrafeRight(float dt)
 {
-	float m_xDir = m_pEntity->transform.dir.x;
-	float m_zDir = m_pEntity->transform.dir.z;
+	float m_xDir = s_pInstance->m_pEntity->transform.dir.x;
+	float m_zDir = s_pInstance->m_pEntity->transform.dir.z;
 
 	m_position.x += m_zDir * m_speed * dt;
 	m_position.z -= m_xDir * m_speed * dt;

@@ -7,15 +7,15 @@ class Enemy : public AALentity
 {
 public:
 	// Enemy Base Stats
-	float m_maxHealth = 0.f;
-	float m_damage = 0.f;
+	float m_maxHealth = 10.f;
+	float m_damage = 1.f;
 	float m_armor = 0.f;
-	float m_speed = 0.f;
-	float m_cost = 0.f;
-	float m_atkSpeed = 0.f;
-	float m_xpDrop = 0.0f;
+	float m_speed = 1.f;
+	float m_cost = 10.f;
+	float m_atkSpeed = 1.f;
+	float m_xpDrop = 1.0f;
 
-	float m_currentHealth = 1.0f;
+	float m_currentHealth = 10.0f;
 
 	//enemy id
 	int m_id = -1;

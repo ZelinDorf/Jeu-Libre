@@ -5,105 +5,150 @@ void Weapon::Init(int _type, int _playerClass)
 {
     if (_type == _playerClass)
     {
-        mHeroWeapon->Init(_type);
-        mIsHeroWeapon = true;
+        m_heroWeapon = new HeroWeapon();
+        m_heroWeapon->Init(_type);
+        m_isHeroWeapon = true;
 
-        mPulloutTime = mHeroWeapon->GetPulloutTime();
-        mBasicAttackRefreshTime = mHeroWeapon->GetBasicAttackRefreshTime();
-        mSpecialAttackRefreshTime = mHeroWeapon->GetSpecialAttackRefreshTime();
+        m_pulloutTime = m_heroWeapon->GetPulloutTime();
+        m_basicAttackRefreshTime = m_heroWeapon->GetBasicAttackRefreshTime();
+        m_specialAttackRefreshTime = m_heroWeapon->GetSpecialAttackRefreshTime();
     }
     else
     {
-        mGenericWeapon->Init(_type);
-        mIsHeroWeapon = false;
+        m_genericWeapon = new GenericWeapon();
+        m_genericWeapon->Init(_type);
+        m_isHeroWeapon = false;
 
-        mPulloutTime = mGenericWeapon->GetPulloutTime();
-        mBasicAttackRefreshTime = mGenericWeapon->GetBasicAttackRefreshTime();
-        mSpecialAttackRefreshTime = mGenericWeapon->GetSpecialAttackRefreshTime();
+        m_pulloutTime = m_genericWeapon->GetPulloutTime();
+        m_basicAttackRefreshTime = m_genericWeapon->GetBasicAttackRefreshTime();
+        m_specialAttackRefreshTime = m_genericWeapon->GetSpecialAttackRefreshTime();
     }
 
-    mWeaponType = _type;
+    m_weaponType = _type;
 }
 
 void Weapon::Update(float dt)
 {
-    if (mIsHeroWeapon == true)
+    if (m_isHeroWeapon == true)
     {
-        mHeroWeapon->Update(dt);
+        m_heroWeapon->Update(dt);
     }
     else
     {
-        mGenericWeapon->Update(dt);
+        m_genericWeapon->Update(dt);
+    }
+}
+
+void Weapon::Equip()
+{
+    m_isEquiped = true;
+
+    if (m_isHeroWeapon == true)
+    {
+        m_heroWeapon->Equip();
+    }
+    else
+    {
+        m_genericWeapon->Equip();
+    }
+}
+
+void Weapon::Unequip()
+{
+    m_isEquiped = false;
+
+    if (m_isHeroWeapon == true)
+    {
+        m_heroWeapon->Unequip();
+    }
+    else
+    {
+        m_genericWeapon->Unequip();
+    }
+}
+
+void Weapon::SetPosition(XMFLOAT3 _pos)
+{
+    //if (m_isEquiped == true)
+    {
+        if (m_isHeroWeapon == true)
+        {
+            m_heroWeapon->SetPosition(_pos);
+        }
+        else
+        {
+            m_genericWeapon->SetPosition(_pos);
+        }
     }
 }
 
 void Weapon::SetDirection(XMFLOAT3 _dir)
 {
-    if (mIsHeroWeapon == true)
+    if (m_isHeroWeapon == true)
     {
-        mHeroWeapon->SetDirection(_dir);
+        m_heroWeapon->SetDirection(_dir);
     }
     else
     {
-        mGenericWeapon->SetDirection(_dir);
+        m_genericWeapon->SetDirection(_dir);
     }
 }
 
 void Weapon::BasicAttack()
 {
-    if (mIsHeroWeapon == true)
+    if (m_isHeroWeapon == true)
     {
-        mHeroWeapon->BasicAttack();
+        m_heroWeapon->BasicAttack();
     }
     else
     {
-        mGenericWeapon->BasicAttack();
+        m_genericWeapon->BasicAttack();
     }
 }
 
 void Weapon::SpecialAttack()
 {
-    if (mIsHeroWeapon == true)
+    if (m_isHeroWeapon == true)
     {
-        mHeroWeapon->SpecialAttack();
+        m_heroWeapon->SpecialAttack();
     }
     else
     {
-        mGenericWeapon->SpecialAttack();
+        m_genericWeapon->SpecialAttack();
     }
 }
 
 float Weapon::GetPulloutTime()
 {
-    return mPulloutTime;
+    return m_pulloutTime;
 }
 
 float Weapon::GetBasicAttackDamages()
 {
-    return mBasicAttackDamages;
+    return m_basicAttackDamages;
 }
 
 float Weapon::GetSpecialAttackDamages()
 {
-    return mSpecialAttackDamages;
+    return m_specialAttackDamages;
 }
 
 float Weapon::GetBasicAttackRefreshTime()
 {
-    return mBasicAttackRefreshTime;
+    return m_basicAttackRefreshTime;
 }
 
 float Weapon::GetSpecialAttackRefreshTime()
 {
-    return mSpecialAttackRefreshTime;
+    return m_specialAttackRefreshTime;
 }
 
 float Weapon::GetSpecialAttackCooldown()
 {
-    return mSpecialAttackCooldown;
+    return m_specialAttackCooldown;
 }
 
 int Weapon::GetWeaponType()
 {
-    return mWeaponType;
+    return m_weaponType;
 }

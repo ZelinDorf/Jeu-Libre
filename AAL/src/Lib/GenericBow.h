@@ -3,19 +3,21 @@ class GenericBow
 {
 private:
 
-	int mWeaponTypeId = 1;
+	int m_weaponTypeId = 1;
 
-	XMFLOAT3 mPosition;
-	float mPulloutTime = 0.5f;
+	bool m_isEquiped;
 
-	float mShootingTime = 0.8f;
-	float mProjectileDamages;
-	float mPiercingTime = 2.0;
-	float mPiercingDamages;
-	float mPiercingCooldown;
+	XMFLOAT3 m_position;
+	float m_pulloutTime = 0.5f;
 
-	float mSize = .4f;
-	float mWidth = .2f;
+	float m_shootingTime = 0.8f;
+	float m_projectileDamages;
+	float m_piercingTime = 2.0;
+	float m_piercingDamages;
+	float m_piercingCooldown;
+
+	float m_size = .4f;
+	float m_width = .2;
 	cpu_mesh m_meshBow;
 	cpu_mesh m_meshProjectile;
 
@@ -27,6 +29,9 @@ public:
 	~GenericBow();
 	void Init();
 	void Update(float dt);
+
+	void Equip();
+	void Unequip();
 
 	XMFLOAT3 GetPosition();
 	void SetPosition(XMFLOAT3 _pos);

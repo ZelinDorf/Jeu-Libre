@@ -8,28 +8,34 @@ class GenericWeapon
 {
 private:
 
-	XMFLOAT3 mPosition;
+	XMFLOAT3 m_position;
 
-	float mPulloutTime;
+	bool m_isEquiped;
 
-	float mBasicAttackDamages;
-	float mSpecialAttackDamages;
+	float m_pulloutTime;
 
-	float mBasicAttackRefreshTime;
-	float mSpecialAttackRefreshTime;
-	float mSpecialAttackCooldown;
+	float m_basicAttackDamages;
+	float m_specialAttackDamages;
 
-	GenericSword* Sword = nullptr;;
-	GenericBow* Bow = nullptr;;
-	GenericStaff* Staff = nullptr;;
+	float m_basicAttackRefreshTime;
+	float m_specialAttackRefreshTime;
+	float m_specialAttackCooldown;
 
-	int mWeaponType=0;
+	GenericSword* m_sword;
+	GenericBow* m_bow;
+	GenericStaff* m_staff;
+
+	int m_weaponType;
 
 public:
 
 	void Init(int _type);
 	void Update(float dt);
 
+	void Equip();
+	void Unequip();
+
+	void SetPosition(XMFLOAT3 _pos);
 	void SetDirection(XMFLOAT3 _dir);
 
 	void BasicAttack();

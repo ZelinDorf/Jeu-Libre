@@ -5,125 +5,183 @@ void HeroWeapon::Init(int _type)
 {
 	if (_type == 0)
 	{
-		mWeaponType = _type;
-		Sword->Init();
-		mPulloutTime = Sword->GetPulloutTime();
-		mBasicAttackDamages = Sword->GetSwingDamages();
-		mBasicAttackRefreshTime = Sword->GetSwingTime();
+		m_sword = new HeroSword();
+		m_sword->Init();
+		m_weaponType = _type;
+		
+		m_pulloutTime = m_sword->GetPulloutTime();
+		m_basicAttackDamages = m_sword->GetSwingDamages();
+		m_basicAttackRefreshTime = m_sword->GetSwingTime();
 	}
 	if (_type == 1)
 	{
-		mWeaponType = _type;
-		Bow->Init();
-		mPulloutTime = Bow->GetPulloutTime();
-		mBasicAttackDamages = Bow->GetProjectileDamages();
-		mBasicAttackRefreshTime = Bow->GetShootingTime();
+		m_bow = new HeroBow();
+		m_bow->Init();
+		m_weaponType = _type;
+		
+		m_pulloutTime = m_bow->GetPulloutTime();
+		m_basicAttackDamages = m_bow->GetProjectileDamages();
+		m_basicAttackRefreshTime = m_bow->GetShootingTime();
 	}
 	if (_type == 2)
 	{
-		mWeaponType = _type;
-		Staff->Init();
-		mPulloutTime = Staff->GetPulloutTime();
-		mBasicAttackDamages = Staff->GetProjectileDamages();
-		mBasicAttackRefreshTime = Staff->GetShootingTime();
+		m_staff = new HeroStaff();
+		m_staff->Init();
+		m_weaponType = _type;
+
+		m_pulloutTime = m_staff->GetPulloutTime();
+		m_basicAttackDamages = m_staff->GetProjectileDamages();
+		m_basicAttackRefreshTime = m_staff->GetShootingTime();
 	}
 }
 
 void HeroWeapon::Update(float dt)
 {
-	if (mWeaponType == 0)
+	if (m_weaponType == 0)
 	{
-		Sword->Update(dt);
+		m_sword->Update(dt);
 	}
-	if (mWeaponType == 1)
+	if (m_weaponType == 1)
 	{
-		Bow->Update(dt);
+		m_bow->Update(dt);
 	}
-	if (mWeaponType == 2)
+	if (m_weaponType == 2)
 	{
-		Staff->Update(dt);
+		m_staff->Update(dt);
+	}
+}
+
+void HeroWeapon::Equip()
+{
+	m_isEquiped = true;
+
+	if (m_weaponType == 0)
+	{
+		m_sword->Equip();
+	}
+	if (m_weaponType == 1)
+	{
+		m_bow->Equip();
+	}
+	if (m_weaponType == 2)
+	{
+		m_staff->Equip();
+	}
+}
+
+void HeroWeapon::Unequip()
+{
+	m_isEquiped = false;
+
+	if (m_weaponType == 0)
+	{
+		m_sword->Unequip();
+	}
+	if (m_weaponType == 1)
+	{
+		m_bow->Unequip();
+	}
+	if (m_weaponType == 2)
+	{
+		m_staff->Unequip();
+	}
+}
+
+void HeroWeapon::SetPosition(XMFLOAT3 _pos)
+{
+	if (m_weaponType == 0)
+	{
+		m_sword->SetPosition(_pos);
+	}
+	if (m_weaponType == 1)
+	{
+		m_bow->SetPosition(_pos);
+	}
+	if (m_weaponType == 2)
+	{
+		m_staff->SetPosition(_pos);
 	}
 }
 
 void HeroWeapon::SetDirection(XMFLOAT3 _dir)
 {
-	if (mWeaponType == 0)
+	if (m_weaponType == 0)
 	{
-		Sword->SetDirection(_dir);
+		m_sword->SetDirection(_dir);
 	}
-	if (mWeaponType == 1)
+	if (m_weaponType == 1)
 	{
-		Bow->SetDirection(_dir);
+		m_bow->SetDirection(_dir);
 	}
-	if (mWeaponType == 2)
+	if (m_weaponType == 2)
 	{
-		Staff->SetDirection(_dir);
+		m_staff->SetDirection(_dir);
 	}
 }
 
 void HeroWeapon::BasicAttack()
 {
-	if (mWeaponType == 0)
+	if (m_weaponType == 0)
 	{
-		Sword->Swing();
+		m_sword->Swing();
 	}
-	if (mWeaponType == 1)
+	if (m_weaponType == 1)
 	{
-		Bow->Shoot();
+		m_bow->Shoot();
 	}
-	if (mWeaponType == 2)
+	if (m_weaponType == 2)
 	{
-		Staff->Shoot();
+		m_staff->Shoot();
 	}
 }
 
 void HeroWeapon::SpecialAttack()
 {
-	if (mWeaponType == 0)
+	if (m_weaponType == 0)
 	{
-		Sword->Pound();
+		m_sword->Pound();
 	}
-	if (mWeaponType == 1)
+	if (m_weaponType == 1)
 	{
-		Bow->Pierce();
+		m_bow->Pierce();
 	}
-	if (mWeaponType == 2)
+	if (m_weaponType == 2)
 	{
-		Staff->Puddle();
+		m_staff->Puddle();
 	}
 }
 
 float HeroWeapon::GetPulloutTime()
 {
-	return mPulloutTime;
+	return m_pulloutTime;
 }
 
 float HeroWeapon::GetBasicAttackDamages()
 {
-	return mBasicAttackDamages;
+	return m_basicAttackDamages;
 }
 
 float HeroWeapon::GetSpecialAttackDamages()
 {
-	return mSpecialAttackDamages;
+	return m_specialAttackDamages;
 }
 
 float HeroWeapon::GetBasicAttackRefreshTime()
 {
-	return mBasicAttackRefreshTime;
+	return m_basicAttackRefreshTime;
 }
 
 float HeroWeapon::GetSpecialAttackRefreshTime()
 {
-	return mSpecialAttackRefreshTime;
+	return m_specialAttackRefreshTime;
 }
 
 float HeroWeapon::GetSpecialAttackCooldown()
 {
-	return mSpecialAttackCooldown;
+	return m_specialAttackCooldown;
 }
 
 int HeroWeapon::GetWeaponType()
 {
-	return mWeaponType;
+	return m_weaponType;
 }

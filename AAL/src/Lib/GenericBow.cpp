@@ -9,9 +9,7 @@ GenericBow::~GenericBow()
 
 void GenericBow::Init()
 {
-	m_pEntity = cpuEngine.CreateEntity();
-	m_meshBow.CreateCylinder(mSize, mWidth, 5, true, true, CPU_BLUE);
-	m_pEntity->pMesh = &m_meshBow;
+	m_meshBow.CreateCylinder(m_size, m_width, 5, true, true, CPU_BLUE);
 }
 
 void GenericBow::Update(float dt)
@@ -20,18 +18,29 @@ void GenericBow::Update(float dt)
 	float m_zDir = m_pEntity->transform.dir.z;
 
 	XMFLOAT3 m_offset = XMFLOAT3(m_xDir * .5f, 0.f, m_zDir * .5f);
-	mPosition = XMFLOAT3(mPosition.x + m_offset.x, mPosition.y + m_offset.y, mPosition.z + m_offset.z);
-	m_pEntity->transform.pos = mPosition;
+	m_position = XMFLOAT3(m_position.x + m_offset.x, m_position.y + m_offset.y, m_position.z + m_offset.z);
+	m_pEntity->transform.pos = m_position;
+}
+
+void GenericBow::Equip()
+{
+	m_pEntity = cpuEngine.CreateEntity();
+	m_pEntity->pMesh = &m_meshBow;
+}
+
+void GenericBow::Unequip()
+{
+	m_pEntity = cpuEngine.Release(m_pEntity);
 }
 
 void GenericBow::SetPosition(XMFLOAT3 _pos)
 {
-	mPosition = _pos;
+	m_position = _pos;
 }
 
 XMFLOAT3 GenericBow::GetPosition()
 {
-	return mPosition;
+	return m_position;
 }
 
 void GenericBow::SetDirection(XMFLOAT3 _dir)
@@ -41,37 +50,37 @@ void GenericBow::SetDirection(XMFLOAT3 _dir)
 
 int GenericBow::GetWeaponTypeId()
 {
-	return mWeaponTypeId;
+	return m_weaponTypeId;
 }
 
 float GenericBow::GetPulloutTime()
 {
-	return mPulloutTime;
+	return m_pulloutTime;
 }
 
 float GenericBow::GetProjectileDamages()
 {
-	return mProjectileDamages;
+	return m_projectileDamages;
 }
 
 float GenericBow::GetShootingTime()
 {
-	return mShootingTime;
+	return m_shootingTime;
 }
 
 float GenericBow::GetPiercingDamages()
 {
-	return mPiercingDamages;
+	return m_piercingDamages;
 }
 
 float GenericBow::GetPiercingTime()
 {
-	return mPiercingTime;
+	return m_piercingTime;
 }
 
 float GenericBow::GetPiercingCooldown()
 {
-	return mPiercingCooldown;
+	return m_piercingCooldown;
 }
 
 void GenericBow::Shoot()
@@ -86,5 +95,5 @@ void GenericBow::Pierce()
 
 int GenericBow::GetWeaponType()
 {
-	return mWeaponTypeId;
+	return m_weaponTypeId;
 }

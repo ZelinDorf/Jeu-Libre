@@ -3,9 +3,7 @@
 
 void GenericStaff::Init()
 {
-	m_pEntity = cpuEngine.CreateEntity();
-	m_meshStaff.CreateCylinder(mSize, mWidth, 5, true, true, CPU_BLUE);
-	m_pEntity->pMesh = &m_meshStaff;
+	m_meshStaff.CreateCylinder(m_size, m_width, 5, true, true, CPU_MAGENTA);
 }
 
 void GenericStaff::Update(float dt)
@@ -14,18 +12,29 @@ void GenericStaff::Update(float dt)
 	float m_zDir = m_pEntity->transform.dir.z;
 
 	XMFLOAT3 m_offset = XMFLOAT3(m_xDir * .5f, 0.f, m_zDir * .5f);
-	mPosition = XMFLOAT3(mPosition.x + m_offset.x, mPosition.y + m_offset.y, mPosition.z + m_offset.z);
-	m_pEntity->transform.pos = mPosition;
+	m_position = XMFLOAT3(m_position.x + m_offset.x, m_position.y + m_offset.y, m_position.z + m_offset.z);
+	m_pEntity->transform.pos = m_position;
+}
+
+void GenericStaff::Equip()
+{
+	m_pEntity = cpuEngine.CreateEntity();
+	m_pEntity->pMesh = &m_meshStaff;
+}
+
+void GenericStaff::Unequip()
+{
+	m_pEntity = cpuEngine.Release(m_pEntity);
 }
 
 void GenericStaff::SetPosition(XMFLOAT3 _pos)
 {
-	mPosition = _pos;
+	m_position = _pos;
 }
 
 XMFLOAT3 GenericStaff::GetPosition()
 {
-	return mPosition;
+	return m_position;
 }
 
 void GenericStaff::SetDirection(XMFLOAT3 _dir)
@@ -35,37 +44,37 @@ void GenericStaff::SetDirection(XMFLOAT3 _dir)
 
 int GenericStaff::GetWeaponTypeId()
 {
-	return mWeaponTypeId;
+	return m_weaponTypeId;
 }
 
 float GenericStaff::GetPulloutTime()
 {
-	return mPulloutTime;
+	return m_pulloutTime;
 }
 
 float GenericStaff::GetProjectileDamages()
 {
-	return mProjectileDamages;
+	return m_projectileDamages;
 }
 
 float GenericStaff::GetShootingTime()
 {
-	return mShootingTime;
+	return m_shootingTime;
 }
 
 float GenericStaff::GetPuddleDamages()
 {
-	return mPuddleDamages;
+	return m_puddleDamages;
 }
 
 float GenericStaff::GetPuddleTime()
 {
-	return mPuddleTime;
+	return m_puddleTime;
 }
 
 float GenericStaff::GetPuddleCooldown()
 {
-	return mPuddleCooldown;
+	return m_puddleCooldown;
 }
 
 void GenericStaff::Shoot()
@@ -80,5 +89,5 @@ void GenericStaff::Puddle()
 
 int GenericStaff::GetWeaponType()
 {
-	return mWeaponTypeId;
+	return m_weaponTypeId;
 }

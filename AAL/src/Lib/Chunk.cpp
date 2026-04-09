@@ -3,7 +3,7 @@
 
 Chunk::~Chunk()
 {
-	CPU_DELPTR(m_pEntity);
+	//CPU_DELPTR(m_pEntity);
 }
 
 void Chunk::Init(Biomes _biome)

@@ -1,13 +1,19 @@
 #pragma once
+
+class Physics;
+
 enum EntityType
 {
 	NO_ENTITY,
 
+//  -[ ENTITIES ]-  //
+	WORLD_OBJECT,
 	PLAYER,
 	ENEMY,
 	PROJECTILE,
+	WEAPON,
 
-//	-[  U I  ]-   //
+// 	-[  UI  ]-   //
 
 	TITLE,
 	START, OPTION, QUIT,
@@ -44,9 +50,10 @@ public:
 	EntityType m_uiType;
 
 	cpu_entity* m_pEntity;
+	Physics* m_pPhysics;
 
 public:
-	AALentity() : m_entityType(NO_ENTITY), m_uiType(NO_ENTITY), m_pEntity(nullptr){}
+	AALentity() : m_entityType(NO_ENTITY), m_uiType(NO_ENTITY), m_pEntity(nullptr), m_pPhysics(nullptr) {}
 	
 
 	virtual void Update(float dt) = 0;

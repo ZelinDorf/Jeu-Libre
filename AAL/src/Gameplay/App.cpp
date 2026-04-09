@@ -14,7 +14,9 @@ App::App()
 
 App::~App()
 {
-
+	chunkManager->~ChunkManager();
+	//m_sceneManager.~SceneManager();
+	//m_player = nullptr;
 }
 
 void App::OnStart()
@@ -51,7 +53,6 @@ void App::OnUpdate()
 
 void App::OnExit()
 {
-
 }
 
 void App::OnRender(int pass)

@@ -3,20 +3,22 @@ class GenericSword
 {
 private:
 
-	int mWeaponTypeId = 0;
+	int m_weaponTypeId = 0;
 
-	XMFLOAT3 mPosition;
-	float mPulloutTime = 0.3f;
+	bool m_isEquiped;
 
-	float mSwingTime = 0.6f;
-	float mSwingDamages;
-	float mPoundTime = 1.0f;
-	float mPoundDamages;
-	float mPoundCooldown;
+	XMFLOAT3 m_position;
+	float m_pulloutTime = 0.3f;
+
+	float m_swingTime = 0.6f;
+	float m_swingDamages;
+	float m_poundTime = 1.0f;
+	float m_poundDamages;
+	float m_poundCooldown;
 
 
-	float mSwordSize = .5f;
-	float mSwordWidth = .1f;
+	float m_swordSize = .5f;
+	float m_swordWidth = .1;
 	cpu_mesh m_meshSword;
 
 public:
@@ -32,6 +34,9 @@ public:
 
 	void Init();
 	void Update(float dt);
+
+	void Equip();
+	void Unequip();
 
 	XMFLOAT3 GetPosition();
 	void SetPosition(XMFLOAT3 _pos);

@@ -1,7 +1,7 @@
 #pragma once
 
 enum EnemiesList {
-	SKELETAL_GRUNT,
+	SKELETAL_HEAD,
 	SKELETAL_MAGE,
 	SKELETAL_ARCHER,
 

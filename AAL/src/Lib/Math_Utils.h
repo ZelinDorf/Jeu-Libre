@@ -142,6 +142,30 @@ namespace _Math
 		return _xmfloat;
 	}*/
 
+	static float AngleBetween2XMFLT3_deg(const XMFLOAT3& _vectA, const XMFLOAT3& _vectB)
+	{
+		float angle = 0.f;
+
+		float a = ((_vectA.x * _vectB.x + _vectA.y * _vectB.y + _vectA.z * _vectB.z) / 
+			(std::sqrtf(_vectA.x * _vectA.x + _vectA.y * _vectA.y + _vectA.z * _vectA.z) * 
+			std::sqrtf(_vectB.x * _vectB.x + _vectB.y * _vectB.y + _vectB.z * _vectB.z)));
+
+		std::acosf(a);
+
+		return angle;
+	}
+
+	static float AngleBetween2XMFLT3_rad(const XMFLOAT3& _vectA, const XMFLOAT3& _vectB)
+	{
+		float angle = AngleBetween2XMFLT3_deg(_vectA, _vectB);
+
+		angle *= 0.0174533f;
+		
+		return angle;
+	}
+
+	//////////////////////////////////
+
 	static XMVECTOR ComputeNormal(FXMVECTOR p0, FXMVECTOR p1, FXMVECTOR p2)
 	{
 		XMVECTOR u = p1 - p0;

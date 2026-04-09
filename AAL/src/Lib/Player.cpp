@@ -15,12 +15,7 @@ Player::~Player()
 
 void Player::Init(int _class, int _weapon1Class, int _weapon2Class)
 {
-	s_pInstance->m_pEntity = cpuEngine.CreateEntity();
-	s_pInstance->m_meshPlayer.CreateSphere(m_playerSize, 20, 20, CPU_WHITE, CPU_WHITE);
-
-	s_pInstance->m_pEntity->pMesh = &s_pInstance->m_meshPlayer;
-	s_pInstance->m_pEntity->transform.SetPosition(m_position);
-	s_pInstance->m_pEntity->transform.SetYPR(0.0f, 0.0f, 0.0f);
+	JSON_OBJ(JSON_PATH"fox.json", nullptr, s_pInstance->m_pEntity);
 
 	m_speed = m_baseSpeed;
 	m_crouchedSpeed *= m_speed;
@@ -54,7 +49,8 @@ void Player::HandleInput(float dt)
 	m_center = { cpuEngine.GetWindow()->GetWidth() / 2.f, cpuEngine.GetWindow()->GetHeight() / 2.f };
 
 	UpdateCamera();
-	s_pInstance->m_pEntity->transform.dir = cpuEngine.GetCamera()->transform.dir;
+
+	s_pInstance->m_pEntity->transform.dir = CAMERA->transform.dir;
 
 	if (InputSystem::IsKeyPressed(Z))
 		MoveForward(dt);
@@ -152,13 +148,15 @@ void Player::UpdateCamera()
 	if (m_pitch < -1.55) { m_pitch = -1.55; }
 
 	
-	cpuEngine.GetCamera()->transform.SetYPR(m_yaw, m_pitch);
+	CAMERA->transform.SetYPR(m_yaw, m_pitch);
+	s_pInstance->m_pEntity->transform.SetYaw(m_yaw);
 
 	InputSystem::SetMousePosition({ cpuEngine.GetWindow()->GetWidth() / 2, cpuEngine.GetWindow()->GetHeight() / 2 });
 
-	cpuEngine.GetCamera()->transform.SetPosition(s_pInstance->m_pEntity->transform.pos);
-	cpuEngine.GetCamera()->transform.pos.y += 2.f;
-	CAMERA->transform.Move(-5);
+	CAMERA->transform.pos = s_pInstance->m_pEntity->transform.pos;
+	CAMERA->transform.pos.y += 2.f;
+
+	CAMERA->transform.Move(-2);
 }
 
 void Player::MouseInput()

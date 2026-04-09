@@ -20,6 +20,8 @@ public:
 	//enemy id
 	int m_id = -1;
 
+	int m_type = -1;
+
 	Enemy* m_pEnemy = nullptr;
 	cpu_material* m_pColorDmg = nullptr;
 	float m_dmgTimer = .5f;
@@ -38,7 +40,7 @@ public:
 	//void Create(cpu_mesh* pMesh, cpu_material* pMaterial);
 	void Destroy();
 
-	void Assemble(EnemiesList type, Enemy* enemy);
+	void Assemble(EnemiesList _type, Enemy* enemy);
 	void Update(float dt);
 
 	cpu_entity* GetEntity() { return m_pEntity; }

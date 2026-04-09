@@ -23,36 +23,22 @@ void Enemy::Destroy()
 	cpuEngine.Release(m_pEntity);
 }
 
-void Enemy::Assemble(EnemiesList type, Enemy* enemy)
+void Enemy::Assemble(EnemiesList _type, Enemy* enemy)
 {
+	m_type = _type;
 
-	// random color for testing
-	int col1 = rand() % (200 - 100 + 1) + 100;
-	int col2 = rand() % (200 - 100 + 1) + 100;
-	int col3 = rand() % (200 - 100 + 1) + 100;
-
-	switch (type)
+	switch (_type)
 	{
-	case EnemiesList::SKELETAL_GRUNT:
-
-		//m_meshEnemy.CreateSpaceship();
-		//m_materialEnemy.color = cpu::ToColor(col1, col2, col3);
-		//enemy->Create(&m_meshEnemy, &m_materialEnemy);
-
-		//// give entitytype for aalEntity logic later
-		//enemy->m_entityType = ENEMY;
-
+	case EnemiesList::SKELETAL_HEAD:
+		JSON_OBJ(JSON_PATH"skeleton_head.json", nullptr, m_pEntity);
 		break;
 
 	case EnemiesList::SKELETAL_MAGE:
-		/*m_meshEnemy.CreateCube(.5f);
-		m_materialEnemy.color = cpu::ToColor(col1, col2, col3);
-		enemy->Create(&m_meshEnemy, &m_materialEnemy);
-
-		enemy->GetEntity()->transform.SetPosition(2, 0, 0);*/
+		//TODO
 		break;
 
 	case EnemiesList::SKELETAL_ARCHER:
+		//TODO
 		break;
 
 	case EnemiesList::CINUT:
@@ -70,7 +56,25 @@ void Enemy::Update(float dt)
 	if (m_dmgTimer <= 0.0f)
 	{
 		m_dmgTimer == .5f;
-		m_pEntity->pMaterial = RessourcesManager::GetMatWithName("inverted_fox.png");
+
+		switch (m_type)
+		{
+		case EnemiesList::SKELETAL_HEAD:
+			m_pEntity->pMaterial = RessourcesManager::GetMatWithName("skeleton_head.png");//probleme sur l'update des enemy dead
+			break;
+		case EnemiesList::SKELETAL_MAGE:
+			//TODO
+			break;
+		case EnemiesList::SKELETAL_ARCHER:
+			//TODO
+			break;
+		case EnemiesList::CINUT:
+			m_pEntity->pMaterial = RessourcesManager::GetMatWithName("inverted_fox.png");
+			break;
+		default:
+			break;
+		}
+		//m_pEntity->pMaterial = RessourcesManager::GetMatWithName("inverted_fox.png");
 	}
 	else if(m_pEntity->pMaterial == m_pColorDmg)
 	{

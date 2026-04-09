@@ -64,7 +64,10 @@ void SceneGameplay::Creditcheck(float dt)
 	if (m_credits > 100 && m_enemies.size() < 100) {
 		// enough credits to spawn
 		m_credits = 0.0f;
+
+
 		Spawning(CINUT, RandPos());
+		Spawning(SKELETAL_HEAD, RandPos());
 	}
 }
 

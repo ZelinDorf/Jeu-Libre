@@ -11,6 +11,7 @@ enum EntityType
 	PLAYER,
 	ENEMY,
 	PROJECTILE,
+	WEAPON,
 
 // 	-[  UI  ]-   //
 

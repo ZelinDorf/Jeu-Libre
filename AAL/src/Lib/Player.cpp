@@ -13,7 +13,7 @@ Player::~Player()
 	Destroy();
 }
 
-void Player::Init(int _class)
+void Player::Init(int _class, int _weapon1Class, int _weapon2Class)
 {
 	
 	//cpuEngine.GetCamera()->transform.SetYPR(0.f, 1.570796f, 0.f);
@@ -32,21 +32,36 @@ void Player::Init(int _class)
 
 	m_playerClass = _class;
 
+	m_weapon1 = new Weapon();
+	m_weapon1->Init(_weapon1Class, m_playerClass);
+	m_weapon1->Equip();
+
+	m_weapon2 = new Weapon();
+	m_weapon2->Init(_weapon2Class, m_playerClass);
+
+	m_currentWeapon = 1;
+
 }
 
 void Player::Update(float dt)
 {
 	m_pEntity->transform.pos = m_position;
 
-	XMFLOAT3 m_camPos = XMFLOAT3(m_position.x + 2.f, m_position.y + 2.f, m_position.z - 4.f);
-	//cpuEngine.GetCamera()->transform.SetYPR(0.f, .2f, 0.f);
-	cpuEngine.GetCamera()->transform.pos = m_camPos;
+	m_weapon1->SetPosition(m_position);
+	m_weapon2->SetPosition(m_position);
 
-	m_pEntity->transform.dir = cpuEngine.GetCamera()->transform.dir;
-	SetWeaponDirection();
+	//XMFLOAT3 m_camPos = XMFLOAT3(m_position.x + 2.f, m_position.y + 2.f, m_position.z - 4.f);
+	//cpuEngine.GetCamera()->transform.SetYPR(0.f, .2f, 0.f);
+	//cpuEngine.GetCamera()->transform.pos = m_camPos;
+
+	//m_pEntity->transform.dir = cpuEngine.GetCamera()->transform.dir;
+	//SetWeaponDirection();
 
 	HandleInput(dt);
 	RefreshAttack(dt);
+	WeaponEquiped(dt);
+
+	
 }
 
 void Player::HandleInput(float dt)
@@ -55,6 +70,15 @@ void Player::HandleInput(float dt)
 		return;
 
 	InputSystem::LockMouseCursor();
+	InputSystem::HideMouseCursor();
+
+	m_center = { cpuEngine.GetWindow()->GetWidth() / 2.f, cpuEngine.GetWindow()->GetHeight() / 2.f };
+
+	UpdateCamera();
+
+	m_pEntity->transform.dir = cpuEngine.GetCamera()->transform.dir;
+
+
 
 	if (InputSystem::IsKeyPressed(Z))
 		MoveForward(dt);
@@ -65,13 +89,12 @@ void Player::HandleInput(float dt)
 	if (InputSystem::IsKeyPressed(D))
 		StrafeRight(dt);
 
-	if (InputSystem::IsKeyPressed(C))
+	/*if (InputSystem::IsKeyPressed(C))
 		cpuEngine.GetCamera()->transform.AddYPR(-1.5f * dt);
 	if (InputSystem::IsKeyPressed(V))
-		cpuEngine.GetCamera()->transform.AddYPR(+1.5f * dt);
+		cpuEngine.GetCamera()->transform.AddYPR(+1.5f * dt);*/
 
 
-	XMFLOAT3 m_camOffset = XMFLOAT3(2.f * cpuEngine.GetCamera()->transform.dir.x, 0.f, 4.f * cpuEngine.GetCamera()->transform.dir.z);
 	if (InputSystem::IsKeyDown(T))
 
 
@@ -113,12 +136,27 @@ void Player::Destroy()
 	s_pInstance->m_pEntity = cpuEngine.Release(s_pInstance->m_pEntity);
 }
 
+Weapon* Player::GetWeapon(int _weapon)
+{
+	if (_weapon == 1)
+	{
+		return m_weapon1;
+	}
+	else if (_weapon == 2)
+	{
+		return m_weapon2;
+	}
+}
+
 void Player::SetWeaponDirection()
 {
-	if (m_currentWeapon == nullptr)
+	if (m_currentWeapon == 0)
 		return;
 
-	m_currentWeapon->SetDirection(s_pInstance->m_pEntity->transform.dir);
+	if (m_currentWeapon == 1)
+		m_weapon1->SetDirection(m_pEntity->transform.dir);
+	if (m_currentWeapon == 2)
+		m_weapon2->SetDirection(m_pEntity->transform.dir);
 }
 
 void Player::SetPosition(XMFLOAT3 _position)
@@ -129,6 +167,32 @@ void Player::SetPosition(XMFLOAT3 _position)
 XMFLOAT3 Player::GetPosition()
 {
 	return s_pInstance->m_pEntity->transform.pos;
+}
+
+void Player::UpdateCamera()
+{
+	//InputSystem::HideMouseCursor();
+
+	XMINT2 mousePos = InputSystem::GetMousePosition();
+
+	float deltaX = mousePos.x - m_center.x;
+	float deltaY = mousePos.y - m_center.y;
+
+	m_yaw += deltaX * m_sensivity;
+	m_pitch += deltaY * m_sensivity;
+
+	if (m_pitch > 1.55) { m_pitch = 1.55; }
+	if (m_pitch < -1.55) { m_pitch = -1.55; }
+
+	
+	cpuEngine.GetCamera()->transform.SetYPR(m_yaw, m_pitch);
+
+	InputSystem::SetMousePosition({ cpuEngine.GetWindow()->GetWidth() / 2, cpuEngine.GetWindow()->GetHeight() / 2 });
+
+	cpuEngine.GetCamera()->transform.pos = m_pEntity->transform.pos;
+	cpuEngine.GetCamera()->transform.pos.y += 2.f;
+
+	cpuEngine.GetCamera()->transform.Move(-2);
 }
 
 void Player::MouseInput()
@@ -196,14 +260,17 @@ void Player::WeaponEquiped(float dt)
 
 void Player::Attack()
 {
-	if (m_currentWeapon == nullptr)
+	if (m_currentWeapon == 0)
 		return;
 
 	if (m_attackRefreshing < m_attackRefreshDuration || m_isWeaponEquiped == false)
 		return;
 
-	m_currentWeapon->BasicAttack();
-
+	if (m_currentWeapon == 1)
+		m_weapon1->BasicAttack();
+	else if (m_currentWeapon == 2)
+		m_weapon2->BasicAttack();
+	
 	m_attackRefreshing = 0.f;
 }
 
@@ -214,26 +281,27 @@ void Player::RefreshAttack(float dt)
 
 void Player::SwapWeapon()
 {
-	if (m_currentWeapon == nullptr)
+	if (m_currentWeapon == 0)
 		return;
 
 	if (m_attackRefreshing < m_attackRefreshDuration)
 		return;
 
-	if (m_currentWeapon == m_weapon1)
+	if (m_currentWeapon == 1)
 	{
-		m_currentWeapon = m_weapon2;
+		m_currentWeapon = 2;
+		m_weaponEquipementDuration = m_weapon2->GetPulloutTime();
+		m_attackRefreshDuration = m_weapon2->GetBasicAttackRefreshTime();
 	}
-	else if (m_currentWeapon == m_weapon2)
+	else if (m_currentWeapon == 2)
 	{
-		m_currentWeapon = m_weapon1;
+		m_currentWeapon = 1;
+		m_weaponEquipementDuration = m_weapon1->GetPulloutTime();
+		m_attackRefreshDuration = m_weapon1->GetBasicAttackRefreshTime();
 	}
 
 	m_isWeaponEquiped = false;
 	m_weaponEquipement = 0.0f;
-	m_weaponEquipementDuration = m_currentWeapon->GetPulloutTime();
-	
-	m_attackRefreshDuration = m_currentWeapon->GetBasicAttackRefreshTime();
 }
 
 void Player::Inventory()

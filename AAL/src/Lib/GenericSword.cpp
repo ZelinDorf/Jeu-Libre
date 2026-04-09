@@ -3,9 +3,7 @@
 
 void GenericSword::Init()
 {
-	m_pEntity = cpuEngine.CreateEntity();
-	m_meshSword.CreateCylinder(mSwordSize, mSwordWidth, 5, true, true, CPU_BLUE);
-	m_pEntity->pMesh = &m_meshSword;
+	m_meshSword.CreateCylinder(m_swordSize, m_swordWidth, 5, true, true, CPU_GRAY);
 }
 
 void GenericSword::Update(float dt)
@@ -14,18 +12,29 @@ void GenericSword::Update(float dt)
 	float m_zDir = m_pEntity->transform.dir.z;
 
 	XMFLOAT3 m_offset = XMFLOAT3(m_xDir * .5f, 0.f, m_zDir * .5f);
-	mPosition = XMFLOAT3(mPosition.x + m_offset.x, mPosition.y + m_offset.y, mPosition.z + m_offset.z);
-	m_pEntity->transform.pos = mPosition;
+	m_position = XMFLOAT3(m_position.x + m_offset.x, m_position.y + m_offset.y, m_position.z + m_offset.z);
+	m_pEntity->transform.pos = m_position;
+}
+
+void GenericSword::Equip()
+{
+	m_pEntity = cpuEngine.CreateEntity();
+	m_pEntity->pMesh = &m_meshSword;
+}
+
+void GenericSword::Unequip()
+{
+	m_pEntity = cpuEngine.Release(m_pEntity);
 }
 
 void GenericSword::SetPosition(XMFLOAT3 _pos)
 {
-	mPosition = _pos;
+	m_position = _pos;
 }
 
 XMFLOAT3 GenericSword::GetPosition()
 {
-	return mPosition;
+	return m_position;
 }
 
 void GenericSword::SetDirection(XMFLOAT3 _dir)
@@ -35,37 +44,37 @@ void GenericSword::SetDirection(XMFLOAT3 _dir)
 
 int GenericSword::GetWeaponTypeId()
 {
-	return mWeaponTypeId;
+	return m_weaponTypeId;
 }
 
 float GenericSword::GetPulloutTime()
 {
-	return mPulloutTime;
+	return m_pulloutTime;
 }
 
 float GenericSword::GetSwingDamages()
 {
-	return mSwingDamages;
+	return m_swingDamages;
 }
 
 float GenericSword::GetSwingTime()
 {
-	return mSwingTime;
+	return m_swingTime;
 }
 
 float GenericSword::GetPoundDamages()
 {
-	return mPoundDamages;
+	return m_poundDamages;
 }
 
 float GenericSword::GetPoundTime()
 {
-	return mPoundTime;
+	return m_poundTime;
 }
 
 float GenericSword::GetPoundCooldown()
 {
-	return mPoundCooldown;
+	return m_poundCooldown;
 }
 
 void GenericSword::Swing()
@@ -80,5 +89,5 @@ void GenericSword::Pound()
 
 int GenericSword::GetWeaponType()
 {
-	return mWeaponTypeId;
+	return m_weaponTypeId;
 }

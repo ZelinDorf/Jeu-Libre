@@ -1,6 +1,7 @@
 #pragma once
 #include "pch.h"
 #include "Weapon.h"
+#include "PlayerStatsManager.h"
 
 class Player : public AALentity
 {
@@ -9,7 +10,15 @@ private:
 
 	inline static XMFLOAT3 m_position = {80.0f,0.0f,80.0f};
 
-	inline static float m_playerSize = 0.5f;
+	float m_yaw;
+	float m_pitch;
+	float m_sensivity = 0.01f;
+
+	XMFLOAT2 m_center;
+
+	XMINT2 m_currentMousePosition;
+
+	float m_playerSize = .5f;
 
 	inline static float m_baseSpeed = 15.0f;
 	inline static float m_speed = 0.0f;
@@ -24,6 +33,9 @@ private:
 	static void MoveBackward(float dt);
 	static void StrafeLeft(float dt);
 	static void StrafeRight(float dt);
+	static void UpdateCamera();
+
+	static void MouseInput();
 
 	static void Jump();
 	static void Crouch();
@@ -32,7 +44,7 @@ private:
 	inline static bool m_isJumping = false;
 	inline static bool m_isCrouched = false;
 
-	cpu_mesh m_meshPlayer;
+	inline static cpu_mesh m_meshPlayer;
 
 	static void WeaponEquiped(float dt);
 
@@ -56,19 +68,22 @@ private:
 	inline static Weapon* m_weapon1 = nullptr;
 	inline static Weapon* m_weapon2 = nullptr;
 
+	inline static PlayerStatsManager m_stats;
+
 public:
 
 	inline static bool m_isActive = false;
 
 	Player();
 	~Player();
-	static void Init(int _class);
+	static void Init(int _class, int _weapon1Class, int _weapon2Class);
 	void Update(float dt) override;
 	static void HandleInput(float dt);
 
 	static void Destroy();
+	inline static int m_currentWeapon = 0;
 
-	inline static Weapon* m_currentWeapon = nullptr;
+	static Weapon* GetWeapon(int _weapon);
 
 	static void SetWeaponDirection();
 

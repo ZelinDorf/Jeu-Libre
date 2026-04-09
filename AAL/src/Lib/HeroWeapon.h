@@ -8,28 +8,34 @@ class HeroWeapon
 {
 private:
 
-	XMFLOAT3 mPosition = {0.0f,0.0f,0.0f};
+	XMFLOAT3 m_position;
 
-	float mPulloutTime = 0.0f;
+	bool m_isEquiped;
 
-	float mBasicAttackDamages = 0.0f;
-	float mSpecialAttackDamages = 0.0f;
+	float m_pulloutTime;
 
-	float mBasicAttackRefreshTime = 0.0f;
-	float mSpecialAttackRefreshTime = 0.0f;
-	float mSpecialAttackCooldown = 0.0f;
+	float m_basicAttackDamages;
+	float m_specialAttackDamages;
 
-	HeroSword* Sword = nullptr;
-	HeroBow* Bow = nullptr;
-	HeroStaff* Staff = nullptr;
+	float m_basicAttackRefreshTime;
+	float m_specialAttackRefreshTime;
+	float m_specialAttackCooldown;
 
-	int mWeaponType=0;
+	HeroSword* m_sword;
+	HeroBow* m_bow;
+	HeroStaff* m_staff;
+
+	int m_weaponType;
 
 public:
 
 	void Init(int _type);
 	void Update(float dt);
 
+	void Equip();
+	void Unequip();
+
+	void SetPosition(XMFLOAT3 _pos);
 	void SetDirection(XMFLOAT3 _dir);
 
 	void BasicAttack();

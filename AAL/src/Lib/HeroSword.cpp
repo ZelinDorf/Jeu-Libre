@@ -3,9 +3,7 @@
 
 void HeroSword::Init()
 {
-	m_pEntity = cpuEngine.CreateEntity();
-	m_meshSword.CreateCylinder(mSwordSize, mSwordWidth, 5, true, true, CPU_BLUE);
-	m_pEntity->pMesh = &m_meshSword;
+	m_meshSword.CreateCylinder(m_swordSize, m_swordWidth, 5, true, true, CPU_ORANGE);
 }
 
 void HeroSword::Update(float dt)
@@ -13,19 +11,30 @@ void HeroSword::Update(float dt)
 	float m_xDir = m_pEntity->transform.dir.x;
 	float m_zDir = m_pEntity->transform.dir.z;
 
-	XMFLOAT3 m_offset = XMFLOAT3(m_xDir * .5f, 0.f, m_zDir * .5f);
-	mPosition = XMFLOAT3(mPosition.x + m_offset.x, mPosition.y + m_offset.y, mPosition.z + m_offset.z);
-	m_pEntity->transform.pos = mPosition;
+	/*XMFLOAT3 m_offset = XMFLOAT3(m_xDir * .5f, 0.f, m_zDir * .5f);
+	m_position = XMFLOAT3(m_position.x + m_offset.x, m_position.y + m_offset.y, m_position.z + m_offset.z);*/
+	m_pEntity->transform.pos = m_position;
+}
+
+void HeroSword::Equip() 
+{
+	m_pEntity = cpuEngine.CreateEntity();
+	m_pEntity->pMesh = &m_meshSword;
+}
+
+void HeroSword::Unequip()
+{
+	m_pEntity = cpuEngine.Release(m_pEntity);
 }
 
 void HeroSword::SetPosition(XMFLOAT3 _pos)
 {
-	mPosition = _pos;
+	m_pEntity->transform.pos = _pos;
 }
 
 XMFLOAT3 HeroSword::GetPosition()
 {
-	return mPosition;
+	return m_position;
 }
 
 void HeroSword::SetDirection(XMFLOAT3 _dir)
@@ -35,37 +44,37 @@ void HeroSword::SetDirection(XMFLOAT3 _dir)
 
 int HeroSword::GetWeaponTypeId()
 {
-	return mWeaponTypeId;
+	return m_weaponTypeId;
 }
 
 float HeroSword::GetPulloutTime()
 {
-	return mPulloutTime;
+	return m_pulloutTime;
 }
 
 float HeroSword::GetSwingDamages()
 {
-	return mSwingDamages;
+	return m_swingDamages;
 }
 
 float HeroSword::GetSwingTime()
 {
-	return mSwingTime;
+	return m_swingTime;
 }
 
 float HeroSword::GetPoundDamages()
 {
-	return mPoundDamages;
+	return m_poundDamages;
 }
 
 float HeroSword::GetPoundTime()
 {
-	return mPoundTime;
+	return m_poundTime;
 }
 
 float HeroSword::GetPoundCooldown()
 {
-	return mPoundCooldown;
+	return m_poundCooldown;
 }
 
 void HeroSword::Swing()
@@ -80,5 +89,5 @@ void HeroSword::Pound()
 
 int HeroSword::GetWeaponType()
 {
-	return mWeaponTypeId;
+	return m_weaponTypeId;
 }

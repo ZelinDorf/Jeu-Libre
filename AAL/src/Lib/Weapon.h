@@ -3,32 +3,38 @@
 #include "GenericWeapon.h"
 #include "HeroWeapon.h"
 
-class Weapon
+class Weapon : public AALentity
 {
 private:
-	XMFLOAT3 mPosition = {0.0f,0.0f,0.0f};
+	XMFLOAT3 m_position;
 
-	float mPulloutTime = 0.0f;
+	bool m_isEquiped;
 
-	float mBasicAttackDamages = 0.0f;
-	float mSpecialAttackDamages = 0.0f;
+	float m_pulloutTime;
 
-	float mBasicAttackRefreshTime = 0.0f;
-	float mSpecialAttackRefreshTime = 0.0f;
-	float mSpecialAttackCooldown = 0.0f;
+	float m_basicAttackDamages;
+	float m_specialAttackDamages;
 
-	int mWeaponType = 0;
-	bool mIsHeroWeapon = false;
+	float m_basicAttackRefreshTime;
+	float m_specialAttackRefreshTime;
+	float m_specialAttackCooldown;
 
-	HeroWeapon* mHeroWeapon = nullptr;
+	int m_weaponType;
+	bool m_isHeroWeapon;
 
-	GenericWeapon* mGenericWeapon = nullptr;
+	HeroWeapon* m_heroWeapon = nullptr;
+
+	GenericWeapon* m_genericWeapon = nullptr;
 
 
 public:
 	void Init(int _type, int _playerClass);
 	void Update(float dt);
 
+	void Equip();
+	void Unequip();
+
+	void SetPosition(XMFLOAT3 _pos);
 	void SetDirection(XMFLOAT3 _dir);
 
 	void BasicAttack();

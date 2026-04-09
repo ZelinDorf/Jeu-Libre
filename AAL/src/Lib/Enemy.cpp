@@ -60,7 +60,7 @@ void Enemy::Update(float dt)
 		switch (m_type)
 		{
 		case EnemiesList::SKELETAL_HEAD:
-			m_pEntity->pMaterial = RessourcesManager::GetMatWithName("skeleton_head.png");//probleme sur l'update des enemy dead
+			m_pEntity->pMaterial = RessourcesManager::GetMatWithName("skeleton_head.png");
 			break;
 		case EnemiesList::SKELETAL_MAGE:
 			//TODO
@@ -74,7 +74,6 @@ void Enemy::Update(float dt)
 		default:
 			break;
 		}
-		//m_pEntity->pMaterial = RessourcesManager::GetMatWithName("inverted_fox.png");
 	}
 	else if(m_pEntity->pMaterial == m_pColorDmg)
 	{

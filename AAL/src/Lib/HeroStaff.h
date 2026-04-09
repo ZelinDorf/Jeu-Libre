@@ -17,15 +17,17 @@ private:
 	float m_puddleCooldown;
 
 	float m_size = .5f;
-	float m_width = .1;
+	float m_width = .1f;
 	cpu_mesh m_meshStaff;
+	float m_projectileSize = .1f;
 	cpu_mesh m_meshProjectile;
 
 public:
 
 	cpu_entity* m_pEntity = nullptr;
 
-	cpu_entity* m_pProjectile;
+	cpu_entity* m_pProjectile = nullptr;
+	Vector<cpu_entity*> m_pProjectiles;
 
 	~HeroStaff()
 	{
@@ -41,6 +43,8 @@ public:
 	void SetPosition(XMFLOAT3 _pos);
 
 	void SetDirection(XMFLOAT3 _dir);
+
+	Vector<cpu_entity*> GetProjectiles();
 
 	int GetWeaponTypeId();
 

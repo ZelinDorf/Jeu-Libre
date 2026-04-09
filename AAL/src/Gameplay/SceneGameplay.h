@@ -27,5 +27,7 @@ private:
 	ChunkManager* m_pChunkManager = nullptr;
 
 	Player* m_pPlayer = nullptr;
+
+
 };
 

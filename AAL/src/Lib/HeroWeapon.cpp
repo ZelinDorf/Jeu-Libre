@@ -119,6 +119,22 @@ void HeroWeapon::SetDirection(XMFLOAT3 _dir)
 	}
 }
 
+Vector<cpu_entity*> HeroWeapon::GetProjectiles()
+{
+	if (m_weaponType == 0)
+	{
+		return;
+	}
+	if (m_weaponType == 1)
+	{
+		return;
+	}
+	if (m_weaponType == 2)
+	{
+		return m_staff->GetProjectiles();
+	}
+}
+
 void HeroWeapon::BasicAttack()
 {
 	if (m_weaponType == 0)

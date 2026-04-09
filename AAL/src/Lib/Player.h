@@ -66,6 +66,8 @@ private:
 	inline static Weapon* m_weapon1 = nullptr;
 	inline static Weapon* m_weapon2 = nullptr;
 
+	inline static Vector<cpu_entity*> m_pProjectiles;
+
 	inline static PlayerStatsManager m_stats;
 
 public:

@@ -38,6 +38,8 @@ public:
 	void SetPosition(XMFLOAT3 _pos);
 	void SetDirection(XMFLOAT3 _dir);
 
+	Vector<cpu_entity*> GetProjectiles();
+
 	void BasicAttack();
 
 	void SpecialAttack();

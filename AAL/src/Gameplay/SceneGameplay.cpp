@@ -17,10 +17,16 @@ SceneGameplay::SceneGameplay()
 	player->Init(2, 2, 1);
 	m_pPlayer = player;
 
-	m_pEnemy = new Enemy;
+	Vector<cpu_entity*> projectiles = player->GetWeapon(1)->GetProjectiles();
+	/*for (size_t i = 0; i < projectiles.size(); i++)
+	{
+		m_entities.push_back(chunks[i]);
+	}*/
+
+	/*m_pEnemy = new Enemy;
 	m_pEnemy->Assemble(SKELETAL_GRUNT, m_pEnemy);
 
-	m_entities.push_back(m_pEnemy);
+	m_entities.push_back(m_pEnemy);*/
 
 	m_entities.push_back(m_pPlayer);
 

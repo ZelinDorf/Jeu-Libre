@@ -4,19 +4,20 @@
 
 SceneGameplay::SceneGameplay()
 {
-	chunkManager->InitMap(10.f);
+	//!\ ORDER FOR Z-INDEX /!\\
+	// needs UIWrapper
 
+	chunkManager->InitMap(10.f);
 	Vector<Chunk*> chunks = chunkManager->GetMap();
-	
+
 	for (size_t i = 0; i < chunks.size(); i++)
 	{
 		m_entities.push_back(chunks[i]);
 	}
 
 	Player* player = new Player();
-	player->Init(0, 0, 1);
 	m_pPlayer = player;
-
+	player->Init(0, 0, 1);
 	m_entities.push_back(player);
 }
 
@@ -27,7 +28,7 @@ SceneGameplay::~SceneGameplay()
 
 void SceneGameplay::OnRender(int pass)
 {
-	cpu_font* pFont = App::GetInstance().GetFont();
+cpu_font* pFont = App::GetInstance().GetFont();
 	String info = "Score : " + CPU_STR(m_score);
 	cpuDevice.DrawText(pFont, info.c_str(), (int)(cpuDevice.GetWidth() * 0.8f), 10, CPU_TEXT_LEFT);
 }
@@ -57,20 +58,9 @@ void SceneGameplay::Creditcheck(float dt)
 	if (m_credits > 100 && m_enemies.size() < 100) {
 		// enough credits to spawn
 		m_credits = 0.0f;
-
-
-		Spawning(CINUT, RandPos());
 		Spawning(CINUT, RandPos());
 	}
 }
-
-void SceneGameplay::Collisions(float dt)
-{
-	MoveEnemiesApart(dt);
-	CollisionPlayerEnemy();
-}
-
-
 
 void SceneGameplay::MoveEnemiesApart(float dt)
 {

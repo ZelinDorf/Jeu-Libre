@@ -1,13 +1,15 @@
 #pragma once
 #include "pch.h"
 
+#define ChunkSize 16.f
+
 enum Biomes
 {
+	DIRT,
+	ROCKY,
 	PLAIN,
-	SAVANNA,
-	TAIGA,
-	DESERT,
-	SNOWY_PLAIN
+
+	BIOME_COUNT
 };
 
 class Chunk : public AALentity
@@ -15,8 +17,7 @@ class Chunk : public AALentity
 public:
 	~Chunk();
 
-	virtual void Init();
-	virtual void Init(Biomes _biome);
+	virtual void Init(Biomes _biome = DIRT);
 
 	virtual void Delete();
 
@@ -28,9 +29,7 @@ public:
 	void Update(float _dt) override;
 
 private:
-	float m_scale = 16.0f;
+	float m_scale = ChunkSize;
 
 	int m_biome = -1;
-
-	cpu_mesh* m_mesh;
 };

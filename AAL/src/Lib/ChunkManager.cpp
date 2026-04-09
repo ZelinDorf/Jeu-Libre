@@ -27,21 +27,35 @@ void ChunkManager::InitMap(float _mapSize)
 	float mapW = 0.f;
 	float mapH = 0.f;
 
-	float sca;
+	float sca = ChunkSize;
 
+	int r = RandomInt(BIOME_COUNT - 1);
+
+	///////// NE ///////////
 	for (size_t i = 0; i < _mapSize; i++)
 	{
 		for (size_t j = 0; j < _mapSize; j++)
 		{
+			r = RandomInt(BIOME_COUNT - 1);
+
 			XMFLOAT3 pos = { mapW, 0.f, mapH };
 
 			Chunk* pNextChunk = new Chunk;
-			sca = pNextChunk->GetSize();
 
-			if (j % 2 == 0 && i % 2 == 0 )
+			switch (r)
+			{
+			case DIRT:
+				pNextChunk->Init(DIRT);
+				break;
+			case ROCKY:
+				pNextChunk->Init(ROCKY);
+				break;
+			case PLAIN:
 				pNextChunk->Init(PLAIN);
-			else
-				pNextChunk->Init(DESERT);
+				break;
+			default:
+				break;
+			}
 
 			pNextChunk->SetPos(pos);
 
@@ -51,6 +65,123 @@ void ChunkManager::InitMap(float _mapSize)
 		}
 		mapW += sca;
 		mapH = 0.f;
+	}
+
+	mapW = sca;	mapH = 0.f;
+
+	///////// NW ///////////
+	for (size_t i = 0; i < _mapSize; i++)
+	{
+		for (size_t j = 0; j < _mapSize; j++)
+		{
+			r = RandomInt(BIOME_COUNT - 1);
+
+			XMFLOAT3 pos = { -mapW, 0.f, mapH };
+
+			Chunk* pNextChunk = new Chunk;
+
+			switch (r)
+			{
+			case DIRT:
+				pNextChunk->Init(DIRT);
+				break;
+			case ROCKY:
+				pNextChunk->Init(ROCKY);
+				break;
+			case PLAIN:
+				pNextChunk->Init(PLAIN);
+				break;
+			default:
+				break;
+			}
+
+			pNextChunk->SetPos(pos);
+
+			mapH += sca;
+			
+			m_vChunks.push_back(pNextChunk);
+			
+		}
+		mapW += sca;
+		mapH = 0.f;
+	}
+
+	mapW = sca;	mapH = sca;
+
+	///////// SW ///////////
+	for (size_t i = 0; i < _mapSize; i++)
+	{
+		for (size_t j = 0; j < _mapSize; j++)
+		{
+			r = RandomInt(BIOME_COUNT - 1);
+
+			XMFLOAT3 pos = { -mapW, 0.f, -mapH };
+
+			Chunk* pNextChunk = new Chunk;
+
+			switch (r)
+			{
+			case DIRT:
+				pNextChunk->Init(DIRT);
+				break;
+			case ROCKY:
+				pNextChunk->Init(ROCKY);
+				break;
+			case PLAIN:
+				pNextChunk->Init(PLAIN);
+				break;
+			default:
+				break;
+			}
+
+			pNextChunk->SetPos(pos);
+
+			mapH += sca;
+			
+			m_vChunks.push_back(pNextChunk);
+			
+		}
+		mapW += sca;
+		mapH = sca;
+	}
+
+	mapW = 0.f;	mapH = sca;
+
+	///////// SE ///////////
+	for (size_t i = 0; i < _mapSize; i++)
+	{
+		for (size_t j = 0; j < _mapSize; j++)
+		{
+			r = RandomInt(BIOME_COUNT - 1);
+
+			XMFLOAT3 pos = { mapW, 0.f, -mapH };
+
+			Chunk* pNextChunk = new Chunk;
+
+			switch (r)
+			{
+			case DIRT:
+				pNextChunk->Init(DIRT);
+				break;
+			case ROCKY:
+				pNextChunk->Init(ROCKY);
+				break;
+			case PLAIN:
+				pNextChunk->Init(PLAIN);
+				break;
+			default:
+				break;
+			}
+
+			pNextChunk->SetPos(pos);
+
+			mapH += sca;
+			
+			m_vChunks.push_back(pNextChunk);
+			
+		}
+		mapW += sca;
+		mapH = sca;
 	}
 }
 

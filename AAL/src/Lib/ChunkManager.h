@@ -10,7 +10,7 @@ public:
 	static ChunkManager* GetInstance();
 
 	//init a square map with "_mapSize" chunk per side
-	void InitMap(float _mapSize = 15.f);
+	void InitMap(float _mapSize = 5.f);
 
 	void Update(float _dt);	
 
@@ -19,6 +19,8 @@ public:
 
 private:
 	static ChunkManager* m_pInstance;
+
+	//int size?
 
 	Vector<Chunk*> m_vChunks;
 };

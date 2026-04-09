@@ -238,6 +238,26 @@ namespace _Utils
 		_forward.z = _mat._33;
 	}
 
+	////////////////////////////
+
+	static int RandomInt(int _max = 100, int _min = 0)
+	{
+		int range = _max - _min + 1;
+
+		int value = rand() % range + _min;
+
+		return value;
+	}
+
+	static float RandomFloat(float _max = 100.f, float _min = 0.f)
+	{
+		float max = _max * 100.f;
+		float min = _min * 100.f;
+
+		float v = (float)RandomInt((int)max, (int)min);
+
+		return v * 0.01f;
+	}
 };
 
 using namespace _Math;

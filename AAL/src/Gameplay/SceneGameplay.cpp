@@ -61,7 +61,7 @@ void SceneGameplay::Creditcheck(float dt)
 
 
 		Spawning(CINUT, RandPos());
-	Spawning(SKELETON_HEAD, RandPos());
+		Spawning(SKELETAL_HEAD, RandPos());
 	}
 }
 

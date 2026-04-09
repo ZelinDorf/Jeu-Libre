@@ -11,7 +11,7 @@ public:
 	void OnRender(int pass) override;
 	void Update(float dt) override;
 
-	bool Spawning(EnemiesList type=SKELETAL_GRUNT, XMFLOAT3 pos={0,0,0});
+	bool Spawning(EnemiesList type = SKELETAL_HEAD, XMFLOAT3 pos={0,0,0});
 	void Creditcheck(float dt);
 
 	void MoveEnemiesApart(float dt);

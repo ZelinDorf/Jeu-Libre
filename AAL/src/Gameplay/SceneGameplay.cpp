@@ -14,7 +14,7 @@ SceneGameplay::SceneGameplay()
 	}
 
 	Player* player = new Player();
-	player->Init(0, 0, 1);
+	player->Init(2, 2, 1);
 	m_pPlayer = player;
 
 	m_pEnemy = new Enemy;
@@ -22,10 +22,7 @@ SceneGameplay::SceneGameplay()
 
 	m_entities.push_back(m_pEnemy);
 
-	m_player = new Player();
-	m_player->Init(0, 2, 1);
-
-	m_entities.push_back(m_player);
+	m_entities.push_back(m_pPlayer);
 
 	//m_entities.push_back(m_player->GetWeapon(1));
 	//m_entities.push_back(m_player->GetWeapon(2));

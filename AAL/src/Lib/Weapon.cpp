@@ -67,7 +67,7 @@ void Weapon::Unequip()
     }
 }
 
-void Weapon::SetPosition(XMFLOAT3 _pos)
+void Weapon::SetPosition(XMFLOAT3 &_pos)
 {
     //if (m_isEquiped == true)
     {

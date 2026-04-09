@@ -1,5 +1,5 @@
 #pragma once
-class HeroBow
+class HeroBow : public AALentity
 {
 private:
 
@@ -22,8 +22,6 @@ private:
 	cpu_mesh m_meshProjectile;
 
 public:
-
-	cpu_entity* m_pEntity = nullptr;;
 
 	bool mIsEquiped = false;
 

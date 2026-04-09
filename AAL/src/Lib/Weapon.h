@@ -23,8 +23,9 @@ private:
 	bool m_isHeroWeapon;
 
 	HeroWeapon* m_heroWeapon = nullptr;
-
 	GenericWeapon* m_genericWeapon = nullptr;
+
+	cpu_entity* m_pEntity = nullptr;
 
 
 public:
@@ -34,7 +35,7 @@ public:
 	void Equip();
 	void Unequip();
 
-	void SetPosition(XMFLOAT3 _pos);
+	void SetPosition(XMFLOAT3 &_pos);
 	void SetDirection(XMFLOAT3 _dir);
 
 	void BasicAttack();

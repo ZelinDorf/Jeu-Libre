@@ -1,5 +1,5 @@
 #pragma once
-class GenericSword
+class GenericSword : public AALentity
 {
 private:
 
@@ -22,8 +22,6 @@ private:
 	cpu_mesh m_meshSword;
 
 public:
-
-	cpu_entity* m_pEntity = nullptr;
 
 	bool mIsEquiped = false;
 

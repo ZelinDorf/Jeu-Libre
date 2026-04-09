@@ -87,7 +87,7 @@ void HeroWeapon::Unequip()
 	}
 }
 
-void HeroWeapon::SetPosition(XMFLOAT3 _pos)
+void HeroWeapon::SetPosition(XMFLOAT3 &_pos)
 {
 	if (m_weaponType == 0)
 	{

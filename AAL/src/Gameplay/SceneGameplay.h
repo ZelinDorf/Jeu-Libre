@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "Player.h"
 #include "ChunkManager.h"
+#include "Sword.h"
 
 class SceneGameplay : public Scene
 {
@@ -18,6 +19,7 @@ public:
 
 	void MoveEnemiesApart(float dt);
 	void CollisionPlayerEnemy();
+	void CollisionSwordEnemy();
 
 	XMFLOAT3 RandPos();
 	int RandomInt(int min, int max);
@@ -30,5 +32,6 @@ private:
 	ChunkManager* m_pChunkManager = nullptr;
 
 	Player* m_pPlayer = nullptr;
+	Sword* m_pSword = nullptr;
 };
 

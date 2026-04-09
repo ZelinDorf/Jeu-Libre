@@ -4,7 +4,7 @@
 #include "HeroBow.h"
 #include "HeroStaff.h"
 
-class HeroWeapon
+class HeroWeapon : public AALentity
 {
 private:
 
@@ -35,7 +35,7 @@ public:
 	void Equip();
 	void Unequip();
 
-	void SetPosition(XMFLOAT3 _pos);
+	void SetPosition(XMFLOAT3 &_pos);
 	void SetDirection(XMFLOAT3 _dir);
 
 	void BasicAttack();

@@ -14,9 +14,11 @@ App::App()
 
 App::~App()
 {
+
 	chunkManager->~ChunkManager();
 	//m_sceneManager.~SceneManager();
 	//m_player = nullptr;
+
 }
 
 void App::OnStart()

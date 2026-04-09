@@ -49,7 +49,7 @@ public:
 	EntityType m_entityType;
 	EntityType m_uiType;
 
-	cpu_entity* m_pEntity;
+	cpu_entity* m_pEntity = nullptr;
 	Physics* m_pPhysics;
 
 public:

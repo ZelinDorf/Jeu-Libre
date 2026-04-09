@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "SceneGameplay.h"
 #include "App.h"
+#include "Sword.h"
 
 SceneGameplay::SceneGameplay()
 {
@@ -18,7 +19,12 @@ SceneGameplay::SceneGameplay()
 	Player* player = new Player();
 	m_pPlayer = player;
 	player->Init(0, 0, 1);
-	m_entities.push_back(player);
+
+	Sword* sword = new Sword;
+	m_pSword = sword;
+
+	m_entities.push_back(player);	
+	m_entities.push_back(sword);
 }
 
 SceneGameplay::~SceneGameplay()
@@ -65,6 +71,7 @@ void SceneGameplay::Creditcheck(float dt)
 void SceneGameplay::Collisions(float dt) {
 	MoveEnemiesApart(dt);
 	CollisionPlayerEnemy();
+	CollisionSwordEnemy();
 }
 
 void SceneGameplay::MoveEnemiesApart(float dt)
@@ -132,7 +139,28 @@ void SceneGameplay::CollisionPlayerEnemy()
 		i++;
 	}
 }
+void SceneGameplay::CollisionSwordEnemy()
+{
+	int i = 0;
+	for (Enemy* enemy : m_enemies)
+	{
+		XMFLOAT3 swordPos = m_pSword->m_pEntity->transform.pos;
+		XMFLOAT3 enemyPos = enemy->m_pEntity->transform.pos;
 
+		float distance = sqrt(pow((swordPos.x - enemyPos.x), 2) + pow((swordPos.y - enemyPos.y), 2) + pow((swordPos.z - enemyPos.z), 2));
+
+		if (distance <= .25f) //contact
+		{
+			enemy->DamageTaken();
+			if (enemy->Death()) {
+				m_enemies.erase(m_enemies.begin() + i);
+				m_score++;
+				i--;
+			}
+		}
+		i++;
+	}
+}
 
 XMFLOAT3 SceneGameplay::RandPos()
 {

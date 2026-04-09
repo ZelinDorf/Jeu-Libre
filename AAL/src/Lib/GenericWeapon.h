@@ -4,7 +4,7 @@
 #include "GenericBow.h"
 #include "GenericStaff.h"
 
-class GenericWeapon
+class GenericWeapon : public AALentity
 {
 private:
 
@@ -26,6 +26,8 @@ private:
 	GenericStaff* m_staff;
 
 	int m_weaponType;
+
+	cpu_entity* m_pEntity = nullptr;
 
 public:
 

@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "HeroSword.h"
+#include "Player.h"
 
 void HeroSword::Init()
 {
@@ -8,12 +9,7 @@ void HeroSword::Init()
 
 void HeroSword::Update(float dt)
 {
-	float m_xDir = m_pEntity->transform.dir.x;
-	float m_zDir = m_pEntity->transform.dir.z;
 
-	/*XMFLOAT3 m_offset = XMFLOAT3(m_xDir * .5f, 0.f, m_zDir * .5f);
-	m_position = XMFLOAT3(m_position.x + m_offset.x, m_position.y + m_offset.y, m_position.z + m_offset.z);*/
-	m_pEntity->transform.pos = m_position;
 }
 
 void HeroSword::Equip() 
@@ -27,9 +23,12 @@ void HeroSword::Unequip()
 	m_pEntity = cpuEngine.Release(m_pEntity);
 }
 
-void HeroSword::SetPosition(XMFLOAT3 _pos)
+void HeroSword::SetPosition(XMFLOAT3 &_pos)
 {
-	m_pEntity->transform.pos = _pos;
+	XMFLOAT3 pos = { 80,0,80 };
+	m_pEntity->transform.SetPosition(_pos);
+
+	//m_pEntity->transform.OrbitAroundAxis(_pos, CPU_VEC3_UP, 2.f, /*cpuTime.delta * */ 5.0f);
 }
 
 XMFLOAT3 HeroSword::GetPosition()

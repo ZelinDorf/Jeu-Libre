@@ -62,6 +62,11 @@ void SceneGameplay::Creditcheck(float dt)
 	}
 }
 
+void SceneGameplay::Collisions(float dt) {
+	MoveEnemiesApart(dt);
+	CollisionPlayerEnemy();
+}
+
 void SceneGameplay::MoveEnemiesApart(float dt)
 {
 	for (Enemy* enemy : m_enemies)

@@ -14,6 +14,8 @@ public:
 	bool Spawning(EnemiesList type=SKELETAL_GRUNT, XMFLOAT3 pos={0,0,0});
 	void Creditcheck(float dt);
 
+	void Collisions(float dt);
+
 	void MoveEnemiesApart(float dt);
 	void CollisionPlayerEnemy();
 

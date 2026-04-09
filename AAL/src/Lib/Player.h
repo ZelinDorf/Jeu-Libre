@@ -14,11 +14,11 @@ private:
 	float m_pitch;
 	float m_sensivity = 0.01f;
 
-	XMFLOAT2 m_center;
+	inline static XMFLOAT2 m_center;
 
-	XMINT2 m_currentMousePosition;
+	inline static XMINT2 m_currentMousePosition;
 
-	float m_playerSize = .5f;
+	inline static float m_playerSize = .5f;
 
 	inline static float m_baseSpeed = 15.0f;
 	inline static float m_speed = 0.0f;
@@ -34,8 +34,6 @@ private:
 	static void StrafeLeft(float dt);
 	static void StrafeRight(float dt);
 	static void UpdateCamera();
-
-	static void MouseInput();
 
 	static void Jump();
 	static void Crouch();

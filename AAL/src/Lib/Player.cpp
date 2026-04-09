@@ -76,7 +76,7 @@ void Player::HandleInput(float dt)
 
 	UpdateCamera();
 
-	m_pEntity->transform.dir = cpuEngine.GetCamera()->transform.dir;
+	s_pInstance->m_pEntity->transform.dir = cpuEngine.GetCamera()->transform.dir;
 
 
 
@@ -154,9 +154,9 @@ void Player::SetWeaponDirection()
 		return;
 
 	if (m_currentWeapon == 1)
-		m_weapon1->SetDirection(m_pEntity->transform.dir);
+		m_weapon1->SetDirection(s_pInstance->m_pEntity->transform.dir);
 	if (m_currentWeapon == 2)
-		m_weapon2->SetDirection(m_pEntity->transform.dir);
+		m_weapon2->SetDirection(s_pInstance->m_pEntity->transform.dir);
 }
 
 void Player::SetPosition(XMFLOAT3 _position)
@@ -178,8 +178,8 @@ void Player::UpdateCamera()
 	float deltaX = mousePos.x - m_center.x;
 	float deltaY = mousePos.y - m_center.y;
 
-	m_yaw += deltaX * m_sensivity;
-	m_pitch += deltaY * m_sensivity;
+	m_yaw += deltaX * s_pInstance->m_sensivity;
+	m_pitch += deltaY * s_pInstance->m_sensivity;
 
 	if (m_pitch > 1.55) { m_pitch = 1.55; }
 	if (m_pitch < -1.55) { m_pitch = -1.55; }
@@ -189,7 +189,7 @@ void Player::UpdateCamera()
 
 	InputSystem::SetMousePosition({ cpuEngine.GetWindow()->GetWidth() / 2, cpuEngine.GetWindow()->GetHeight() / 2 });
 
-	cpuEngine.GetCamera()->transform.pos = m_pEntity->transform.pos;
+	cpuEngine.GetCamera()->transform.pos = s_pInstance->m_pEntity->transform.pos;
 	cpuEngine.GetCamera()->transform.pos.y += 2.f;
 
 	cpuEngine.GetCamera()->transform.Move(-2);

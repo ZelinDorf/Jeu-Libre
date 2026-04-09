@@ -33,15 +33,8 @@ void Enemy::Assemble(EnemiesList type, Enemy* enemy)
 
 	switch (type)
 	{
-	case EnemiesList::SKELETAL_GRUNT:
-
-		//m_meshEnemy.CreateSpaceship();
-		//m_materialEnemy.color = cpu::ToColor(col1, col2, col3);
-		//enemy->Create(&m_meshEnemy, &m_materialEnemy);
-
-		//// give entitytype for aalEntity logic later
-		//enemy->m_entityType = ENEMY;
-
+	case EnemiesList::SKELETAL_HEAD:
+		JSON_OBJ(JSON_PATH"skeleton_head.json", nullptr, m_pEntity);
 		break;
 
 	case EnemiesList::SKELETAL_MAGE:

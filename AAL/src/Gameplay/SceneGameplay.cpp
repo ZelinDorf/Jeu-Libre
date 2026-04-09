@@ -37,8 +37,7 @@ void SceneGameplay::Update(float dt)
 	Scene::Update(dt);
 
 	Creditcheck(dt);
-	MoveEnemiesApart(dt);
-	CollisionPlayerEnemy();
+	Collisions(dt);
 }
 
 bool SceneGameplay::Spawning(EnemiesList type, XMFLOAT3 pos)
@@ -64,6 +63,14 @@ void SceneGameplay::Creditcheck(float dt)
 		Spawning(CINUT, RandPos());
 	}
 }
+
+void SceneGameplay::Collisions(float dt)
+{
+	MoveEnemiesApart(dt);
+	CollisionPlayerEnemy();
+}
+
+
 
 void SceneGameplay::MoveEnemiesApart(float dt)
 {
@@ -107,7 +114,6 @@ void SceneGameplay::MoveEnemiesApart(float dt)
 		}
 	}
 }
-
 void SceneGameplay::CollisionPlayerEnemy()
 {
 	int i = 0;

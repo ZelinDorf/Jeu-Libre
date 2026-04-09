@@ -15,20 +15,12 @@ Player::~Player()
 
 void Player::Init(int _class, int _weapon1Class, int _weapon2Class)
 {
-	
-	//cpuEngine.GetCamera()->transform.SetYPR(0.f, 1.570796f, 0.f);
-
-	s_pInstance->m_pEntity = cpuEngine.CreateEntity();
-	s_pInstance->m_meshPlayer.CreateSphere(m_playerSize, 20, 20, CPU_WHITE, CPU_WHITE);
-	s_pInstance->m_pEntity->pMesh = &s_pInstance->m_meshPlayer;
-	s_pInstance->m_pEntity->transform.SetPosition(m_position);
-	s_pInstance->m_pEntity->transform.SetYPR(0.0f, 0.0f, 0.0f);
+	JSON_OBJ(JSON_PATH"fox.json", nullptr, s_pInstance->m_pEntity);
 
 	m_speed = m_baseSpeed;
 	m_crouchedSpeed *= m_speed;
 
 	s_pInstance->m_entityType = PLAYER;
-	//mAttackRefreshDuration = mCurrentWeapon->GetBasicAttackRefreshTime();
 
 	m_playerClass = _class;
 
@@ -51,15 +43,21 @@ void Player::Update(float dt)
 	m_weapon2->SetPosition(m_position);
 
 	//XMFLOAT3 m_camPos = XMFLOAT3(m_position.x + 2.f, m_position.y + 2.f, m_position.z - 4.f);
-	//cpuEngine.GetCamera()->transform.SetYPR(0.f, .2f, 0.f);
-	//cpuEngine.GetCamera()->transform.pos = m_camPos;
+	//CAMERA->transform.SetYPR(0.f, .2f, 0.f);
+	//CAMERA->transform.pos = m_camPos;
 
-	//m_pEntity->transform.dir = cpuEngine.GetCamera()->transform.dir;
+	//m_pEntity->transform.dir = CAMERA->transform.dir;
 	//SetWeaponDirection();
 
 	HandleInput(dt);
 	RefreshAttack(dt);
 	WeaponEquiped(dt);
+
+	/*std::cout << "cam" << CAMERA->transform.dir.x << CAMERA->transform.dir.y << CAMERA->transform.dir.z << std::endl;
+
+	std::cout << "player" << s_pInstance->m_pEntity->transform.dir.x
+		<< s_pInstance->m_pEntity->transform.dir.y 
+		<< s_pInstance->m_pEntity->transform.dir.z << std::endl;*/
 
 	
 }
@@ -76,7 +74,7 @@ void Player::HandleInput(float dt)
 
 	UpdateCamera();
 
-	s_pInstance->m_pEntity->transform.dir = cpuEngine.GetCamera()->transform.dir;
+	s_pInstance->m_pEntity->transform.dir = CAMERA->transform.dir;
 
 
 
@@ -90,9 +88,9 @@ void Player::HandleInput(float dt)
 		StrafeRight(dt);
 
 	/*if (InputSystem::IsKeyPressed(C))
-		cpuEngine.GetCamera()->transform.AddYPR(-1.5f * dt);
+		CAMERA->transform.AddYPR(-1.5f * dt);
 	if (InputSystem::IsKeyPressed(V))
-		cpuEngine.GetCamera()->transform.AddYPR(+1.5f * dt);*/
+		CAMERA->transform.AddYPR(+1.5f * dt);*/
 
 
 	if (InputSystem::IsKeyDown(T))
@@ -185,14 +183,15 @@ void Player::UpdateCamera()
 	if (m_pitch < -1.55) { m_pitch = -1.55; }
 
 	
-	cpuEngine.GetCamera()->transform.SetYPR(m_yaw, m_pitch);
+	CAMERA->transform.SetYPR(m_yaw, m_pitch);
+	s_pInstance->m_pEntity->transform.SetYaw(m_yaw);
 
 	InputSystem::SetMousePosition({ cpuEngine.GetWindow()->GetWidth() / 2, cpuEngine.GetWindow()->GetHeight() / 2 });
 
-	cpuEngine.GetCamera()->transform.pos = s_pInstance->m_pEntity->transform.pos;
-	cpuEngine.GetCamera()->transform.pos.y += 2.f;
+	CAMERA->transform.pos = s_pInstance->m_pEntity->transform.pos;
+	CAMERA->transform.pos.y += 2.f;
 
-	cpuEngine.GetCamera()->transform.Move(-2);
+	CAMERA->transform.Move(-2);
 }
 
 void Player::MouseInput()

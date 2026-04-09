@@ -4,7 +4,7 @@
 
 SceneGameplay::SceneGameplay()
 {
-	chunkManager->InitMap(10.f);
+	chunkManager->InitMap(3.f);
 
 	Vector<Chunk*> chunks = chunkManager->GetMap();
 	

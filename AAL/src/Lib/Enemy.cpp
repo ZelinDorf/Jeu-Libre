@@ -74,7 +74,7 @@ void Enemy::Update(float dt)
 		default:
 			break;
 		}
-		m_pEntity->pMaterial = RessourcesManager::GetMatWithName("inverted_fox.png");
+		//m_pEntity->pMaterial = RessourcesManager::GetMatWithName("inverted_fox.png");
 	}
 	else if(m_pEntity->pMaterial == m_pColorDmg)
 	{

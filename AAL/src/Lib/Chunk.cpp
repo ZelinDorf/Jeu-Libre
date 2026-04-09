@@ -67,7 +67,7 @@ void Chunk::SetPos(XMFLOAT3 _pos)
 {
 	m_pEntity->transform.pos = _pos;
 
-	std::cout << m_pEntity->transform.pos.x << "||" << m_pEntity->transform.pos.z << "||" << m_biome << std::endl;
+	//std::cout << m_pEntity->transform.pos.x << "||" << m_pEntity->transform.pos.z << "||" << m_biome << std::endl;
 }
 
 void Chunk::Update(float _dt)

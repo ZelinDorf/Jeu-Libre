@@ -14,7 +14,7 @@ SceneGameplay::SceneGameplay()
 	}
 
 	Player* player = new Player();
-	player->Init(0);
+	player->Init(0, 0, 1);
 	m_pPlayer = player;
 
 	m_entities.push_back(player);

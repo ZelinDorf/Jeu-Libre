@@ -10,9 +10,9 @@ private:
 
 	inline static XMFLOAT3 m_position = {80.0f,0.0f,80.0f};
 
-	float m_yaw;
-	float m_pitch;
-	float m_sensivity = 0.01f;
+	inline static float m_yaw;
+	inline static float m_pitch;
+	inline static float m_sensivity = 0.01f;
 
 	inline static XMFLOAT2 m_center;
 

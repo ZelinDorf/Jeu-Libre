@@ -65,10 +65,20 @@ void Enemy::Assemble(EnemiesList type, Enemy* enemy)
 
 void Enemy::Update(float dt)
 {
-	XMFLOAT3 camPos = Player::GetPosition();
+	XMFLOAT3 playerPos = Player::GetPosition();
+
+	if (m_dmgTimer <= 0.0f)
+	{
+		m_dmgTimer == .5f;
+		m_pEntity->pMaterial = RessourcesManager::GetMatWithName("inverted_fox.png");
+	}
+	else if(m_pEntity->pMaterial == m_pColorDmg)
+	{
+		m_dmgTimer -= dt;
+	}
 
 	m_pEntity->transform.Move(dt * m_speed);
-	m_pEntity->transform.LookAt(camPos.x, camPos.y, camPos.z);
+	m_pEntity->transform.LookAt(playerPos.x, playerPos.y, playerPos.z);
 }
 
 // fonctions tochange the statistic of the enemies
@@ -162,11 +172,26 @@ void Enemy::ChangeStats(Vector<StatsEnum> e, Vector<float> value)
 	}
 }
 
-void Enemy::Death()
+void Enemy::DamageTaken()
+{
+
+	m_currentHealth--;
+	if (m_pColorDmg == nullptr) 
+	{
+		m_pColorDmg = new cpu_material();
+	}
+
+	m_pColorDmg->color = CPU_RED;
+	m_pEntity->pMaterial = m_pColorDmg;
+}
+
+bool Enemy::Death()
 {
 	if (m_currentHealth <= 0)
 	{
 		Destroy();
+		return true;
 	}
+	return false;
 }
 

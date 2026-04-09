@@ -38,6 +38,7 @@ void SceneGameplay::Update(float dt)
 
 	Creditcheck(dt);
 	MoveEnemiesApart(dt);
+	CollisionPlayerEnemy();
 }
 
 bool SceneGameplay::Spawning(EnemiesList type, XMFLOAT3 pos)
@@ -93,7 +94,10 @@ void SceneGameplay::MoveEnemiesApart(float dt)
 				}
 
 				if (distance <= 0.01f ) {
-					other->Destroy();
+					other->DamageTaken();
+					other->m_currentHealth--;
+
+					if (other->Death())
 					m_enemies.erase(m_enemies.begin() + i);
 					m_score++;
 					i--;
@@ -101,6 +105,30 @@ void SceneGameplay::MoveEnemiesApart(float dt)
 			}
 			i++;
 		}
+	}
+}
+
+void SceneGameplay::CollisionPlayerEnemy()
+{
+	int i = 0;
+	for (Enemy* enemy : m_enemies)
+	{
+		XMFLOAT3 playerPos = m_pPlayer->GetPosition();
+		XMFLOAT3 enemyPos = enemy->m_pEntity->transform.pos;
+		
+		float distance = sqrt(pow((playerPos.x - enemyPos.x), 2) + pow((playerPos.y - enemyPos.y), 2) + pow((playerPos.z - enemyPos.z), 2));
+		XMFLOAT3 vector = { (playerPos.x - enemyPos.x), (playerPos.y - enemyPos.y), (playerPos.z - enemyPos.z) };
+
+		if (distance <= .5f) //contact
+		{
+			enemy->DamageTaken();
+			if (enemy->Death()) {
+				m_enemies.erase(m_enemies.begin() + i);
+				m_score++;
+				i--;
+			}
+		}
+		i++;
 	}
 }
 

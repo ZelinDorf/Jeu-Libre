@@ -15,6 +15,7 @@ public:
 	void Creditcheck(float dt);
 
 	void MoveEnemiesApart(float dt);
+	void CollisionPlayerEnemy();
 
 	XMFLOAT3 RandPos();
 	int RandomInt(int min, int max);

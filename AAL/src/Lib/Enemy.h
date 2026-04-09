@@ -21,6 +21,9 @@ public:
 	int m_id = -1;
 
 	Enemy* m_pEnemy = nullptr;
+	cpu_material* m_pColorDmg = nullptr;
+	float m_dmgTimer = .5f;
+
 protected:
 	/*
 	cpu_mesh m_meshEnemy;
@@ -49,5 +52,6 @@ public:
 	// Replaces enemy stats by a value	 
 	void ChangeStats(Vector<StatsEnum> e, Vector<float> value);
 
-	void Death();
+	void DamageTaken();
+	bool Death();
 };

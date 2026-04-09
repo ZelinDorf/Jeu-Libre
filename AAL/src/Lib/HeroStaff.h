@@ -25,6 +25,8 @@ public:
 
 	cpu_entity* m_pEntity;
 
+	cpu_entity* m_pProjectile;
+
 	void Init();
 	void Update(float dt);
 

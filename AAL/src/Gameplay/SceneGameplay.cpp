@@ -23,7 +23,7 @@ SceneGameplay::SceneGameplay()
 	m_entities.push_back(m_pEnemy);
 
 	m_player = new Player();
-	m_player->Init(0, 0, 1);
+	m_player->Init(0, 2, 1);
 
 	m_entities.push_back(m_player);
 

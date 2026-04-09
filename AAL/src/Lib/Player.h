@@ -6,85 +6,86 @@
 class Player : public AALentity
 {
 private:
+	inline static Player* s_pInstance = nullptr;
 
-	XMFLOAT3 m_position;
+	inline static XMFLOAT3 m_position = {80.0f,0.0f,80.0f};
 
-	float m_yaw;
-	float m_pitch;
-	float m_sensivity = 0.01f;
+	inline static float m_yaw;
+	inline static float m_pitch;
+	inline static float m_sensivity = 0.01f;
 
-	XMFLOAT2 m_center;
+	inline static XMFLOAT2 m_center;
 
-	XMINT2 m_currentMousePosition;
+	inline static XMINT2 m_currentMousePosition;
 
-	float m_playerSize = .5f;
+	inline static float m_playerSize = .5f;
 
-	float m_baseSpeed = 15;
-	float m_speed;
-	float m_crouchedSpeed = 5;
+	inline static float m_baseSpeed = 15.0f;
+	inline static float m_speed = 0.0f;
+	inline static float m_crouchedSpeed = 5.0f;
 
-	float m_attackRefreshing = 0.f;
-	float m_attackRefreshDuration;
+	inline static float m_attackRefreshing = 0.0f;
+	inline static float m_attackRefreshDuration = 0.0f;
 
-	void UpdateCamera();
+	static void MouseInput();
+	
+	static void MoveForward(float dt);
+	static void MoveBackward(float dt);
+	static void StrafeLeft(float dt);
+	static void StrafeRight(float dt);
+	static void UpdateCamera();
 
-	void MouseInput();
+	static void Jump();
+	static void Crouch();
+	static void Uncrouch();
+	 
+	inline static bool m_isJumping = false;
+	inline static bool m_isCrouched = false;
 
-	void MoveForward(float dt);
-	void MoveBackward(float dt);
-	void StrafeLeft(float dt);
-	void StrafeRight(float dt);
+	inline static cpu_mesh m_meshPlayer;
 
-	void Jump();
-	void Crouch();
-	void Uncrouch();
+	static void WeaponEquiped(float dt);
 
-	bool m_isJumping;
-	bool m_isCrouched;
+	inline static bool m_isWeaponEquiped = true;
+	inline static float m_weaponEquipement = 0.0f;
+	inline static float m_weaponEquipementDuration = 0.0f;
 
-	cpu_mesh m_meshPlayer;
+	static void Attack();
+	static void RefreshAttack(float dt);
 
-	void WeaponEquiped(float dt);
+	static void SwapWeapon();
 
-	bool m_isWeaponEquiped = true;
-	float m_weaponEquipement = 0.0f;
-	float m_weaponEquipementDuration;
+	inline static bool m_isInventoryOpened = false;
+	inline static bool m_isUpgradePageOpened = false;
 
-	void Attack();
-	void RefreshAttack(float dt);
+	static void Inventory();
+	static void UpgradesPage();
 
-	void SwapWeapon();
+	inline static int m_playerClass = 0;
 
-	bool m_isInventoryOpened;
-	bool m_isUpgradePageOpened;
+	inline static Weapon* m_weapon1 = nullptr;
+	inline static Weapon* m_weapon2 = nullptr;
 
-	void Inventory();
-	void UpgradesPage();
-
-	int m_playerClass;
-
-	Weapon* m_weapon1 = nullptr;
-	Weapon* m_weapon2 = nullptr;
-
-	PlayerStatsManager m_stats;
+	inline static PlayerStatsManager m_stats;
 
 public:
 
-	bool m_isActive = false;
+	inline static bool m_isActive = false;
 
-	void Init(int _class, int _weapon1Class, int _weapon2Class);
-	void Update(float dt);
-	void HandleInput(float dt);
+	Player();
+	~Player();
+	static void Init(int _class, int _weapon1Class, int _weapon2Class);
+	void Update(float dt) override;
+	static void HandleInput(float dt);
 
-	void Destroy();
+	static void Destroy();
+	inline static int m_currentWeapon = 0;
 
-	int m_currentWeapon = 0;
+	static Weapon* GetWeapon(int _weapon);
 
-	Weapon* GetWeapon(int _weapon);
+	static void SetWeaponDirection();
 
-	void SetWeaponDirection();
-
-	void SetPosition(XMFLOAT3 _position);
-	XMFLOAT3 GetPosition();
+	static void SetPosition(XMFLOAT3 _position);
+	static XMFLOAT3 GetPosition();
 };
 

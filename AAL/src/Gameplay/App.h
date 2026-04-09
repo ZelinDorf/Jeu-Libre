@@ -26,11 +26,6 @@ private:
 	cpu_font m_font;
 	inline static App* s_pApp = nullptr;
 	
-	Enemy* m_pEnemy;
 	SceneManager m_sceneManager;
-
-	cpu_entity* p_Ground = nullptr;
-	cpu_mesh m_meshGround;
-
 };
 

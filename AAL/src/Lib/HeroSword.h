@@ -23,8 +23,14 @@ private:
 
 public:
 
-	cpu_entity* m_pEntity;
+	cpu_entity* m_pEntity = nullptr;
 
+	bool mIsEquiped = false;
+
+	~HeroSword()
+	{
+		CPU_DELPTR(m_pEntity);
+	}
 	void Init();
 	void Update(float dt);
 

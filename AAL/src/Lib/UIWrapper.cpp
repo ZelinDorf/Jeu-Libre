@@ -1,10 +1,10 @@
 #include "pch.h"
 
 #include "UIWrapper.h"
-#include "App.h"
+//#include "App.h"
 #include <iostream>
 #include "AALEntity.h"
-#include "TextureRegister.h"
+//#include "TextureRegister.h"
 #include "Scene.h"
 
 
@@ -13,7 +13,7 @@ std::unordered_map<cpu_texture*, uint16_t> UIWrapper::m_mapTextureUsage;
 
 UIWrapper::UIWrapper(EntityType ui)
 {
-	m_pTexture = TextureRegister::GetTexture(ui);
+	m_pTexture = RessourcesManager::CreateUI(ui);
 
 	m_pSprite = cpuEngine.CreateSprite();
 	m_pSprite->pTexture = m_pTexture;
@@ -33,6 +33,34 @@ UIWrapper::UIWrapper(EntityType ui)
 	case EntityType::START:
 		UIposition(0.5f, 0.5f);
 		break;
+
+	case EntityType::BASE_CARD:
+		UIposition(0.5f, 0.5f);
+		break;
+	case EntityType::WEAPONS_CARD:
+		UIposition(0.7f, 0.5f);
+		break;
+
+
+	case EntityType::MAGE_CARD:
+		UIposition(0.5f, 0.5f);
+		break;
+	case EntityType::ROGUE_CARD:
+		UIposition(0.5f, 0.5f);
+		break;
+	case EntityType::WARRIOR_CARD:
+		UIposition(0.5f, 0.5f);
+		break;
+
+	case EntityType::STAFF_CARD:
+		UIposition(0.7f, 0.45f);
+		break;
+	case EntityType::BOW_CARD:
+		UIposition(0.7f, 0.45f);
+		break;
+	case EntityType::SWORD_CARD:
+		UIposition(0.7f, 0.45f);
+		break;
 	}
 }
 
@@ -50,19 +78,19 @@ UIWrapper::~UIWrapper()
 
 void UIWrapper::UIposition(float h, float w)
 {
-	m_pSprite->x = cpuDevice.GetWidth() * w;
-	m_pSprite->y = cpuDevice.GetHeight() * h;
+	m_pSprite->x = (int)(cpuDevice.GetWidth() * w);
+	m_pSprite->y = (int)(cpuDevice.GetHeight() * h);
 }
 
 void UIWrapper::UIpositionPixels(float h, float w)
 {
-	m_pSprite->x = w;
-	m_pSprite->y = h;
+	m_pSprite->x = (int)w;
+	m_pSprite->y = (int)h;
 }
 
 void UIWrapper::SetHeight(UIWrapper* ui, float h) {
 	if (m_mapTextureUsage.size() > 0) {
-		ui->m_pSprite->pTexture->height = h;
+		ui->m_pSprite->pTexture->height = (int)h;
 	}
 }
 

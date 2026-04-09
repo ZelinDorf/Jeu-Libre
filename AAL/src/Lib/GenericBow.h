@@ -23,8 +23,10 @@ private:
 
 public:
 
-	cpu_entity* m_pEntity;
+	cpu_entity* m_pEntity = nullptr;
 
+	bool mIsEquiped = false;
+	~GenericBow();
 	void Init();
 	void Update(float dt);
 

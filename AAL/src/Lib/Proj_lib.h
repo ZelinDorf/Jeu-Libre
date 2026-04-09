@@ -7,22 +7,19 @@
 #include "json.hpp"
 #pragma pop_macro("new")
 
-//	macro
-//////////
-//template <class T>
-//#define CPU_TEST_RUN						cpu::Run<cpu_engine, T>//a faire
-#define TO_COLOR							cpu::ToColor
-#define CAMERA								cpuEngine.GetCamera()
-
-//	namespace
-//////////////
-//	singleton
-//////////////
-#define chunkManager						ChunkManager::GetInstance()
-
 //	namespace
 //////////////
 using json									= nlohmann::json;
+
+//	macro
+//////////
+#define TO_COLOR							cpu::ToColor
+#define CAMERA								cpuEngine.GetCamera()
+#define JSON_OBJ							JsonObj::JsonLoader
+
+//	singleton
+//////////////
+#define chunkManager						ChunkManager::GetInstance()
 
 //	std using
 //////////////
@@ -46,23 +43,29 @@ using StringView							= std::string_view;
 
 //	define + using
 ///////////////////
+#define RES_PATH							"../../res/"
+#define JSON_PATH							"../../res/JSON/"
+#define TEXTURE_PATH						"../../res/Texture/"
+#define UI_PATH								"../../res/UI/"
 
 
 //	Lib
+#include "InputSystem.h"
+#include "RessourcesManager.h"
+#include "JSONParser.hpp"
+#include "Math_Utils.h"
 
+#include "UIWrapper.h"
+
+#include "AALentity.h"
 #include "EnemiesRegistery.h"
 #include "Enemy.h"
 #include "EnemyFactory.h"
 #include "StatsEnum.h"
-#include "AALentity.h"
 
 #include "SceneManager.h"
 #include "Scene.h"
 
-#include "InputSystem.h"
-#include "JSONParser.h"
-#include "Math_Utils.h"
 #include "ChunkManager.h"
-
-//	chunk
 #include "Chunk.h"
+

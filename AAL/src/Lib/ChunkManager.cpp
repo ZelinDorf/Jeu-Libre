@@ -3,6 +3,15 @@
 
 ChunkManager* ChunkManager::m_pInstance = nullptr;
 
+ChunkManager::~ChunkManager()
+{
+	for (Chunk* chunk : m_vChunks)
+	{
+		CPU_DELPTR(chunk);
+	}
+	m_vChunks.clear();
+}
+
 ChunkManager* ChunkManager::GetInstance()
 {
 	if (m_pInstance == nullptr)
@@ -39,7 +48,6 @@ void ChunkManager::InitMap(float _mapSize)
 			mapH += sca;
 			
 			m_vChunks.push_back(pNextChunk);
-			
 		}
 		mapW += sca;
 		mapH = 0.f;

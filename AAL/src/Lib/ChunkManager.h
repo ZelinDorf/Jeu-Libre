@@ -5,6 +5,8 @@ class Chunk;
 class ChunkManager
 {
 public:
+	~ChunkManager();
+
 	static ChunkManager* GetInstance();
 
 	//init a square map with "_mapSize" chunk per side

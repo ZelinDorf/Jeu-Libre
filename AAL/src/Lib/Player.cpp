@@ -3,22 +3,31 @@
 #include "InputSystem.h"
 
 
+Player::Player()
+{
+	s_pInstance = this;
+}
+
+Player::~Player()
+{
+	Destroy();
+}
+
 void Player::Init(int _class, int _weapon1Class, int _weapon2Class)
 {
 	
 	//cpuEngine.GetCamera()->transform.SetYPR(0.f, 1.570796f, 0.f);
 
-	m_pEntity = cpuEngine.CreateEntity();
-	m_meshPlayer.CreateSphere(m_playerSize, 20, 20, CPU_WHITE, CPU_WHITE);
-	m_pEntity->pMesh = &m_meshPlayer;
-	m_pEntity->transform.pos = m_position;
-	m_pEntity->transform.SetYPR(0.0f, 0.0f, 0.0f);
-	
+	s_pInstance->m_pEntity = cpuEngine.CreateEntity();
+	s_pInstance->m_meshPlayer.CreateSphere(m_playerSize, 20, 20, CPU_WHITE, CPU_WHITE);
+	s_pInstance->m_pEntity->pMesh = &s_pInstance->m_meshPlayer;
+	s_pInstance->m_pEntity->transform.SetPosition(m_position);
+	s_pInstance->m_pEntity->transform.SetYPR(0.0f, 0.0f, 0.0f);
 
-	m_position = XMFLOAT3(0.0f, 0.0f, 0.0f);
 	m_speed = m_baseSpeed;
 	m_crouchedSpeed *= m_speed;
 
+	s_pInstance->m_entityType = PLAYER;
 	//mAttackRefreshDuration = mCurrentWeapon->GetBasicAttackRefreshTime();
 
 	m_playerClass = _class;
@@ -67,7 +76,7 @@ void Player::HandleInput(float dt)
 
 	UpdateCamera();
 
-	m_pEntity->transform.dir = cpuEngine.GetCamera()->transform.dir;
+	s_pInstance->m_pEntity->transform.dir = cpuEngine.GetCamera()->transform.dir;
 
 
 
@@ -124,7 +133,7 @@ void Player::HandleInput(float dt)
 
 void Player::Destroy()
 {
-	m_pEntity = cpuEngine.Release(m_pEntity);
+	s_pInstance->m_pEntity = cpuEngine.Release(s_pInstance->m_pEntity);
 }
 
 Weapon* Player::GetWeapon(int _weapon)
@@ -145,9 +154,9 @@ void Player::SetWeaponDirection()
 		return;
 
 	if (m_currentWeapon == 1)
-		m_weapon1->SetDirection(m_pEntity->transform.dir);
+		m_weapon1->SetDirection(s_pInstance->m_pEntity->transform.dir);
 	if (m_currentWeapon == 2)
-		m_weapon2->SetDirection(m_pEntity->transform.dir);
+		m_weapon2->SetDirection(s_pInstance->m_pEntity->transform.dir);
 }
 
 void Player::SetPosition(XMFLOAT3 _position)
@@ -157,7 +166,7 @@ void Player::SetPosition(XMFLOAT3 _position)
 
 XMFLOAT3 Player::GetPosition()
 {
-	return m_position;
+	return s_pInstance->m_pEntity->transform.pos;
 }
 
 void Player::UpdateCamera()
@@ -169,8 +178,8 @@ void Player::UpdateCamera()
 	float deltaX = mousePos.x - m_center.x;
 	float deltaY = mousePos.y - m_center.y;
 
-	m_yaw += deltaX * m_sensivity;
-	m_pitch += deltaY * m_sensivity;
+	m_yaw += deltaX * s_pInstance->m_sensivity;
+	m_pitch += deltaY * s_pInstance->m_sensivity;
 
 	if (m_pitch > 1.55) { m_pitch = 1.55; }
 	if (m_pitch < -1.55) { m_pitch = -1.55; }
@@ -180,7 +189,7 @@ void Player::UpdateCamera()
 
 	InputSystem::SetMousePosition({ cpuEngine.GetWindow()->GetWidth() / 2, cpuEngine.GetWindow()->GetHeight() / 2 });
 
-	cpuEngine.GetCamera()->transform.pos = m_pEntity->transform.pos;
+	cpuEngine.GetCamera()->transform.pos = s_pInstance->m_pEntity->transform.pos;
 	cpuEngine.GetCamera()->transform.pos.y += 2.f;
 
 	cpuEngine.GetCamera()->transform.Move(-2);
@@ -192,8 +201,8 @@ void Player::MouseInput()
 
 void Player::MoveForward(float dt)
 {
-	float m_xDir = m_pEntity->transform.dir.x;
-	float m_zDir = m_pEntity->transform.dir.z;
+	float m_xDir = s_pInstance->m_pEntity->transform.dir.x;
+	float m_zDir = s_pInstance->m_pEntity->transform.dir.z;
 
 	m_position.x += m_xDir * m_speed * dt;
 	m_position.z += m_zDir * m_speed * dt;
@@ -201,8 +210,8 @@ void Player::MoveForward(float dt)
 
 void Player::MoveBackward(float dt)
 {
-	float m_xDir = m_pEntity->transform.dir.x;
-	float m_zDir = m_pEntity->transform.dir.z;
+	float m_xDir = s_pInstance->m_pEntity->transform.dir.x;
+	float m_zDir = s_pInstance->m_pEntity->transform.dir.z;
 
 	m_position.x -= m_xDir * m_speed * dt;
 	m_position.z -= m_zDir * m_speed * dt;
@@ -210,8 +219,8 @@ void Player::MoveBackward(float dt)
 
 void Player::StrafeLeft(float dt)
 {
-	float m_xDir = m_pEntity->transform.dir.x;
-	float m_zDir = m_pEntity->transform.dir.z;
+	float m_xDir = s_pInstance->m_pEntity->transform.dir.x;
+	float m_zDir = s_pInstance->m_pEntity->transform.dir.z;
 
 	m_position.x -= m_zDir * m_speed * dt;
 	m_position.z += m_xDir * m_speed * dt;
@@ -219,8 +228,8 @@ void Player::StrafeLeft(float dt)
 
 void Player::StrafeRight(float dt)
 {
-	float m_xDir = m_pEntity->transform.dir.x;
-	float m_zDir = m_pEntity->transform.dir.z;
+	float m_xDir = s_pInstance->m_pEntity->transform.dir.x;
+	float m_zDir = s_pInstance->m_pEntity->transform.dir.z;
 
 	m_position.x += m_zDir * m_speed * dt;
 	m_position.z -= m_xDir * m_speed * dt;

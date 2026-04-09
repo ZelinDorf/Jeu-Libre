@@ -2,6 +2,11 @@
 #include "GenericBow.h"
 #include "HeroBow.h"
 
+GenericBow::~GenericBow()
+{
+	CPU_DELPTR(m_pEntity);
+}
+
 void GenericBow::Init()
 {
 	m_meshBow.CreateCylinder(m_size, m_width, 5, true, true, CPU_BLUE);

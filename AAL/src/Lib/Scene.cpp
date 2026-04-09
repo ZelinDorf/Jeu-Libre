@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "Scene.h"
-#include "Gameplay/UIWrapper.h"
 
 Scene::Scene()
 {
@@ -8,7 +7,14 @@ Scene::Scene()
 
 Scene::~Scene()
 {
+	for (size_t i = 0; i < m_entities.size(); i++)
+	{
+		CPU_DELPTR(m_entities[i]);
+	}
 
+	for (auto& it : m_mapUI) {
+		CPU_DELPTR(it.second);
+	}
 }
 
 bool Scene::IsActive()
@@ -31,12 +37,11 @@ void Scene::SetActive(bool active)
 
 void Scene::Update(float dt)
 {
-	for(auto entity : m_entities)
+	for (auto entity : m_entities)
 	{
 		entity->Update(dt);
-	}
+	};
 }
-
 void Scene::OnRender(int pass)
 {
 

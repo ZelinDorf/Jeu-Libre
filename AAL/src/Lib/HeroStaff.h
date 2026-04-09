@@ -23,10 +23,14 @@ private:
 
 public:
 
-	cpu_entity* m_pEntity;
+	cpu_entity* m_pEntity = nullptr;
 
 	cpu_entity* m_pProjectile;
 
+	~HeroStaff()
+	{
+		CPU_DELPTR(m_pEntity);
+	}
 	void Init();
 	void Update(float dt);
 

@@ -1,6 +1,7 @@
 #pragma once
 #include <unordered_map>
 #include "AALentity.h"
+#include "Enemy.h"
 
 class UIWrapper;
 class Scene
@@ -29,11 +30,7 @@ protected:
 	bool m_active = false;
 
 	Vector<AALentity*> m_entities;
+	Vector<Enemy*> m_enemies;
 	Vector<int> m_entitiesID;
-
-	
-
-
-
 };
 

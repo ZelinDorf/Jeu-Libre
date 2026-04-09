@@ -13,6 +13,7 @@ enum Biomes
 class Chunk : public AALentity
 {
 public:
+	~Chunk();
 
 	virtual void Init();
 	virtual void Init(Biomes _biome);
@@ -31,7 +32,5 @@ private:
 
 	int m_biome = -1;
 
-	cpu_mesh m_mesh;
-	cpu_material m_mat;
-	//texture?
+	cpu_mesh* m_mesh;
 };

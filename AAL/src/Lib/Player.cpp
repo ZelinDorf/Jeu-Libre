@@ -13,6 +13,11 @@ Player::~Player()
 	Destroy();
 }
 
+void Player::TakingDmg()
+{
+
+}
+
 void Player::Init(int _class, int _weapon1Class, int _weapon2Class)
 {
 	JSON_OBJ(JSON_PATH"fox.json", nullptr, s_pInstance->m_pEntity);
@@ -23,15 +28,15 @@ void Player::Init(int _class, int _weapon1Class, int _weapon2Class)
 
 	m_playerClass = _class;
 
-	m_weapon1 = new Weapon();
-	m_weapon1->Init(_weapon1Class, m_playerClass);
-	m_weapon1->Equip();
+	//m_weapon1 = new Weapon();
+	//m_weapon1->Init(_weapon1Class, m_playerClass);
+	//m_weapon1->Equip();
 }
 
 void Player::Update(float dt)
 {
 	m_pEntity->transform.pos = m_position;
-	m_weapon1->SetPosition(m_position);
+	//m_weapon1->SetPosition(m_position);
 
 	HandleInput(dt);
 	RefreshAttack(dt);
@@ -156,7 +161,7 @@ void Player::UpdateCamera()
 	CAMERA->transform.pos = s_pInstance->m_pEntity->transform.pos;
 	CAMERA->transform.pos.y += 2.f;
 
-	CAMERA->transform.Move(-2);
+	CAMERA->transform.Move(-5);
 }
 
 void Player::MouseInput()

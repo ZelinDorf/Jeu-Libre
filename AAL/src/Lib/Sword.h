@@ -10,6 +10,6 @@ public:
 	void Update(float dt) override;
 	
 	XMFLOAT3 newPos = { 0.0f,0.0f,0.0f };
-	
+	int m_score = 0;
 };
 

@@ -23,7 +23,7 @@ App::~App()
 
 void App::OnStart()
 {
-	m_font.Create(20);
+	m_font.Create(30);
 
 	m_sceneManager.SetSceneActive<SceneMenu>(true);
 
@@ -63,14 +63,14 @@ void App::OnRender(int pass)
 
 	// Debug
 	cpu_stats& stats = *cpuEngine.GetStats();
-	std::string info = CPU_STR(cpuTime.fps) + " fps, ";
-	info += CPU_STR(stats.drawnTriangleCount) + " triangles, ";
+	//std::string info = CPU_STR(cpuTime.fps) + " fps, ";
+	//info += CPU_STR(stats.drawnTriangleCount) + " triangles, ";
 	//info += CPU_STR(stats.clipEntityCount) + " clipped entities\n";
 	//info += CPU_STR(cpuEngine.GetParticleData()->alive) + " particles, ";
 
 	XMFLOAT3 tint = { 1.0f, 1.0f, 0.8f };
 	
-	cpuDevice.DrawText(&m_font, info.c_str(), (int)(cpuDevice.GetWidth() * 0.5f), 10, CPU_TEXT_CENTER, &tint);
+	//cpuDevice.DrawText(&m_font, info.c_str(), (int)(cpuDevice.GetWidth() * 0.5f), 10, CPU_TEXT_CENTER, &tint);
 }
 
 void App::MyPixelShader(cpu_ps_io& io)

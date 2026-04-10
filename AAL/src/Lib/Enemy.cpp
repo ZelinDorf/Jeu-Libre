@@ -11,13 +11,6 @@ Enemy::~Enemy()
 	Destroy();
 }
 
-//void Enemy::Create(cpu_mesh* pMesh, cpu_material* pMaterial)
-//{
-//	/*m_pEntity = cpuEngine.CreateEntity();
-//	m_pEntity->pMesh = pMesh;
-//	m_pEntity->pMaterial = pMaterial;*/
-//}
-
 void Enemy::Destroy()
 {
 	cpuEngine.Release(m_pEntity);
@@ -81,11 +74,11 @@ void Enemy::Update(float dt)
 		m_dmgTimer -= dt;
 	}
 
-	m_pEntity->transform.Move(dt * m_speed);
+	m_pEntity->transform.Move(m_speed * dt);
 	m_pEntity->transform.LookAt(playerPos.x, playerPos.y, playerPos.z);
 }
 
-// fonctions tochange the statistic of the enemies
+// fonctions to change the statistic of the enemies
 void Enemy::MultiplyStats(Vector<StatsEnum> e, Vector<float> value)
 {
 	if (e.size() != value.size()) return; // must be the same size !
@@ -182,7 +175,7 @@ void Enemy::DamageTaken()
 	m_currentHealth--;
 	if (m_pColorDmg == nullptr) 
 	{
-		m_pColorDmg = new cpu_material();
+		m_pColorDmg = new cpu_material(); // change color of the enemy when damaged
 	}
 
 	m_pColorDmg->color = CPU_RED;

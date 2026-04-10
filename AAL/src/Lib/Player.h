@@ -2,6 +2,7 @@
 #include "pch.h"
 #include "Weapon.h"
 #include "PlayerStatsManager.h"
+#include "Sword.h"
 
 class Player : public AALentity
 {
@@ -70,10 +71,13 @@ private:
 
 public:
 
+	inline static Vector<Sword*> m_vSwords;
 	inline static bool m_isActive = false;
 
 	Player();
 	~Player();
+
+	static void TakingDmg();
 	static void Init(int _class, int _weapon1Class, int _weapon2Class);
 	void Update(float dt) override;
 	static void HandleInput(float dt);
@@ -87,5 +91,7 @@ public:
 
 	static void SetPosition(XMFLOAT3 _position);
 	static XMFLOAT3 GetPosition();
+
+	static inline float m_HP = 10.0f;
 };
 

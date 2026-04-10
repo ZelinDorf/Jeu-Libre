@@ -18,7 +18,7 @@ public:
 	void Collisions(float dt);
 
 	void MoveEnemiesApart(float dt);
-	void CollisionPlayerEnemy();
+	void CollisionPlayerEnemy(float dt);
 	void CollisionSwordEnemy();
 
 	XMFLOAT3 RandPos();
@@ -33,5 +33,7 @@ private:
 
 	Player* m_pPlayer = nullptr;
 	Sword* m_pSword = nullptr;
+
+	bool m_canSpawnSword = true;
 };
 

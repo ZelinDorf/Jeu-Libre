@@ -29,7 +29,13 @@ void HeroStaff::Update(float dt)
 	}*/
 	if (m_pProjectile != nullptr)
 	{
-		//m_pProjectile->transform.Move(.1f);
+		float m_xDir = m_pProjectile->transform.dir.x;
+		float m_yDir = m_pProjectile->transform.dir.y;
+		float m_zDir = m_pProjectile->transform.dir.z;
+
+		m_pProjectile->transform.pos.x += m_xDir * 20.f * dt;
+		m_pProjectile->transform.pos.y += m_yDir * 20.f * dt;
+		m_pProjectile->transform.pos.z += m_zDir * 20.f * dt;
 	}
 }
 
@@ -113,13 +119,28 @@ void HeroStaff::Shoot()
 		}*/
 	}
 
+	XMFLOAT3 pos = m_position;
+	pos.y += 1;
+	float m_xDir = cpuEngine.GetCamera()->transform.dir.x;
+	float m_yDir = cpuEngine.GetCamera()->transform.dir.y;
+	float m_zDir = cpuEngine.GetCamera()->transform.dir.z;
+
+	pos.x += m_xDir * 1.f;
+	pos.y += m_yDir * 1.f;
+	pos.z += m_zDir * 1.f;
+
 	if (m_pProjectile == nullptr)
 	{
 		cpu_entity* projectile = cpuEngine.CreateEntity();
 		projectile->pMesh = &m_meshProjectile;
-		projectile->transform.pos = m_position;
+		projectile->transform.pos = pos;
 		projectile->transform.dir = cpuEngine.GetCamera()->transform.dir;
 		m_pProjectile = projectile;
+	}
+	else
+	{
+		m_pProjectile->transform.pos = pos;
+		m_pProjectile->transform.dir = cpuEngine.GetCamera()->transform.dir;
 	}
 
 }

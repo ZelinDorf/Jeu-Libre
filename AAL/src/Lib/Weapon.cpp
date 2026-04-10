@@ -100,10 +100,10 @@ Vector<cpu_entity*> Weapon::GetProjectiles()
     {
         return m_heroWeapon->GetProjectiles();
     }
-    else
+    /*else
     {
         return;
-    }
+    }*/
 }
 
 void Weapon::BasicAttack()
